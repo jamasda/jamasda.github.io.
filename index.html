@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masjid Subardi Al-Huda Kuwon - Pusat Ibadah & Pemberdayaan Umat</title>
+    
+    <!-- Favicon / Logo Masjid di Tab Browser (Menggunakan file 'logo masjid') -->
+    <link rel="icon" type="image/png" href="logo masjid.png">
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icon -->
@@ -15,7 +19,14 @@
 
     <style>
         body {
-            background: linear-gradient(135deg, #021114 0%, #052920 50%, #010b0d 100%);
+            /* Background Gradient + Foto Masjid Transparan dari File 'masjid' */
+            background: 
+                linear-gradient(135deg, rgba(2, 17, 20, 0.92) 0%, rgba(5, 41, 32, 0.90) 50%, rgba(1, 11, 13, 0.95) 100%),
+                url('masjid.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
         .sub-nav.active {
@@ -26,13 +37,14 @@
         }
     </style>
 </head>
-<body class="text-gray-200 min-h-screen flex flex-col items-center justify-start p-4 sm:p-8 font-sans antialiased">
+<body class="text-gray-200 min-h-screen flex flex-col items-center justify-start p-4 sm:p-8 font-sans antialiased backdrop-blur-[2px]">
 
     <!-- Header / Navbar Utama Masjid -->
     <header class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between mb-8 px-2 border-b border-teal-800/50 pb-4 gap-4">
         <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-teal-900/80 rounded-2xl flex items-center justify-center text-amber-400 text-2xl border border-amber-500/40 shadow-lg">
-                🕌
+            <!-- Logo Masjid di Header -->
+            <div class="w-12 h-12 bg-teal-900/80 rounded-2xl flex items-center justify-center border border-amber-500/40 shadow-lg overflow-hidden p-1">
+                <img src="logo masjid.png" alt="Logo Masjid Subardi Al-Huda" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='🕌';">
             </div>
             <div>
                 <h1 class="text-lg font-extrabold text-cyan-300 tracking-wide">MASJID SUBARDI AL-HUDA</h1>
@@ -51,9 +63,9 @@
     </header>
 
     <!-- Banner Utama / Hero Section -->
-    <section class="w-full max-w-5xl bg-teal-950/80 rounded-[2.5rem] p-6 md:p-10 text-white border border-teal-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+    <section class="w-full max-w-5xl bg-teal-950/80 rounded-[2.5rem] p-6 md:p-10 text-white border border-teal-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 mb-8 backdrop-blur-md">
         <div class="space-y-3 max-w-2xl">
-            <span class="bg-amber-950 text-amber-300 border border-amber-500/40 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">
+            <span class="bg-amber-950/80 text-amber-300 border border-amber-500/40 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">
                 📍 Tembesi RT/RW 01/10, Ponjong, Gunungkidul, DIY
             </span>
             <h2 class="text-2xl md:text-4xl font-extrabold text-cyan-300 leading-tight">
@@ -64,13 +76,14 @@
                 <strong class="text-teal-300">Luas Tanah Wakaf:</strong> 1.342 m² | <strong class="text-teal-300">Luas Bangunan:</strong> 471,50 m²
             </p>
         </div>
-        <div class="w-28 h-28 bg-teal-900/50 rounded-3xl flex items-center justify-center text-amber-400 text-6xl border border-amber-500/30 shrink-0 shadow-inner">
-            🕌
+        <!-- Logo Besar di Hero Section -->
+        <div class="w-28 h-28 bg-teal-900/50 rounded-3xl flex items-center justify-center border border-amber-500/30 shrink-0 shadow-inner p-2">
+            <img src="logo masjid.png" alt="Logo Masjid" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='🕌';">
         </div>
     </section>
 
     <!-- Navigasi Menu Sub-Halaman Masjid -->
-    <nav class="w-full max-w-5xl bg-teal-950/90 p-2 rounded-2xl border border-teal-500/30 flex flex-wrap justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300 shadow-xl mb-8">
+    <nav class="w-full max-w-5xl bg-teal-950/90 p-2 rounded-2xl border border-teal-500/30 flex flex-wrap justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300 shadow-xl mb-8 backdrop-blur-md">
         <button onclick="switchMasjidSubTab('profil')" id="btn-m-profil" class="sub-nav active px-4 py-2.5 rounded-xl transition">1. Profil & Legalitas</button>
         <button onclick="switchMasjidSubTab('takmir')" id="btn-m-takmir" class="sub-nav px-4 py-2.5 rounded-xl transition">2. Struktur Takmir Lengkap</button>
         <button onclick="switchMasjidSubTab('personalia')" id="btn-m-personalia" class="sub-nav px-4 py-2.5 rounded-xl transition">3. Imam, Muadzin & Marbot</button>
@@ -84,7 +97,7 @@
 
         <!-- SUB-TAB 1: PROFIL & LEGALITAS -->
         <div id="m-sub-profil" class="space-y-6">
-            <div class="bg-teal-950/60 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3 flex items-center gap-3">
                     <span class="text-2xl">📜</span>
                     <div>
@@ -129,7 +142,7 @@
 
         <!-- SUB-TAB 2: STRUKTUR TAKMIR -->
         <div id="m-sub-takmir" class="hidden space-y-6">
-            <div class="bg-teal-950/60 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
                     <div>
                         <h3 class="text-xl font-bold text-cyan-300">Susunan Pengurus Takmir Masjid Subardi Al-Huda</h3>
@@ -211,10 +224,10 @@
             </div>
         </div>
 
-        <!-- SUB-TAB 3: PERSONALIA (IMAM, MUADZIN, MARBOT) -->
+        <!-- SUB-TAB 3: PERSONALIA -->
         <div id="m-sub-personalia" class="hidden space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                <div class="bg-teal-950/60 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg">
+                <div class="bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg backdrop-blur-md">
                     <div class="w-10 h-10 bg-cyan-900/60 text-cyan-300 rounded-xl flex items-center justify-center text-xl font-bold">👳‍♂️</div>
                     <h4 class="font-bold text-cyan-300 text-sm">Imam Tetap Masjid</h4>
                     <p class="text-gray-300 leading-relaxed">Memimpin salat berjamaah serta keteladanan ibadah harian:</p>
@@ -226,7 +239,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-teal-950/60 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg">
+                <div class="bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg backdrop-blur-md">
                     <div class="w-10 h-10 bg-amber-900/60 text-amber-300 rounded-xl flex items-center justify-center text-xl font-bold">📢</div>
                     <h4 class="font-bold text-cyan-300 text-sm">Daftar Muadzin Tetap</h4>
                     <p class="text-gray-300 leading-relaxed">Mengumandangkan azan dan iqamah secara bergiliran:</p>
@@ -238,7 +251,7 @@
                     </ul>
                 </div>
 
-                <div class="bg-teal-950/60 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg">
+                <div class="bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg backdrop-blur-md">
                     <div class="w-10 h-10 bg-emerald-900/60 text-emerald-300 rounded-xl flex items-center justify-center text-xl font-bold">🧹</div>
                     <h4 class="font-bold text-cyan-300 text-sm">Marbot Tetap Masjid</h4>
                     <p class="text-gray-300 leading-relaxed">Penanggung jawab kebersihan, keamanan, & pemeliharaan sarana:</p>
@@ -250,7 +263,7 @@
 
         <!-- SUB-TAB 4: PROGRAM KERJA 3 PILAR -->
         <div id="m-sub-pilar" class="hidden space-y-6">
-            <div class="bg-teal-950/60 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3">
                     <h3 class="text-xl font-bold text-cyan-300">Pengelolaan Program Berbasis 3 Pilar Kemasjidan</h3>
                     <p class="text-xs text-gray-400">Idarah (Manajemen), Imarah (Peribadatan), dan Ri'ayah (Pemeliharaan Fisik)</p>
@@ -292,7 +305,7 @@
 
         <!-- SUB-TAB 5: KEMAKMURAN & KAJIAN -->
         <div id="m-sub-kemakmuran" class="hidden space-y-6">
-            <div class="bg-teal-950/60 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
                     <div>
                         <h3 class="text-xl font-bold text-cyan-300">Kemakmuran Jamaah & Majelis Kajian Islam</h3>
@@ -347,7 +360,7 @@
                     <div class="p-4 bg-teal-900/30 rounded-2xl border border-teal-700/40 space-y-1.5">
                         <h5 class="font-bold text-amber-300">d. Kajian Tematik Kitab</h5>
                         <p class="text-gray-300"><strong>Waktu:</strong> Bakda Subuh | <strong>Peserta:</strong> ~150 Orang</p>
-                        <p class="text-gray-400">Pembahasan Materi Keislaman (Pelaksana: Masruri, Faizuz,Romadani, Awan, Zakaria).</p>
+                        <p class="text-gray-400">Pembahasan Materi Keislaman (Pelaksana: Masruri, Faizuz, Romadani, Awan, Zakaria).</p>
                     </div>
                 </div>
             </div>
@@ -355,7 +368,7 @@
 
         <!-- SUB-TAB 6: SOSIAL, REMAJA & BINAAN -->
         <div id="m-sub-sosial" class="hidden space-y-6">
-            <div class="bg-teal-950/60 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3">
                     <h3 class="text-xl font-bold text-cyan-300">Pemberdayaan Remaja, Ekonomi & Pelayanan Sosial</h3>
                     <p class="text-xs text-gray-400">Implementasi dakwah nyata rahmatan lil 'alamin bagi masyarakat</p>
@@ -366,7 +379,7 @@
                         <h4 class="font-bold text-amber-300 text-sm">👦 Pemberdayaan Remaja (ARIA)</h4>
                         <ul class="text-gray-300 space-y-1 list-disc pl-4">
                             <li><strong>Tahsin Night:</strong> Setiap Sabtu malam Ahad (30 peserta).</li>
-                            <li><strong>Qur'an Hifz Program:</strong> Target min 2 Juz (PJ: Romadani ).</li>
+                            <li><strong>Qur'an Hifz Program:</strong> Target min 2 Juz (PJ: Romadani).</li>
                             <li><strong>Youth Red Cross:</strong> P3K, Donor Darah berkala, & Cek Kesehatan.</li>
                             <li><strong>Ramadhan Youth Festival:</strong> Pesantren Ramadan & Clean Mosque.</li>
                         </ul>
@@ -419,7 +432,7 @@
 
     <!-- Footer Masjid -->
     <footer class="mt-12 text-center text-xs text-gray-400 tracking-wider border-t border-teal-900/50 pt-6 w-full max-w-5xl space-y-2">
-        <p class="font-bold text-cyan-300">TAKMiR MASJID SUBARDI AL-HUDA KUWON</p>
+        <p class="font-bold text-cyan-300">TAKMIR MASJID SUBARDI AL-HUDA KUWON</p>
         <p class="text-[11px] text-gray-400">Tembesi RT 01/RW 10, Ponjong, Gunungkidul, DIY 55892</p>
         <p class="text-[10px] text-teal-500 pt-2">&copy; 2026 MASJID SUBARDI AL-HUDA. ALL RIGHTS RESERVED.</p>
     </footer>
