@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masjid Subardi Al-Huda Kuwon - Pusat Ibadah & Pemberdayaan Umat</title>
     
-    <!-- Favicon / Logo Masjid di Tab Browser (Menggunakan file 'logo masjid') -->
+    <!-- Favicon / Logo Masjid -->
     <link rel="icon" type="image/png" href="logo masjid.png">
     
     <!-- Tailwind CSS CDN -->
@@ -15,11 +15,10 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         body {
-            /* Background Gradient + Foto Masjid Transparan dari File 'masjid' */
             background: 
                 linear-gradient(135deg, rgba(2, 17, 20, 0.92) 0%, rgba(5, 41, 32, 0.90) 50%, rgba(1, 11, 13, 0.95) 100%),
                 url('masjid.jpg');
@@ -28,6 +27,9 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-arabic {
+            font-family: 'Amiri', serif;
         }
         .sub-nav.active {
             border-color: #22d3ee;
@@ -39,20 +41,22 @@
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col items-center justify-start p-4 sm:p-8 font-sans antialiased backdrop-blur-[2px]">
 
-    <!-- Header / Navbar Utama Masjid -->
-    <header class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between mb-8 px-2 border-b border-teal-800/50 pb-4 gap-4">
+    <!-- Header / Navbar Utama -->
+    <header class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between mb-6 px-2 border-b border-teal-800/50 pb-4 gap-4">
         <div class="flex items-center space-x-3">
-            <!-- Logo Masjid di Header -->
             <div class="w-12 h-12 bg-teal-900/80 rounded-2xl flex items-center justify-center border border-amber-500/40 shadow-lg overflow-hidden p-1">
                 <img src="logo masjid.png" alt="Logo Masjid Subardi Al-Huda" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='🕌';">
             </div>
             <div>
                 <h1 class="text-lg font-extrabold text-cyan-300 tracking-wide">MASJID SUBARDI AL-HUDA KUWON</h1>
-                <p class="text-[11px] text-teal-400 font-medium">Tembesi, Ponjong, Ponjong, Gunungkidul, DIY</p>
+                <p class="text-[11px] text-teal-400 font-medium">tembesi, Ponjong, Ponjong, Gunungkidul, DIY</p>
             </div>
         </div>
 
         <div class="flex flex-wrap justify-center gap-2">
+            <a href="https://masa.muhammadiyah.or.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 bg-emerald-800 hover:bg-emerald-700 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+                <i class="fa-solid fa-compass text-sm"></i> Aplikasi MASA Muhammadiyah
+            </a>
             <a href="https://wa.me/" target="_blank" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
                 <i class="fa-brands fa-whatsapp text-sm"></i> Kontak Takmir
             </a>
@@ -62,7 +66,78 @@
         </div>
     </header>
 
-    <!-- Banner Utama / Hero Section -->
+    <!-- BANNER JADWAL SALAT & KALENDER HIJRIAH KHGT -->
+    <section class="w-full max-w-5xl bg-teal-950/80 rounded-3xl p-5 border border-teal-500/30 shadow-2xl mb-6 backdrop-blur-md">
+        <div class="flex flex-col md:flex-row justify-between items-center border-b border-teal-800/60 pb-3 mb-4 gap-2 text-center md:text-left">
+            <div>
+                <h3 class="text-sm font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-2 justify-center md:justify-start">
+                    <span>🕋</span> Jadwal Salat Hari Ini — Gunungkidul & Sejatinya
+                </h3>
+                <p id="today-date-gregorian" class="text-xs text-gray-300 mt-0.5">Memuat tanggal Masehi...</p>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2">
+                <span class="bg-teal-900/80 border border-teal-600/50 px-3 py-1 rounded-xl text-[11px] font-semibold text-teal-300">
+                    ⏱️ Subuh Adjusted (+8 Mnt Tarjih)
+                </span>
+                <div class="bg-amber-950/80 border border-amber-500/40 px-3.5 py-1.5 rounded-xl text-xs font-bold text-amber-300 shadow-inner">
+                    🌙 <span id="today-date-hijri">Kalender KHGT Muhammadiyah</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box Waktu Salat -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 text-center text-xs">
+            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-amber-500/50 relative overflow-hidden">
+                <span class="text-amber-300 font-bold block text-[11px]">SUBUH*</span>
+                <span id="time-subuh" class="text-lg font-black text-amber-200">--:--</span>
+            </div>
+            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+                <span class="text-teal-400 font-bold block text-[11px]">TERBIT</span>
+                <span id="time-syuruq" class="text-lg font-black text-cyan-300">--:--</span>
+            </div>
+            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+                <span class="text-teal-400 font-bold block text-[11px]">ZUHUR</span>
+                <span id="time-zuhur" class="text-lg font-black text-cyan-300">--:--</span>
+            </div>
+            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+                <span class="text-teal-400 font-bold block text-[11px]">ASAR</span>
+                <span id="time-asar" class="text-lg font-black text-cyan-300">--:--</span>
+            </div>
+            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+                <span class="text-teal-400 font-bold block text-[11px]">MAGRIB</span>
+                <span id="time-magrib" class="text-lg font-black text-cyan-300">--:--</span>
+            </div>
+            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+                <span class="text-teal-400 font-bold block text-[11px]">ISYA</span>
+                <span id="time-isya" class="text-lg font-black text-cyan-300">--:--</span>
+            </div>
+        </div>
+        
+        <div class="mt-3 text-right">
+            <a href="https://masa.muhammadiyah.or.id" target="_blank" rel="noopener noreferrer" class="text-[11px] text-teal-400 hover:text-cyan-300 underline font-medium inline-flex items-center gap-1">
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Buka Aplikasi MASA (Muhammadiyah Prayer Times) Resmi
+            </a>
+        </div>
+    </section>
+
+    <!-- BANNER AYAT MEMAKMURKAN MASJID (QS. AT-TAUBAH: 18) -->
+    <section class="w-full max-w-5xl bg-gradient-to-r from-teal-950/90 via-emerald-950/80 to-teal-950/90 rounded-3xl p-6 md:p-8 border border-amber-500/30 shadow-2xl mb-8 relative overflow-hidden backdrop-blur-md text-center space-y-4">
+        <span class="bg-amber-950/90 text-amber-300 border border-amber-500/40 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+            ✨ Keutamaan Memakmurkan Masjid — QS. At-Taubah [9]: 18
+        </span>
+        
+        <!-- Teks Arab -->
+        <p class="font-arabic text-2xl md:text-3xl lg:text-4xl leading-loose md:leading-loose text-amber-200 pt-2 dir-rtl">
+            إِنَّمَا يَعْمُرُ مَسَٰجِدَ ٱللَّهِ مَنْ ءَامَنَ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ وَأَقَامَ ٱلصَّلَوٰةَ وَءَاتَى ٱلزَّكَوٰةَ وَلَمْ يَخْشَ إِلاَّ ٱللَّهَ ۖ فَعَسَىٰٓ أُو۟لَٰٓئِكَ أَن يَكُونُوا۟ مِنَ ٱلْمُهْتَدِينَ
+        </p>
+
+        <!-- Terjemahan -->
+        <p class="text-xs md:text-sm text-gray-300 italic max-w-3xl mx-auto leading-relaxed border-t border-teal-800/60 pt-3">
+            "Hanya yang memakmurkan masjid-masjid Allah ialah orang-orang yang beriman kepada Allah dan Hari kemudian, serta tetap mendirikan shalat, menunaikan zakat dan tidak takut (kepada siapapun) selain kepada Allah, maka merekalah orang-orang yang diharapkan termasuk golongan orang-orang yang mendapat petunjuk."
+        </p>
+    </section>
+
+    <!-- Hero Section / Deskripsi Ringkas -->
     <section class="w-full max-w-5xl bg-teal-950/80 rounded-[2.5rem] p-6 md:p-10 text-white border border-teal-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 mb-8 backdrop-blur-md">
         <div class="space-y-3 max-w-2xl">
             <span class="bg-amber-950/80 text-amber-300 border border-amber-500/40 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">
@@ -76,13 +151,12 @@
                 <strong class="text-teal-300">Luas Tanah Wakaf:</strong> 1.342 m² | <strong class="text-teal-300">Luas Bangunan:</strong> 471,50 m²
             </p>
         </div>
-        <!-- Logo Besar di Hero Section -->
         <div class="w-28 h-28 bg-teal-900/50 rounded-3xl flex items-center justify-center border border-amber-500/30 shrink-0 shadow-inner p-2">
             <img src="logo masjid.png" alt="Logo Masjid" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='🕌';">
         </div>
     </section>
 
-    <!-- Navigasi Menu Sub-Halaman Masjid -->
+    <!-- Navigasi Sub-Halaman -->
     <nav class="w-full max-w-5xl bg-teal-950/90 p-2 rounded-2xl border border-teal-500/30 flex flex-wrap justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300 shadow-xl mb-8 backdrop-blur-md">
         <button onclick="switchMasjidSubTab('profil')" id="btn-m-profil" class="sub-nav active px-4 py-2.5 rounded-xl transition">1. Profil & Legalitas</button>
         <button onclick="switchMasjidSubTab('takmir')" id="btn-m-takmir" class="sub-nav px-4 py-2.5 rounded-xl transition">2. Struktur Takmir Lengkap</button>
@@ -431,13 +505,18 @@
     </main>
 
     <!-- Footer Masjid -->
-    <footer class="mt-12 text-center text-xs text-gray-400 tracking-wider border-t border-teal-900/50 pt-6 w-full max-w-5xl space-y-2">
+    <footer class="mt-12 text-center text-xs text-gray-400 tracking-wider border-t border-teal-900/50 pt-6 w-full max-w-5xl space-y-3">
         <p class="font-bold text-cyan-300">TAKMIR MASJID SUBARDI AL-HUDA KUWON</p>
         <p class="text-[11px] text-gray-400">Tembesi RT 01/RW 10, Ponjong, Gunungkidul, DIY 55892</p>
+        <div class="pt-2">
+            <a href="https://masa.muhammadiyah.or.id" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 bg-teal-900/80 border border-teal-600/50 hover:bg-teal-800 text-amber-300 rounded-full text-[11px] font-bold transition inline-flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-compass"></i> Kunjungi MASA (Muhammadiyah Prayer Times)
+            </a>
+        </div>
         <p class="text-[10px] text-teal-500 pt-2">&copy; 2026 MASJID SUBARDI AL-HUDA. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- JavaScript Navigasi Tab -->
+    <!-- Script Navigasi Tab & Fetch Jadwal Sholat/Hijriah Otomatis -->
     <script>
         function switchMasjidSubTab(subTab) {
             const subTabs = ['profil', 'takmir', 'personalia', 'pilar', 'kemakmuran', 'sosial'];
@@ -455,6 +534,65 @@
 
             window.scrollTo({ top: 300, behavior: 'smooth' });
         }
+
+        // Fungsi Penambahan Waktu Khusus Subuh (+8 Menit)
+        function addMinutesToTime(timeStr, minutesToAdd) {
+            if (!timeStr || !timeStr.includes(':')) return timeStr;
+            const parts = timeStr.split(':');
+            let hours = parseInt(parts[0], 10);
+            let minutes = parseInt(parts[1], 10) + minutesToAdd;
+
+            if (minutes >= 60) {
+                hours = (hours + 1) % 24;
+                minutes = minutes - 60;
+            }
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        }
+
+        // Fetch Jadwal Sholat Otomatis Khusus Wilayah Gunungkidul (Latitude/Longitude Ponjong)
+        async function fetchPrayerTimes() {
+            try {
+                const today = new Date();
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('today-date-gregorian').innerText = today.toLocaleDateString('id-ID', options);
+
+                // Fetch data dari API Aladhan (Metode 20 / Kemenag Indonesia, Lat/Long Ponjong, Gunungkidul)
+                const res = await fetch(`https://api.aladhan.com/v1/timings?latitude=-7.9628&longitude=110.7135&method=20`);
+                const data = await res.json();
+                
+                if (data && data.data) {
+                    const timings = data.data.timings;
+                    
+                    // Waktu Subuh ditambah 8 menit sesuai acuan penyesuaian lokal Tarjih/MASA
+                    const subuhAdjusted = addMinutesToTime(timings.Fajr, 8);
+
+                    document.getElementById('time-subuh').innerText = subuhAdjusted;
+                    document.getElementById('time-syuruq').innerText = timings.Sunrise;
+                    document.getElementById('time-zuhur').innerText = timings.Dhuhr;
+                    document.getElementById('time-asar').innerText = timings.Asr;
+                    document.getElementById('time-magrib').innerText = timings.Maghrib;
+                    document.getElementById('time-isya').innerText = timings.Isha;
+
+                    // Kalender Hijriah KHGT
+                    const hijri = data.data.date.hijri;
+                    const hijriMonthIndo = {
+                        "Muharram": "Muharram", "Safar": "Safar", "Rabi' al-awwal": "Rabiul Awal",
+                        "Rabi' al-thani": "Rabiul Akhir", "Jumada al-ula": "Jumadil Awal",
+                        "Jumada al-akhirah": "Jumadil Akhir", "Rajab": "Rajab", "Sha'ban": "Sya'ban",
+                        "Ramadan": "Ramadhan", "Shawwal": "Syawal", "Dhu al-Qi'dah": "Dzulqa'dah",
+                        "Dhu al-Hijjah": "Dzulhijjah"
+                    };
+                    const mName = hijriMonthIndo[hijri.month.en] || hijri.month.en;
+                    document.getElementById('today-date-hijri').innerText = `${hijri.day} ${mName} ${hijri.year} H (KHGT)`;
+                }
+            } catch (err) {
+                console.error("Gagal mengambil data jadwal sholat:", err);
+            }
+        }
+
+        window.onload = function() {
+            fetchPrayerTimes();
+        };
     </script>
 </body>
 </html>
