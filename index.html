@@ -68,15 +68,15 @@
             </div>
         </div>
 
-        <!-- Navigasi Menu (Dipindah tepat di bawah Judul Masjid & di atas Jadwal Shalat) -->
+        <!-- Navigasi Menu 1-7 Di Atas -->
         <nav class="w-full bg-teal-950/90 p-2 rounded-2xl border border-teal-500/30 flex flex-wrap justify-center gap-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300 shadow-xl backdrop-blur-md mt-2">
-            <button onclick="switchMasjidSubTab('profil')" id="btn-m-profil" class="sub-nav active px-3 py-2 rounded-xl transition">1. Profil & Legalitas</button>
-            <button onclick="switchMasjidSubTab('upz-detail')" id="btn-m-upz-detail" class="sub-nav px-3 py-2 rounded-xl transition text-amber-300">2. Edukasi UPZ & Zakat</button>
-            <button onclick="switchMasjidSubTab('takmir')" id="btn-m-takmir" class="sub-nav px-3 py-2 rounded-xl transition">3. Struktur Takmir</button>
-            <button onclick="switchMasjidSubTab('personalia')" id="btn-m-personalia" class="sub-nav px-3 py-2 rounded-xl transition">4. Imam & Muadzin</button>
-            <button onclick="switchMasjidSubTab('pilar')" id="btn-m-pilar" class="sub-nav px-3 py-2 rounded-xl transition">5. Program 3 Pilar</button>
-            <button onclick="switchMasjidSubTab('kemakmuran')" id="btn-m-kemakmuran" class="sub-nav px-3 py-2 rounded-xl transition">6. Kajian & Kemakmuran</button>
-            <button onclick="switchMasjidSubTab('sosial')" id="btn-m-sosial" class="sub-nav px-3 py-2 rounded-xl transition">7. Sosial & Remaja</button>
+            <button onclick="switchMasjidSubTab('profil')" id="btn-m-profil" class="sub-nav active px-3 py-2 rounded-xl transition border border-transparent">1. Profil & Legalitas</button>
+            <button onclick="switchMasjidSubTab('upz-detail')" id="btn-m-upz-detail" class="sub-nav px-3 py-2 rounded-xl transition border border-transparent text-amber-300">2. Edukasi UPZ & Zakat</button>
+            <button onclick="switchMasjidSubTab('takmir')" id="btn-m-takmir" class="sub-nav px-3 py-2 rounded-xl transition border border-transparent">3. Struktur Takmir</button>
+            <button onclick="switchMasjidSubTab('personalia')" id="btn-m-personalia" class="sub-nav px-3 py-2 rounded-xl transition border border-transparent">4. Imam & Muadzin</button>
+            <button onclick="switchMasjidSubTab('pilar')" id="btn-m-pilar" class="sub-nav px-3 py-2 rounded-xl transition border border-transparent">5. Program 3 Pilar</button>
+            <button onclick="switchMasjidSubTab('kemakmuran')" id="btn-m-kemakmuran" class="sub-nav px-3 py-2 rounded-xl transition border border-transparent">6. Kajian & Kemakmuran</button>
+            <button onclick="switchMasjidSubTab('sosial')" id="btn-m-sosial" class="sub-nav px-3 py-2 rounded-xl transition border border-transparent">7. Sosial & Remaja</button>
         </nav>
     </header>
 
@@ -134,27 +134,21 @@
         </div>
     </section>
 
-    <!-- BANNER AYAT MEMAKMURKAN MASJID (QS. AT-TAUBAH: 18) -->
+    <!-- BANNER AYAT MEMAKMURKAN MASJID -->
     <section class="w-full max-w-5xl bg-gradient-to-r from-teal-950/90 via-emerald-950/80 to-teal-950/90 rounded-3xl p-6 md:p-8 border border-amber-500/30 shadow-2xl mb-8 relative overflow-hidden backdrop-blur-md text-center space-y-4">
         <span class="bg-amber-950/90 text-amber-300 border border-amber-500/40 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
             ✨ Keutamaan Memakmurkan Masjid — QS. At-Taubah [9]: 18
         </span>
-        
-        <!-- Teks Arab -->
         <p class="font-arabic text-2xl md:text-3xl lg:text-4xl leading-loose md:leading-loose text-amber-200 pt-2 dir-rtl">
             إِنَّمَا يَعْمُرُ مَسَٰجِدَ ٱللَّهِ مَنْ ءَامَنَ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ وَأَقَامَ ٱلصَّلَوٰةَ وَءَاتَى ٱلزَّكَوٰةَ وَلَمْ يَخْشَ إِلاَّ ٱللَّهَ ۖ فَعَسَىٰٓ أُو۟لَٰٓئِكَ أَن يَكُونُوا۟ مِنَ ٱلْمُهْتَدِينَ
         </p>
-
-        <!-- Terjemahan -->
         <p class="text-xs md:text-sm text-gray-300 italic max-w-3xl mx-auto leading-relaxed border-t border-teal-800/60 pt-3">
             "Hanya yang memakmurkan masjid-masjid Allah ialah orang-orang yang beriman kepada Allah dan Hari kemudian, serta tetap mendirikan shalat, menunaikan zakat dan tidak takut (kepada siapapun) selain kepada Allah, maka merekalah orang-orang yang diharapkan termasuk golongan orang-orang yang mendapat petunjuk."
         </p>
     </section>
 
-    <!-- BANNER PENGAJIAN AHAD PAGI (PAP) & LAYANAN UPZ JAMASDA / QRIS -->
+    <!-- BANNER PAP & UPZ QRIS -->
     <section class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        
-        <!-- Kartu 1: Jadwal PAP -->
         <div class="bg-teal-950/80 rounded-3xl p-5 border border-amber-500/40 shadow-2xl flex flex-col justify-between backdrop-blur-md space-y-4">
             <div>
                 <div class="flex items-center gap-2 mb-2">
@@ -162,82 +156,54 @@
                     <h3 class="text-base font-bold text-amber-300 uppercase tracking-wide">Jadwal Pengajian Ahad Pagi (PAP)</h3>
                 </div>
                 <p class="text-xs text-gray-300 mb-4">Pengajian rutin mingguan untuk mempererat ukhuwah & menambah wawasan keislaman jamaah.</p>
-                
                 <div class="rounded-2xl overflow-hidden border border-teal-700/50 bg-teal-900/40 flex items-center justify-center p-2">
-                    <img src="jadwal-pap.jpeg" alt="Jadwal Pengajian Ahad Pagi Masjid Subardi Al-Huda" class="w-full h-auto max-h-80 object-contain rounded-xl hover:scale-105 transition duration-300 cursor-pointer" onerror="this.onerror=null; this.src='jadwal pap.png';" onclick="window.open(this.src)">
+                    <img src="jadwal-pap.jpeg" alt="Jadwal Pengajian Ahad Pagi" class="w-full h-auto max-h-80 object-contain rounded-xl hover:scale-105 transition duration-300 cursor-pointer" onerror="this.onerror=null; this.src='jadwal pap.png';" onclick="window.open(this.src)">
                 </div>
             </div>
             <div class="text-center pt-2">
-                <span class="text-[11px] text-teal-400 italic">*Klik gambar untuk memperbesar pamphlet jadwal PAP</span>
+                <span class="text-[11px] text-teal-400 italic">*Klik gambar untuk memperbesar pamphlet</span>
             </div>
         </div>
 
-        <!-- Kartu 2: UPZ Jamasda & Pembayaran Digital QRIS -->
         <div class="bg-teal-950/80 rounded-3xl p-5 border border-emerald-500/40 shadow-2xl flex flex-col justify-between backdrop-blur-md space-y-4">
             <div>
                 <div class="flex items-center justify-between border-b border-teal-800/60 pb-3 mb-3">
                     <div class="flex items-center gap-2">
                         <span class="text-xl">💳</span>
-                        <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wide">UPZ JAMASDA & Pembayaran QRIS</h3>
+                        <h3 class="text-base font-bold text-cyan-300 uppercase tracking-wide">UPZ JAMASDA & QRIS</h3>
                     </div>
                     <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold px-2.5 py-1 rounded-full">Amanah & Syar'i</span>
                 </div>
-
                 <p class="text-xs text-gray-300 mb-3 leading-relaxed">
-                    Menyalurkan <strong>Zakat Wajib</strong> serta <strong>Sedekah Sunnah (Zakat Tathawwu')</strong> secara praktis melalui pemindaian QRIS.
+                    Menyalurkan <strong>Zakat Wajib</strong> serta <strong>Sedekah Sunnah</strong> secara praktis melalui pemindaian QRIS.
                 </p>
-
                 <div class="grid grid-cols-2 gap-3 items-center">
-                    <!-- Logo UPZ -->
                     <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50 flex flex-col items-center text-center space-y-2">
-                        <img src="upz.jpeg" alt="Unit Pengumpulan Zakat Jamasda" class="w-full h-32 object-contain rounded-lg" onerror="this.onerror=null; this.src='upz.png';">
+                        <img src="upz.jpeg" alt="Unit Pengumpulan Zakat" class="w-full h-32 object-contain rounded-lg" onerror="this.onerror=null; this.src='upz.png';">
                         <span class="text-[10px] font-bold text-amber-300 uppercase">Unit Pengumpulan Zakat</span>
                     </div>
-
-                    <!-- Scan QRIS -->
                     <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50 flex flex-col items-center text-center space-y-2">
-                        <img src="qris.jpeg" alt="Scan QRIS Zakat & Sedekah" class="w-full h-32 object-contain rounded-lg hover:scale-105 transition cursor-pointer" onerror="this.onerror=null; this.src='qris.png';" onclick="window.open(this.src)">
+                        <img src="qris.jpeg" alt="Scan QRIS Transfer" class="w-full h-32 object-contain rounded-lg hover:scale-105 transition cursor-pointer" onerror="this.onerror=null; this.src='qris.png';" onclick="window.open(this.src)">
                         <span class="text-[10px] font-bold text-cyan-300 uppercase">Scan QRIS Transfer</span>
                     </div>
                 </div>
             </div>
-
             <div class="space-y-2">
                 <div class="bg-emerald-950/70 border border-emerald-600/30 p-2.5 rounded-xl text-center text-[11px] text-emerald-300">
-                    📞 Konsultasi & Konfirmasi Transfer: <strong class="text-amber-300">0817 266 085</strong> (Tim UPZ Jamasda)
+                    📞 Konsultasi: <strong class="text-amber-300">0817 266 085</strong> (Tim UPZ Jamasda)
                 </div>
                 <button onclick="switchMasjidSubTab('upz-detail')" class="w-full py-2 bg-gradient-to-r from-teal-800 to-emerald-800 hover:from-teal-700 hover:to-emerald-700 text-cyan-200 border border-cyan-500/40 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 shadow">
-                    <i class="fa-solid fa-book-quran"></i> Baca Panduan Zakat Wajib vs Sedekah (UPZ)
+                    <i class="fa-solid fa-book-quran"></i> Baca Panduan Zakat Wajib vs Sedekah
                 </button>
             </div>
         </div>
-
     </section>
 
-    <!-- Hero Section / Deskripsi Ringkas -->
-    <section class="w-full max-w-5xl bg-teal-950/80 rounded-[2.5rem] p-6 md:p-10 text-white border border-teal-500/30 shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 mb-8 backdrop-blur-md">
-        <div class="space-y-3 max-w-2xl">
-            <span class="bg-amber-950/80 text-amber-300 border border-amber-500/40 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">
-                📍 Tembesi RT/RW 01/10, Ponjong, Gunungkidul, DIY
-            </span>
-            <h2 class="text-2xl md:text-4xl font-extrabold text-cyan-300 leading-tight">
-                MASJID SUBARDI AL-HUDA KUWON
-            </h2>
-            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                Pusat Ibadah, Dakwah, Pendidikan, & Pemberdayaan Umat Berkemajuan Berpahamkan Muhammadiyah. <br>
-                <strong class="text-teal-300">Luas Tanah Wakaf:</strong> 1.342 m² | <strong class="text-teal-300">Luas Bangunan:</strong> 471,50 m²
-            </p>
-        </div>
-        <div class="w-28 h-28 bg-teal-900/50 rounded-3xl flex items-center justify-center border border-amber-500/30 shrink-0 shadow-inner p-2">
-            <img src="logo-masjid.png" alt="Logo Masjid" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='logo-masjid.png';">
-        </div>
-    </section>
-
-    <!-- CONTAINER KONTEN -->
+    <!-- CONTAINER KONTEN LENGKAP MENU 1 - 7 -->
     <main class="w-full max-w-5xl space-y-8">
 
         <!-- SUB-TAB 1: PROFIL & LEGALITAS -->
-        <div id="m-sub-profil" class="space-y-6">
+        <div id="m-sub-profil" class="tab-content space-y-6">
             <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3 flex items-center gap-3">
                     <span class="text-2xl">📜</span>
@@ -246,7 +212,6 @@
                         <p class="text-xs text-teal-400">Legalitas resmi Amal Usaha Muhammadiyah (AUM)</p>
                     </div>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                     <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
                         <h4 class="font-bold text-amber-300 text-sm">1. Status Kepemilikan & Tanah Wakaf</h4>
@@ -256,200 +221,177 @@
                         <ul class="text-gray-300 space-y-1 list-disc pl-4 pt-1">
                             <li><strong>Luas Tanah:</strong> 1.342 m²</li>
                             <li><strong>Luas Bangunan:</strong> 471,50 m²</li>
-                            <li><strong>Sertifikat Wakaf 1:</strong> No. W2/10/9/89 (1 Des 1989), No. Sertifikat 00353, Wakif: Muh. Syahidi.</li>
+                            <li><strong>Sertifikat Wakaf 1:</strong> No. W2/10/9/89 (1 Des 1989), Wakif: Muh. Syahidi.</li>
                             <li><strong>Sertifikat Wakaf 2:</strong> No. W:2/01/09/2020 (18 Juni 2020), Wakif: Tumiyati.</li>
                         </ul>
                     </div>
-
                     <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
                         <h4 class="font-bold text-amber-300 text-sm">2. IMB Tempat Ibadah & Pembinaan</h4>
                         <p class="text-gray-300 leading-relaxed">
-                            Memiliki dokumen perizinan resmi Persetujuan Bangunan Gedung (PBG) No: <strong>01/P.IMB.BG/II/2021</strong> yang diterbitkan oleh Dinas Penanaman Modal dan Pelayanan Terpadu Kabupaten Gunungkidul pada tanggal 25 Februari 2021.
+                            Memiliki dokumen perizinan resmi Persetujuan Bangunan Gedung (PBG) No: <strong>01/P.IMB.BG/II/2021</strong> diterbitkan tanggal 25 Februari 2021.
                         </p>
                         <p class="text-gray-300 leading-relaxed pt-1">
-                            <strong>Pembinaan Kelembagaan:</strong> Di bawah pembinaan Pimpinan Ranting Muhammadiyah (PRM) Ponjong Timur dan Pimpinan Cabang Muhammadiyah (PCM) Ponjong.
+                            <strong>Pembinaan Kelembagaan:</strong> Di bawah pembinaan PRM Ponjong Timur & PCM Ponjong.
                         </p>
                     </div>
-                </div>
-
-                <div class="p-4 bg-cyan-950/80 rounded-2xl border border-cyan-500/40 text-xs text-gray-300 space-y-2">
-                    <h4 class="font-bold text-cyan-300">Integrasi Keuangan Lazismu & Administrasi Terdokumentasi</h4>
-                    <p class="leading-relaxed">
-                        Pengelolaan dana zakat, infak, dan sedekah terintegrasi dengan <strong>Lazismu</strong> melalui Unit Pelayanan Zakat (UPZ Jamasda) resmi. Administrasi masjid dikelola tertib meliputi: Buku Tamu, Buku Inventaris, Buku Kas Masjid, Arsip Surat Masuk/Keluar, Notulen Rapat, Data Jamaah, & Peta Wilayah.
-                    </p>
                 </div>
             </div>
         </div>
 
         <!-- SUB-TAB 2: DETAIL EDUKASI UPZ & ZAKAT -->
-        <div id="m-sub-upz-detail" class="hidden space-y-6">
+        <div id="m-sub-upz-detail" class="tab-content hidden space-y-6">
             <div class="bg-teal-950/80 p-6 md:p-8 rounded-3xl border border-emerald-500/40 space-y-6 shadow-xl backdrop-blur-md">
-                
-                <!-- Header UPZ Jamasda -->
-                <div class="border-b border-teal-800/60 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                    <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 bg-white/10 rounded-2xl p-2 border border-amber-500/40 shrink-0">
-                            <img src="upz.jpeg" alt="Logo UPZ Jamasda" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='upz.png';">
-                        </div>
-                        <div>
-                            <span class="bg-amber-950 text-amber-300 border border-amber-500/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">
-                                Unit Pengumpulan Zakat Jamasda
-                            </span>
-                            <h3 class="text-xl font-bold text-cyan-300 mt-1">Edukasi Zakat Wajib vs Sedekah Sunnah</h3>
-                            <p class="text-xs text-teal-400">"ZAKAT ITU HEBAT — Mari bersihkan harta & tumbuhkan kebaikan bersama"</p>
-                        </div>
-                    </div>
-                    <div class="bg-emerald-950/80 border border-emerald-500/40 p-3 rounded-2xl text-right">
-                        <span class="text-[10px] text-gray-400 block uppercase font-semibold">Layanan Konsultasi Zakat:</span>
-                        <a href="https://wa.me/62817266085" target="_blank" class="text-sm font-extrabold text-amber-300 hover:underline flex items-center justify-end gap-1">
-                            <i class="fa-brands fa-whatsapp text-emerald-400"></i> 0817 266 085
-                        </a>
+                <div class="border-b border-teal-800/60 pb-4 flex items-center gap-4">
+                    <span class="text-3xl">⚖️</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-cyan-300">Edukasi Zakat Wajib vs Sedekah Sunnah</h3>
+                        <p class="text-xs text-teal-400">Unit Pengumpulan Zakat (UPZ JAMASDA)</p>
                     </div>
                 </div>
-
-                <!-- Pengantar UPZ -->
-                <blockquote class="p-4 bg-teal-900/40 border-l-4 border-amber-400 rounded-r-2xl text-xs italic text-gray-300 leading-relaxed">
-                    "Tulisan ini disusun sebagai bentuk edukasi ringan bagi masyarakat tentang perbedaan zakat dan sedekah, syarat-syarat zakat yang sah, serta pengelolaan dana yang sesuai syariat. Diharapkan dapat meluruskan niat baik agar tetap sesuai tuntunan syariat." 
-                    <span class="block mt-1 font-semibold text-amber-300 text-right">— Tim Pengelola Zakat & Sedekah UPZ JAMASDA</span>
-                </blockquote>
-
-                <!-- Grid Edukasi Zakat & Sedekah -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                    
-                    <!-- 1. Zakat Wajib -->
-                    <div class="p-5 bg-teal-900/50 rounded-2xl border border-amber-500/40 space-y-3">
-                        <div class="flex items-center gap-2 border-b border-teal-800 pb-2">
-                            <span class="text-lg">⚖️</span>
-                            <h4 class="font-bold text-amber-300 text-sm">1. ZAKAT ITU WAJIB</h4>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            Kewajiban harta bagi setiap Muslim yang sudah memenuhi 2 syarat utama:
-                        </p>
-                        <ul class="text-gray-300 space-y-1.5 list-disc pl-4">
-                            <li><strong>Nishab (Batas Minimal Harta):</strong> Setara dengan <strong>85 gram emas</strong> (atau harga 1 gram emas × 85).</li>
-                            <li><strong>Haul:</strong> Harta tersebut disimpan/tersimpan selama <strong>1 tahun Hijriyah</strong>.</li>
-                        </ul>
-                        <div class="p-3 bg-amber-950/60 rounded-xl border border-amber-500/30 text-[11px] text-amber-200 space-y-1">
-                            <span class="font-bold block text-amber-300">💡 Contoh Perhitungan Zakat Maal:</span>
-                            <p>Jika harga emas = Rp1.200.000 / gram</p>
-                            <p>• Nishab = Rp1.200.000 × 85 = <strong>Rp102.000.000</strong></p>
-                            <p>Jika tabungan mencapai Rp102 Juta & tersimpan setahun, wajib zakat <strong>2,5% = Rp2.550.000</strong>.</p>
-                        </div>
+                    <div class="p-5 bg-teal-900/50 rounded-2xl border border-amber-500/40 space-y-2">
+                        <h4 class="font-bold text-amber-300 text-sm">1. ZAKAT MAAL (WAJIB)</h4>
+                        <p class="text-gray-300 leading-relaxed">Mencapai Nishab (setara 85 gr emas) dan tersimpan selama 1 tahun (haul). Besaran zakat 2,5%.</p>
                     </div>
-
-                    <!-- 2. Sedekah Sunnah -->
-                    <div class="p-5 bg-teal-900/50 rounded-2xl border border-teal-700/50 space-y-3">
-                        <div class="flex items-center gap-2 border-b border-teal-800 pb-2">
-                            <span class="text-lg">💖</span>
-                            <h4 class="font-bold text-cyan-300 text-sm">2. SEDEKAH ITU SUNNAH (PAHALA BESAR)</h4>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            Bisa dilakukan oleh siapa saja, kapan saja, dan dalam jumlah berapa pun:
-                        </p>
-                        <ul class="text-gray-300 space-y-1.5 list-disc pl-4">
-                            <li><strong>Tidak Ada Nishab:</strong> Tidak ada batas minimal nominal.</li>
-                            <li><strong>Tidak Perlu Menunggu Haul:</strong> Tanpa harus genap 1 tahun.</li>
-                            <li><strong>Sifatnya Sukarela:</strong> Niat ikhlas membantu sesama & kemakmuran agama.</li>
-                        </ul>
-                        <p class="text-teal-300 font-semibold text-[11px] bg-teal-950/80 p-2.5 rounded-xl border border-teal-800">
-                            Sangat dianjurkan untuk fakir miskin, anak yatim, beasiswa santri, serta operasional dakwah.
-                        </p>
-                    </div>
-
-                    <!-- 3. Zakat Tathawwu' -->
-                    <div class="p-5 bg-teal-900/50 rounded-2xl border border-teal-700/50 space-y-3">
-                        <div class="flex items-center gap-2 border-b border-teal-800 pb-2">
-                            <span class="text-lg">🗓️</span>
-                            <h4 class="font-bold text-cyan-300 text-sm">3. SEDEKAH RUTIN BULANAN (ZAKAT TATHAWWU')</h4>
-                        </div>
-                        <p class="text-gray-300 leading-relaxed">
-                            <strong>Bagaimana jika rutin memberi bulanan tapi belum mencapai Nishab?</strong>
-                        </p>
-                        <p class="text-gray-300 leading-relaxed">
-                            Jika harta belum mencapai nishab dan haul, maka belum jatuh wajib zakat. Namun jika Anda tetap ingin rutin menyisihkan harta setiap bulan, amal tersebut bernilai <strong>Sedekah Sunnah (Zakat Tathawwu')</strong>.
-                        </p>
-                        <span class="text-amber-300 font-semibold block text-[11px]">✨ Sangat bagus dan berpahala besar, dengan niat yang diluruskan sesuai syariat.</span>
-                    </div>
-
-                    <!-- 4. Alokasi Penyaluran (Asnaf vs Sedekah) -->
-                    <div class="p-5 bg-teal-900/50 rounded-2xl border border-amber-500/40 space-y-3">
-                        <div class="flex items-center gap-2 border-b border-teal-800 pb-2">
-                            <span class="text-lg">🎯</span>
-                            <h4 class="font-bold text-amber-300 text-sm">4. KEMANA DANA ZAKAT & SEDEKAH DISALURKAN?</h4>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-                            <div class="bg-amber-950/50 p-2.5 rounded-xl border border-amber-500/30">
-                                <span class="font-bold text-amber-300 block mb-1">ZAKAT WAJIB (8 Asnaf):</span>
-                                <ol class="list-decimal pl-4 text-gray-300 space-y-0.5">
-                                    <li>Fakir</li>
-                                    <li>Miskin</li>
-                                    <li>Amil Zakat</li>
-                                    <li>Muallaf</li>
-                                    <li>Riqab</li>
-                                    <li>Gharim</li>
-                                    <li>Fisabilillah</li>
-                                    <li>Ibnu Sabil</li>
-                                </ol>
-                            </div>
-                            <div class="bg-teal-950/50 p-2.5 rounded-xl border border-teal-700/50">
-                                <span class="font-bold text-cyan-300 block mb-1">SEDEKAH (Boleh Untuk):</span>
-                                <ul class="list-disc pl-4 text-gray-300 space-y-0.5">
-                                    <li>Kegiatan Dakwah</li>
-                                    <li>Biaya/Beasiswa Sekolah</li>
-                                    <li>Pembangunan Masjid</li>
-                                    <li>Alat Dakwah Digital</li>
-                                    <li>Santri Penghafal Qur'an</li>
-                                    <li>Kebutuhan Sosial Lainnya</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Transparansi & Komitmen UPZ -->
-                <div class="p-5 bg-emerald-950/80 rounded-2xl border border-emerald-500/40 space-y-3 text-xs">
-                    <h4 class="font-bold text-emerald-300 text-sm flex items-center gap-2">
-                        <span>🛡️</span> 5. PENGELOLAAN DANA AMANAH & TRANSPARAN (UPZ JAMASDA)
-                    </h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-gray-300">
-                        <div class="p-3 bg-teal-900/40 rounded-xl border border-teal-700/50">
-                            <strong>Pemisahan Rekening:</strong> Dana zakat wajib dan dana sedekah dipisahkan secara tegas & jelas.
-                        </div>
-                        <div class="p-3 bg-teal-900/40 rounded-xl border border-teal-700/50">
-                            <strong>Laporan Berkala:</strong> Laporan penerimaan dan distribusi disampaikan secara terbuka & berkala.
-                        </div>
-                        <div class="p-3 bg-teal-900/40 rounded-xl border border-teal-700/50">
-                            <strong>Tepat Sasaran:</strong> Penyaluran diprioritaskan kepada fakir, miskin, penuntut ilmu, dan sarana dakwah.
-                        </div>
+                    <div class="p-5 bg-teal-900/50 rounded-2xl border border-teal-700/50 space-y-2">
+                        <h4 class="font-bold text-cyan-300 text-sm">2. SEDEKAH / INFAK (SUNNAH)</h4>
+                        <p class="text-gray-300 leading-relaxed">Tidak ada nishab dan haul. Bebas dilakukan kapan saja untuk mendukung operasional dakwah dan sosial.</p>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Ayat & Hadits Inspirasi Zakat -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-                    <div class="p-4 bg-teal-900/30 rounded-2xl border border-amber-500/30 space-y-2 text-xs">
-                        <span class="text-amber-300 font-bold block">📖 Hadits Nabi SAW (HR. Bukhari & Muslim):</span>
-                        <p class="text-gray-300 italic leading-relaxed">
-                            "Infaqkanlah hartamu. Janganlah engkau menghitung-hitungnya (menyimpan tanpa mau mensedekahkan). Jika tidak, maka Allah akan menghilangkan barokah rizki tersebut. Janganlah menghalangi anugerah Allah untukmu..."
-                        </p>
-                        <span class="text-[10px] text-teal-400 block text-right">(HR. Bukhari no. 1433 dan Muslim no. 1029)</span>
+        <!-- SUB-TAB 3: STRUKTUR TAKMIR -->
+        <div id="m-sub-takmir" class="tab-content hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+                <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Struktur Pengurus Takmir Masjid</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+                        <span class="text-amber-300 font-bold block">Penasehat:</span>
+                        <p class="text-gray-300 mt-1">• PRM Ponjong Timur</p>
+                        <p class="text-gray-300">• Tokoh Masyarakat Kuwon</p>
                     </div>
-
-                    <div class="p-4 bg-teal-900/30 rounded-2xl border border-amber-500/30 space-y-2 text-xs">
-                        <span class="text-amber-300 font-bold block">📖 Firman Allah SWT (QS. At-Taubah: 103):</span>
-                        <p class="font-arabic text-lg text-amber-200 text-right dir-rtl">
-                            خُذْ مِنْ أَمْوَالِهِمْ صَدَقَةً تُطَهِّرُهُمْ وَتُزَكِّيهِم بِهَا
-                        </p>
-                        <p class="text-gray-300 italic leading-relaxed">
-                            "Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan dan menyucikan mereka."
-                        </p>
+                    <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+                        <span class="text-amber-300 font-bold block">Ketua Takmir:</span>
+                        <p class="text-gray-300 mt-1">• Ketua & Wakil Ketua Takmir</p>
+                    </div>
+                    <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+                        <span class="text-amber-300 font-bold block">Sekretaris & Bendahara:</span>
+                        <p class="text-gray-300 mt-1">• Tim Sekretariat & Keuangan</p>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <!-- SUB-TAB 4: PERSONALIA IMAM & MUADZIN -->
+        <div id="m-sub-personalia" class="tab-content hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+                <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Daftar Imam & Muadzin Rawatib</h3>
+                <p class="text-xs text-gray-300">Petugas piket shalat fardhu lima waktu secara bergiliran untuk menjaga kedisiplinan jamaah.</p>
+            </div>
+        </div>
+
+        <!-- SUB-TAB 5: PROGRAM 3 PILAR -->
+        <div id="m-sub-pilar" class="tab-content hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+                <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Program Utama 3 Pilar Masjid</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+                        <h4 class="font-bold text-amber-300 text-sm mb-1">1. Pilar Ibadah</h4>
+                        <p class="text-gray-300">Shalat fardhu berjamaah, Shalat Jumat, Tarawih, & Idul Fitri/Adha.</p>
+                    </div>
+                    <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+                        <h4 class="font-bold text-amber-300 text-sm mb-1">2. Pilar Pendidikan</h4>
+                        <p class="text-gray-300">TPA/TPQ Anak-anak, Pengajian Ahad Pagi (PAP), & Kajian Tematik.</p>
+                    </div>
+                    <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+                        <h4 class="font-bold text-amber-300 text-sm mb-1">3. Pilar Pemberdayaan</h4>
+                        <p class="text-gray-300">Layanan UPZ Zakat/Sedekah, Bakti Sosial, & Kegiatan Remaja Masjid.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUB-TAB 6: KAJIAN & KEMAKMURAN -->
+        <div id="m-sub-kemakmuran" class="tab-content hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+                <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Agenda Kajian & Jamiyyah</h3>
+                <p class="text-xs text-gray-300">Jadwal rutin Pengajian Ahad Pagi (PAP), Kajian Bapak-Bapak, Ibu-Ibu, dan Malam Jumat.</p>
+            </div>
+        </div>
+
+        <!-- SUB-TAB 7: SOSIAL & REMAJA -->
+        <div id="m-sub-sosial" class="tab-content hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+                <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Kegiatan Sosial & Angkatan Muda Masjid</h3>
+                <p class="text-xs text-gray-300">Wadah kreasi dan kaderisasi remaja masjid serta penyaluran bantuan kemanusiaan.</p>
             </div>
         </div>
 
     </main>
+
+    <!-- SCRIPT LOGIK BERPINDAH TAB MENU & INTEGRASI WAKTU SALAT -->
+    <script>
+        // Fungsi untuk berpindah Menu Tab 1-7
+        function switchMasjidSubTab(tabId) {
+            // Sembunyikan seluruh konten tab
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            // Tampilkan konten tab yang dipilih
+            const selectedContent = document.getElementById('m-sub-' + tabId);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+
+            // Reset style tombol navigasi
+            const buttons = document.querySelectorAll('.sub-nav');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Aktifkan tombol yang diklik
+            const activeBtn = document.getElementById('btn-m-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+            }
+        }
+
+        // Fetch Jadwal Salat Otomatis dari API Aladhan (Wilayah Gunungkidul)
+        async function fetchPrayerTimes() {
+            try {
+                const now = new Date();
+                
+                // Format Tanggal Masehi Bahasa Indonesia
+                const optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('today-date-gregorian').innerText = now.toLocaleDateString('id-ID', optionsDate);
+
+                // API Aladhan untuk koordinat Gunungkidul / Ponjong (~ -7.96, 110.70)
+                const res = await fetch(`https://api.aladhan.com/v1/timings/${Math.floor(now.getTime()/1000)}?latitude=-7.9667&longitude=110.7000&method=2`);
+                const data = await res.json();
+                
+                if (data && data.data) {
+                    const timings = data.data.timings;
+                    const hijri = data.data.date.hijri;
+
+                    // Update Waktu Salat
+                    document.getElementById('time-subuh').innerText = timings.Fajr;
+                    document.getElementById('time-syuruq').innerText = timings.Sunrise;
+                    document.getElementById('time-zuhur').innerText = timings.Dhuhr;
+                    document.getElementById('time-asar').innerText = timings.Asr;
+                    document.getElementById('time-magrib').innerText = timings.Maghrib;
+                    document.getElementById('time-isya').innerText = timings.Isha;
+
+                    // Update Kalender Hijriah
+                    document.getElementById('today-date-hijri').innerText = `${hijri.day} ${hijri.month.en} ${hijri.year} H (KHGT)`;
+                }
+            } catch (error) {
+                console.error("Gagal memuat jadwal salat:", error);
+                document.getElementById('today-date-gregorian').innerText = "Gagal memuat data online (Menggunakan perkiraan lokal)";
+            }
+        }
+
+        // Jalankan fetch saat halaman selesai dimuat
+        document.addEventListener('DOMContentLoaded', fetchPrayerTimes);
+    </script>
 
 </body>
 </html>
