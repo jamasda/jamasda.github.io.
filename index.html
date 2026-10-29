@@ -37,6 +37,8 @@
             color: #ffffff;
             box-shadow: 0 0 12px rgba(34, 211, 238, 0.3);
         }
+        /* Layar iqomah tidak ikut tercetak */
+        @media print { #iqomah-overlay { display: none !important; } }
     </style>
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col items-center justify-start p-4 sm:p-8 font-sans antialiased backdrop-blur-[2px]">
@@ -87,29 +89,43 @@
 
         <!-- Box Waktu Salat -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5 text-center text-xs">
-            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-amber-500/50 relative overflow-hidden">
+            <div id="box-subuh" class="p-2.5 bg-teal-900/50 rounded-2xl border border-amber-500/50 relative overflow-hidden transition">
                 <span class="text-amber-300 font-bold block text-[11px]">SUBUH*</span>
                 <span id="time-subuh" class="text-lg font-black text-amber-200">--:--</span>
             </div>
-            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+            <div id="box-syuruq" class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
                 <span class="text-teal-400 font-bold block text-[11px]">TERBIT</span>
                 <span id="time-syuruq" class="text-lg font-black text-cyan-300">--:--</span>
             </div>
-            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+            <div id="box-dzuhur" class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
                 <span class="text-teal-400 font-bold block text-[11px]">ZUHUR</span>
                 <span id="time-zuhur" class="text-lg font-black text-cyan-300">--:--</span>
             </div>
-            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+            <div id="box-ashar" class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
                 <span class="text-teal-400 font-bold block text-[11px]">ASAR</span>
                 <span id="time-asar" class="text-lg font-black text-cyan-300">--:--</span>
             </div>
-            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+            <div id="box-maghrib" class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
                 <span class="text-teal-400 font-bold block text-[11px]">MAGRIB</span>
                 <span id="time-magrib" class="text-lg font-black text-cyan-300">--:--</span>
             </div>
-            <div class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50">
+            <div id="box-isya" class="p-2.5 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
                 <span class="text-teal-400 font-bold block text-[11px]">ISYA</span>
                 <span id="time-isya" class="text-lg font-black text-cyan-300">--:--</span>
+            </div>
+        </div>
+
+        <!-- Status Hitung Mundur Adzan / Iqomah -->
+        <div class="mt-3 flex flex-col sm:flex-row items-center justify-between gap-2 bg-teal-900/50 border border-teal-700/50 rounded-2xl px-4 py-2.5 text-xs">
+            <div class="flex items-center gap-2">
+                <span class="text-base">⏳</span>
+                <span id="status-waktu" class="font-bold text-cyan-200">Memuat jadwal...</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="text-[11px] text-gray-300">Jam <strong id="jam-sekarang" class="text-amber-300 font-black tabular-nums">--:--:--</strong> WIB</span>
+                <button onclick="mulaiTesLayar()" class="px-2.5 py-1 bg-teal-950/80 hover:bg-teal-800 border border-teal-600/50 text-cyan-300 rounded-lg text-[10px] font-bold transition">
+                    <i class="fa-solid fa-play"></i> Tes Layar Iqomah
+                </button>
             </div>
         </div>
         
@@ -128,7 +144,7 @@
         
         <!-- Teks Arab -->
         <p class="font-arabic text-2xl md:text-3xl lg:text-4xl leading-loose md:leading-loose text-amber-200 pt-2 dir-rtl">
-            إِنَّمَا يَعْمُرُ مَسَٰجِدَ ٱللَّهِ مَنْ ءَامَنَ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ وَأَقَامَ ٱلصَّلَوٰةَ وَءَاتَى ٱلزَّكَوٰةَ وَلَمْ يَخْشَ إِلاَّ ٱللَّهَ ۖ فَعَسَىٰٓ أُو۟لَٰٓئِكَ أَن يَكُونُوا۟ مِنَ ٱلْمُهْتَدِينَ
+            إِنَّمَا يَعْمُرُ مَسَٰجِدَ ٱللَّهِ مَنْ ءَامَنَ بِٱللَّهِ وَٱلْيَوْمِ ٱلْءَاخِرِ وَأَقَامَ ٱلصَّلَوٰةَ وَءَاتَى ٱلزَّكَوٰةَ وَلَمْ يَخْشَ إِلاَّ ٱللَّهَ ۖ فَعَسَىٰٓ أُو۟لَٰٓئِكَ أَن يَكُونُوا۟ مِنَ ٱلْمُهْتَدِينَ
         </p>
 
         <!-- Terjemahan -->
@@ -228,6 +244,9 @@
         <button onclick="switchMasjidSubTab('pilar')" id="btn-m-pilar" class="sub-nav px-3.5 py-2.5 rounded-xl transition">5. Program 3 Pilar</button>
         <button onclick="switchMasjidSubTab('kemakmuran')" id="btn-m-kemakmuran" class="sub-nav px-3.5 py-2.5 rounded-xl transition">6. Kajian & Kemakmuran</button>
         <button onclick="switchMasjidSubTab('sosial')" id="btn-m-sosial" class="sub-nav px-3.5 py-2.5 rounded-xl transition">7. Sosial & Remaja</button>
+        <button onclick="switchMasjidSubTab('quran')" id="btn-m-quran" class="sub-nav px-3.5 py-2.5 rounded-xl transition text-amber-300">8. Al-Qur'an</button>
+        <button onclick="switchMasjidSubTab('hadis')" id="btn-m-hadis" class="sub-nav px-3.5 py-2.5 rounded-xl transition text-amber-300">9. Hadis</button>
+        <button onclick="switchMasjidSubTab('dzikir')" id="btn-m-dzikir" class="sub-nav px-3.5 py-2.5 rounded-xl transition text-amber-300">10. Dzikir Pagi & Petang</button>
     </nav>
 
     <!-- CONTAINER KONTEN -->
@@ -750,6 +769,80 @@
             </div>
         </div>
 
+        <!-- SUB-TAB 8: AL-QUR'AN -->
+        <div id="m-sub-quran" class="hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
+                <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-cyan-300">📖 Al-Qur'an Al-Karim</h3>
+                        <p class="text-xs text-gray-400">114 surah lengkap: teks Arab, transliterasi Latin & terjemahan Kemenag RI, dilengkapi audio murottal</p>
+                    </div>
+                    <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">Sumber: equran.id (Kemenag RI)</span>
+                </div>
+
+                <!-- Daftar Surah -->
+                <div id="quran-list-view" class="space-y-4">
+                    <input id="quran-search" type="text" oninput="renderSurahList()" placeholder="Cari nama surah, arti, atau nomor..." class="w-full bg-teal-900/50 border border-teal-700/50 rounded-xl px-4 py-2.5 text-xs text-gray-200 placeholder-teal-500 focus:outline-none focus:border-cyan-400">
+                    <div id="quran-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5"></div>
+                </div>
+
+                <!-- Pembaca Surah -->
+                <div id="quran-reader" class="hidden space-y-4"></div>
+            </div>
+        </div>
+
+        <!-- SUB-TAB 9: HADIS -->
+        <div id="m-sub-hadis" class="hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
+                <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-cyan-300">📜 Hadis Nabi ﷺ</h3>
+                        <p class="text-xs text-gray-400">Kitab-kitab hadis dari para perawi terpercaya (Kutubut Tis'ah) lengkap teks Arab & terjemahan Indonesia</p>
+                    </div>
+                    <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">Sumber: api.hadith.gading.dev</span>
+                </div>
+
+                <div id="hadis-books" class="flex flex-wrap gap-2"></div>
+
+                <div class="flex flex-wrap items-center gap-2 text-xs">
+                    <label class="text-gray-300 font-semibold">Lompat ke nomor hadis:</label>
+                    <input id="hadis-goto" type="number" min="1" placeholder="mis. 1" class="w-28 bg-teal-900/50 border border-teal-700/50 rounded-lg px-3 py-1.5 text-gray-200 focus:outline-none focus:border-cyan-400">
+                    <button onclick="hadisGoto()" class="px-3 py-1.5 bg-teal-800 hover:bg-teal-700 border border-teal-600/50 text-cyan-200 rounded-lg font-bold transition">Buka</button>
+                    <span id="hadis-info" class="text-teal-400 text-[11px]"></span>
+                </div>
+
+                <div id="hadis-content" class="space-y-3"></div>
+
+                <div id="hadis-pager" class="flex items-center justify-between gap-2 text-xs"></div>
+
+                <p class="text-[11px] text-amber-300/80 bg-amber-950/40 border border-amber-500/20 rounded-xl p-3 leading-relaxed">
+                    ⚠️ Catatan: Hadis dalam Shahih Bukhari & Shahih Muslim telah disepakati keshahihannya oleh para ulama. Untuk kitab-kitab Sunan & Musnad, derajat setiap hadis (shahih/hasan/dha'if) perlu dirujuk kepada penjelasan ulama hadis. Untuk pendalaman, silakan bertanya kepada ustadz/takmir.
+                </p>
+            </div>
+        </div>
+
+        <!-- SUB-TAB 10: DZIKIR PAGI & PETANG -->
+        <div id="m-sub-dzikir" class="hidden space-y-6">
+            <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
+                <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
+                    <div>
+                        <h3 class="text-xl font-bold text-cyan-300">🌅 Dzikir Pagi & Petang</h3>
+                        <p class="text-xs text-gray-400">Berdasarkan hadis-hadis shahih (Hisnul Muslim) — ketuk tombol hitung untuk menghitung bacaan</p>
+                    </div>
+                    <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">Sesuai Sunnah</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 text-xs font-bold">
+                    <button id="dz-tab-pagi" onclick="dzSetWaktu('pagi')" class="px-4 py-2 rounded-xl border border-teal-700/50 transition">🌅 Dzikir Pagi</button>
+                    <button id="dz-tab-petang" onclick="dzSetWaktu('petang')" class="px-4 py-2 rounded-xl border border-teal-700/50 transition">🌇 Dzikir Petang</button>
+                    <button onclick="dzReset()" class="px-4 py-2 rounded-xl border border-teal-700/50 bg-teal-900/50 text-amber-300 hover:bg-teal-800 transition ml-auto"><i class="fa-solid fa-rotate-left"></i> Reset Hitungan</button>
+                </div>
+                <p id="dz-waktu-info" class="text-[11px] text-teal-300"></p>
+
+                <div id="dz-list" class="space-y-4"></div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Footer Masjid -->
@@ -767,10 +860,64 @@
         <p class="text-[10px] text-teal-500 pt-2">&copy; 2026 MASJID SUBARDI AL-HUDA. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- Script Navigasi Tab & Fetch Jadwal Sholat/Hijriah Otomatis -->
+    <!-- LAYAR ADZAN / IQOMAH (TAMPIL OTOMATIS SAAT WAKTU SALAT) -->
+    <div id="iqomah-overlay" style="display:none; background: radial-gradient(circle at 50% 30%, #064e3b 0%, #022c22 55%, #010b0d 100%);" class="fixed inset-0 z-50 flex-col items-center justify-center text-center p-6">
+        <button onclick="tutupOverlay()" class="absolute top-4 right-4 px-3 py-1.5 bg-black/40 hover:bg-black/60 border border-teal-600/50 text-cyan-200 rounded-lg text-xs font-bold"><i class="fa-solid fa-xmark"></i> Tutup</button>
+        <button onclick="layarPenuh()" class="absolute top-4 left-4 px-3 py-1.5 bg-black/40 hover:bg-black/60 border border-teal-600/50 text-cyan-200 rounded-lg text-xs font-bold"><i class="fa-solid fa-expand"></i> Layar Penuh</button>
+
+        <div class="w-20 h-20 bg-teal-900/60 rounded-3xl border border-amber-500/40 p-2 mb-3">
+            <img src="logo-masjid.png" alt="Logo Masjid" class="w-full h-full object-contain">
+        </div>
+        <p class="text-sm md:text-xl font-extrabold text-cyan-300 tracking-widest">MASJID SUBARDI AL-HUDA KUWON</p>
+        <p id="ov-badge" class="mt-3 bg-amber-950/80 border border-amber-500/40 text-amber-300 text-xs md:text-base font-bold px-4 py-1.5 rounded-full"></p>
+        <h2 id="ov-title" class="mt-6 text-2xl md:text-5xl font-extrabold text-gray-100"></h2>
+        <div id="ov-count" class="font-black text-amber-300 tabular-nums leading-none mt-2" style="font-size: clamp(5rem, 24vw, 20rem);"></div>
+        <p id="ov-sub" class="mt-4 text-sm md:text-2xl text-teal-200 max-w-3xl leading-relaxed"></p>
+        <p class="absolute bottom-4 text-xs md:text-lg text-gray-400">Jam <span id="ov-clock" class="font-bold text-amber-300 tabular-nums"></span> WIB</p>
+    </div>
+
+    <!-- ============================================================
+         KONFIGURASI (SILAKAN UBAH ANGKA DI BAWAH SESUAI KEBUTUHAN)
+         ============================================================ -->
     <script>
+        const CONFIG = {
+            // JEDA IQOMAH (menit) setelah adzan — UBAH SESUAI JAM ASLI DI MASJID
+            IQOMAH_MENIT: { subuh: 20, dzuhur: 13, ashar: 12, maghrib: 15, isya: 13 },
+
+            // Lama layar "Shalat sedang berlangsung" setelah iqomah (menit)
+            DURASI_SHALAT_MENIT: { subuh: 10, dzuhur: 10, ashar: 10, maghrib: 10, isya: 10 },
+
+            // Koreksi/ikhtiyati waktu (menit) ditambahkan ke jadwal dasar.
+            // Subuh +8 menit (Tarjih Muhammadiyah). Ubah bila perlu.
+            IHTIYATI_MENIT: { subuh: 8, syuruq: 0, dzuhur: 0, ashar: 0, maghrib: 0, isya: 0 },
+
+            // true = layar penuh adzan/iqomah muncul otomatis saat waktu salat.
+            // false = hanya tampil di banner jadwal (tanpa layar penuh).
+            LAYAR_OTOMATIS: true,
+
+            // true = pada hari Jumat, Dzuhur tidak memakai hitung mundur iqomah (diganti Shalat Jumat)
+            JUMAT_TANPA_IQOMAH: true,
+
+            // Lokasi & metode perhitungan (Kemenag RI = 20)
+            LAT: -7.9628,
+            LNG: 110.7135,
+            METODE: 20,
+            ZONA_WAKTU: 'Asia/Jakarta'
+        };
+    </script>
+
+    <!-- Script Utama -->
+    <script>
+        /* ---------- Utilitas ---------- */
+        const $ = id => document.getElementById(id);
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const pad = n => String(n).padStart(2, '0');
+        const SPINNER = '<div class="text-center text-xs text-teal-300 py-8 animate-pulse col-span-full">Memuat data…</div>';
+        const errHtml = fn => `<div class="text-center text-xs text-amber-300 py-8 space-y-2 col-span-full"><p>Gagal memuat data. Periksa koneksi internet Anda.</p><button onclick="${fn}" class="px-3 py-1.5 bg-teal-800 border border-teal-600/50 rounded-lg text-cyan-200 font-bold">Coba lagi</button></div>`;
+
+        /* ---------- Navigasi Tab ---------- */
         function switchMasjidSubTab(subTab) {
-            const subTabs = ['profil', 'upz-detail', 'takmir', 'personalia', 'pilar', 'kemakmuran', 'sosial'];
+            const subTabs = ['profil', 'upz-detail', 'takmir', 'personalia', 'pilar', 'kemakmuran', 'sosial', 'quran', 'hadis', 'dzikir'];
             subTabs.forEach(s => {
                 const subEl = document.getElementById(`m-sub-${s}`);
                 const btnEl = document.getElementById(`btn-m-${s}`);
@@ -783,63 +930,498 @@
             if (activeSub) activeSub.classList.remove('hidden');
             if (activeBtn) activeBtn.classList.add('active');
 
+            if (subTab === 'quran') loadSurahList();
+            if (subTab === 'hadis') loadHadis();
+            if (subTab === 'dzikir') dzInit();
+
             window.scrollTo({ top: 320, behavior: 'smooth' });
         }
 
-        // Penambahan Waktu Khusus Subuh (+8 Menit Tarjih)
-        function addMinutesToTime(timeStr, minutesToAdd) {
-            if (!timeStr || !timeStr.includes(':')) return timeStr;
-            const parts = timeStr.split(':');
-            let hours = parseInt(parts[0], 10);
-            let minutes = parseInt(parts[1], 10) + minutesToAdd;
+        /* =====================================================
+           JADWAL SALAT + ADZAN + IQOMAH
+           ===================================================== */
+        const NAMA = { subuh: 'Subuh', dzuhur: 'Dzuhur', ashar: 'Ashar', maghrib: 'Maghrib', isya: 'Isya' };
+        const FIVE = ['subuh', 'dzuhur', 'ashar', 'maghrib', 'isya'];
+        const API_KEY = { subuh: 'Fajr', syuruq: 'Sunrise', dzuhur: 'Dhuhr', ashar: 'Asr', maghrib: 'Maghrib', isya: 'Isha' };
+        const DOM_TIME = { subuh: 'time-subuh', syuruq: 'time-syuruq', dzuhur: 'time-zuhur', ashar: 'time-asar', maghrib: 'time-magrib', isya: 'time-isya' };
+        const BULAN_HIJRI = ['Muharram', 'Safar', 'Rabiul Awal', 'Rabiul Akhir', 'Jumadil Awal', 'Jumadil Akhir', 'Rajab', "Sya'ban", 'Ramadhan', 'Syawal', "Dzulqa'dah", 'Dzulhijjah'];
 
-            if (minutes >= 60) {
-                hours = (hours + 1) % 24;
-                minutes = minutes - 60;
+        let T = null;               // jadwal hari ini (objek Date)
+        let testState = null;       // simulasi "Tes Layar Iqomah"
+        let dismissedKey = null;    // layar yang sudah ditutup manual
+        let sedangMuat = false;
+
+        function wibNow() {
+            return new Date(new Date().toLocaleString('en-US', { timeZone: CONFIG.ZONA_WAKTU }));
+        }
+        function dateKey(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
+        function fmtHM(d) { return `${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+        function fmtMS(ms) {
+            const s = Math.max(0, Math.ceil(ms / 1000));
+            return `${pad(Math.floor(s / 60))}:${pad(s % 60)}`;
+        }
+        function fmtHMS(ms) {
+            const s = Math.max(0, Math.floor(ms / 1000));
+            return `${pad(Math.floor(s / 3600))}:${pad(Math.floor((s % 3600) / 60))}:${pad(s % 60)}`;
+        }
+        function parseTime(str, base, addMin) {
+            const m = /(\d{1,2}):(\d{2})/.exec(str || '');
+            if (!m) return null;
+            const d = new Date(base);
+            d.setHours(+m[1], +m[2] + addMin, 0, 0);
+            return d;
+        }
+
+        function applyTimings(timings, hijri, base) {
+            const t = { key: dateKey(base) };
+            Object.keys(API_KEY).forEach(name => {
+                const d = parseTime(timings[API_KEY[name]], base, CONFIG.IHTIYATI_MENIT[name] || 0);
+                t[name] = d;
+                if (d && $(DOM_TIME[name])) $(DOM_TIME[name]).innerText = fmtHM(d);
+            });
+            T = t;
+
+            if (hijri) {
+                const mName = BULAN_HIJRI[(hijri.month && hijri.month.number ? hijri.month.number : 1) - 1] || (hijri.month && hijri.month.en);
+                $('today-date-hijri').innerText = `${hijri.day} ${mName} ${hijri.year} H (KHGT)`;
             }
-            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
         }
 
         // Fetch Jadwal Sholat Otomatis Khusus Wilayah Gunungkidul
         async function fetchPrayerTimes() {
+            if (sedangMuat) return;
+            sedangMuat = true;
+            const base = wibNow();
+            const key = dateKey(base);
+            $('today-date-gregorian').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: CONFIG.ZONA_WAKTU });
+
             try {
-                const today = new Date();
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                document.getElementById('today-date-gregorian').innerText = today.toLocaleDateString('id-ID', options);
-
-                const res = await fetch(`https://api.aladhan.com/v1/timings?latitude=-7.9628&longitude=110.7135&method=20`);
+                const tgl = `${pad(base.getDate())}-${pad(base.getMonth() + 1)}-${base.getFullYear()}`;
+                const url = `https://api.aladhan.com/v1/timings/${tgl}?latitude=${CONFIG.LAT}&longitude=${CONFIG.LNG}&method=${CONFIG.METODE}&timezonestring=${CONFIG.ZONA_WAKTU}`;
+                const res = await fetch(url);
                 const data = await res.json();
-                
                 if (data && data.data) {
-                    const timings = data.data.timings;
-                    const subuhAdjusted = addMinutesToTime(timings.Fajr, 8);
-
-                    document.getElementById('time-subuh').innerText = subuhAdjusted;
-                    document.getElementById('time-syuruq').innerText = timings.Sunrise;
-                    document.getElementById('time-zuhur').innerText = timings.Dhuhr;
-                    document.getElementById('time-asar').innerText = timings.Asr;
-                    document.getElementById('time-magrib').innerText = timings.Maghrib;
-                    document.getElementById('time-isya').innerText = timings.Isha;
-
-                    // Kalender Hijriah KHGT
-                    const hijri = data.data.date.hijri;
-                    const hijriMonthIndo = {
-                        "Muharram": "Muharram", "Safar": "Safar", "Rabi' al-awwal": "Rabiul Awal",
-                        "Rabi' al-thani": "Rabiul Akhir", "Jumada al-ula": "Jumadil Awal",
-                        "Jumada al-akhirah": "Jumadil Akhir", "Rajab": "Rajab", "Sha'ban": "Sya'ban",
-                        "Ramadan": "Ramadhan", "Shawwal": "Syawal", "Dhu al-Qi'dah": "Dzulqa'dah",
-                        "Dhu al-Hijjah": "Dzulhijjah"
-                    };
-                    const mName = hijriMonthIndo[hijri.month.en] || hijri.month.en;
-                    document.getElementById('today-date-hijri').innerText = `${hijri.day} ${mName} ${hijri.year} H (KHGT)`;
+                    applyTimings(data.data.timings, data.data.date.hijri, base);
+                    try { localStorage.setItem('jadwal-salat', JSON.stringify({ key, timings: data.data.timings, hijri: data.data.date.hijri })); } catch (e) {}
                 }
             } catch (err) {
                 console.error("Gagal mengambil data jadwal sholat:", err);
+                try {
+                    const c = JSON.parse(localStorage.getItem('jadwal-salat') || 'null');
+                    if (c && c.key === key) applyTimings(c.timings, c.hijri, base);
+                    else $('status-waktu').innerText = 'Gagal memuat jadwal. Periksa koneksi internet.';
+                } catch (e) {}
+            }
+            sedangMuat = false;
+        }
+
+        // Menghitung fase saat ini: iqomah / shalat / none
+        function hitungState(now) {
+            if (testState) {
+                const el = (Date.now() - testState.start) / 1000;
+                if (el < testState.iq) return { phase: 'iqomah', prayer: 'dzuhur', remain: (testState.iq - el) * 1000, t0: now, test: true };
+                if (el < testState.iq + testState.sh) return { phase: 'shalat', prayer: 'dzuhur', remain: (testState.iq + testState.sh - el) * 1000, t0: now, test: true };
+                testState = null;
+            }
+            if (!T) return { phase: 'none' };
+            for (const p of FIVE) {
+                const t0 = T[p];
+                if (!t0) continue;
+                if (p === 'dzuhur' && now.getDay() === 5 && CONFIG.JUMAT_TANPA_IQOMAH) continue;
+                const iq = CONFIG.IQOMAH_MENIT[p] * 60000;
+                const sh = CONFIG.DURASI_SHALAT_MENIT[p] * 60000;
+                if (now >= t0 && now < t0 + iq) return { phase: 'iqomah', prayer: p, remain: t0.getTime() + iq - now, t0 };
+                if (now >= t0.getTime() + iq && now < t0.getTime() + iq + sh) return { phase: 'shalat', prayer: p, remain: t0.getTime() + iq + sh - now, t0 };
+            }
+            return { phase: 'none' };
+        }
+
+        function waktuBerikut(now) {
+            if (!T) return null;
+            for (const p of FIVE) if (T[p] && T[p] > now) return { prayer: p, time: T[p], besok: false };
+            if (T.subuh) return { prayer: 'subuh', time: new Date(T.subuh.getTime() + 86400000), besok: true };
+            return null;
+        }
+
+        function tick() {
+            const now = wibNow();
+            const clock = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+            $('jam-sekarang').innerText = clock;
+            $('ov-clock').innerText = clock;
+
+            if (T && T.key !== dateKey(now)) fetchPrayerTimes();   // ganti hari → ambil jadwal baru
+
+            const st = hitungState(now);
+            const next = waktuBerikut(now);
+            const status = $('status-waktu');
+
+            // Reset sorotan kotak waktu
+            ['subuh', 'syuruq', 'dzuhur', 'ashar', 'maghrib', 'isya'].forEach(n => {
+                const b = $('box-' + n);
+                if (b) b.classList.remove('ring-2', 'ring-cyan-400', 'ring-amber-400');
+            });
+
+            if (st.phase === 'iqomah') {
+                status.innerText = `Menjelang Iqomah ${NAMA[st.prayer]} — ${fmtMS(st.remain)}`;
+                $('box-' + st.prayer).classList.add('ring-2', 'ring-amber-400');
+            } else if (st.phase === 'shalat') {
+                status.innerText = `Shalat ${NAMA[st.prayer]} berjamaah sedang berlangsung`;
+                $('box-' + st.prayer).classList.add('ring-2', 'ring-amber-400');
+            } else if (next) {
+                status.innerText = `Menuju adzan ${NAMA[next.prayer]}${next.besok ? ' (besok)' : ''} — ${fmtHMS(next.time - now)}`;
+                if (!next.besok) $('box-' + next.prayer).classList.add('ring-2', 'ring-cyan-400');
+            }
+
+            renderOverlay(st);
+        }
+
+        function renderOverlay(st) {
+            const ov = $('iqomah-overlay');
+            if (st.phase === 'none') {
+                dismissedKey = null;
+                ov.style.display = 'none';
+                return;
+            }
+            const key = (st.test ? 'test-' : dateKey(wibNow()) + '-') + st.prayer + '-' + st.phase;
+            if (!CONFIG.LAYAR_OTOMATIS && !st.test) { ov.style.display = 'none'; return; }
+            if (dismissedKey === key) { ov.style.display = 'none'; return; }
+            ov.dataset.key = key;
+            ov.style.display = 'flex';
+
+            const nm = NAMA[st.prayer];
+            $('ov-badge').innerText = `Waktu Adzan ${nm}${st.t0 && !st.test ? ' — ' + fmtHM(st.t0) : ''}`;
+            if (st.phase === 'iqomah') {
+                $('ov-title').innerText = `Menjelang Iqomah ${nm}`;
+                $('ov-count').innerText = fmtMS(st.remain);
+                $('ov-sub').innerText = 'Mari bersiap, luruskan niat, dan segera menempati shaf terdepan.';
+            } else {
+                $('ov-title').innerText = `Shalat ${nm} Berjamaah Sedang Berlangsung`;
+                $('ov-count').innerText = '';
+                $('ov-sub').innerText = 'Luruskan dan rapatkan shaf. Mohon matikan atau silentkan HP Anda. Jazakumullahu khairan.';
             }
         }
 
+        function tutupOverlay() {
+            dismissedKey = $('iqomah-overlay').dataset.key || null;
+            $('iqomah-overlay').style.display = 'none';
+            if (testState) testState = null;
+            if (document.fullscreenElement) document.exitFullscreen();
+        }
+        function layarPenuh() {
+            const el = $('iqomah-overlay');
+            if (!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen().catch(() => {});
+            else if (document.exitFullscreen) document.exitFullscreen();
+        }
+        // Simulasi: iqomah 15 detik, lalu layar shalat 8 detik
+        function mulaiTesLayar() {
+            dismissedKey = null;
+            testState = { start: Date.now(), iq: 15, sh: 8 };
+            tick();
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') tutupOverlay(); });
+
+        /* =====================================================
+           AL-QUR'AN (equran.id — terjemahan Kemenag RI)
+           ===================================================== */
+        let surahList = [];
+        let currentAyat = [];
+        let audioEl = null;
+        const QARI = '05';   // 05 = Misyari Rasyid Al-Afasi
+
+        async function loadSurahList() {
+            const box = $('quran-list');
+            if (surahList.length) { renderSurahList(); return; }
+            box.innerHTML = SPINNER;
+            try {
+                const r = await fetch('https://equran.id/api/v2/surat');
+                const j = await r.json();
+                surahList = j.data || [];
+                renderSurahList();
+            } catch (e) { box.innerHTML = errHtml('loadSurahList()'); }
+        }
+
+        function renderSurahList() {
+            const q = ($('quran-search').value || '').toLowerCase().trim();
+            const list = surahList.filter(s => !q || String(s.nomor) === q || s.namaLatin.toLowerCase().includes(q) || s.arti.toLowerCase().includes(q));
+            $('quran-list').innerHTML = list.map(s => `
+                <button onclick="openSurah(${s.nomor})" class="flex items-center gap-3 p-3 bg-teal-900/40 hover:bg-teal-800/60 rounded-xl border border-teal-700/50 hover:border-cyan-400/60 text-left transition">
+                    <span class="w-8 h-8 shrink-0 rounded-lg bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center justify-center">${s.nomor}</span>
+                    <span class="flex-1 min-w-0">
+                        <span class="block text-sm font-bold text-gray-100 truncate">${esc(s.namaLatin)}</span>
+                        <span class="block text-[10px] text-teal-400 truncate">${esc(s.arti)} · ${s.jumlahAyat} ayat · ${esc(s.tempatTurun)}</span>
+                    </span>
+                    <span class="font-arabic text-lg text-amber-200">${esc(s.nama)}</span>
+                </button>`).join('') || '<p class="text-xs text-gray-400 col-span-full text-center py-6">Surah tidak ditemukan.</p>';
+        }
+
+        async function openSurah(n) {
+            $('quran-list-view').classList.add('hidden');
+            const rd = $('quran-reader');
+            rd.classList.remove('hidden');
+            rd.innerHTML = SPINNER;
+            window.scrollTo({ top: 320, behavior: 'smooth' });
+            if (audioEl) { audioEl.pause(); audioEl = null; }
+            try {
+                const r = await fetch(`https://equran.id/api/v2/surat/${n}`);
+                const j = await r.json();
+                const s = j.data;
+                currentAyat = s.ayat || [];
+                const full = s.audioFull ? (s.audioFull[QARI] || Object.values(s.audioFull)[0]) : '';
+                const prev = s.suratSebelumnya, next = s.suratSelanjutnya;
+                const bismillah = (n !== 1 && n !== 9) ? '<p class="font-arabic text-2xl md:text-3xl text-amber-200 text-center py-3">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>' : '';
+
+                rd.innerHTML = `
+                    <div class="flex items-center justify-between gap-2 flex-wrap">
+                        <button onclick="closeSurah()" class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg text-xs font-bold"><i class="fa-solid fa-arrow-left"></i> Daftar Surah</button>
+                        <div class="flex gap-2">
+                            ${prev ? `<button onclick="openSurah(${prev.nomor})" class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-gray-200 rounded-lg text-xs font-bold">‹ ${esc(prev.namaLatin)}</button>` : ''}
+                            ${next ? `<button onclick="openSurah(${next.nomor})" class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-gray-200 rounded-lg text-xs font-bold">${esc(next.namaLatin)} ›</button>` : ''}
+                        </div>
+                    </div>
+                    <div class="text-center p-4 bg-gradient-to-r from-teal-950/90 via-emerald-950/80 to-teal-950/90 rounded-2xl border border-amber-500/30 space-y-1">
+                        <p class="font-arabic text-3xl text-amber-200">${esc(s.nama)}</p>
+                        <h4 class="text-lg font-extrabold text-cyan-300">${s.nomor}. ${esc(s.namaLatin)} <span class="text-xs font-semibold text-teal-300">— ${esc(s.arti)}</span></h4>
+                        <p class="text-[11px] text-gray-400">${esc(s.tempatTurun)} · ${s.jumlahAyat} ayat</p>
+                        ${full ? `<audio controls preload="none" src="${esc(full)}" class="w-full max-w-md mx-auto mt-2"></audio>` : ''}
+                    </div>
+                    ${bismillah}
+                    <div class="space-y-3">
+                        ${currentAyat.map((a, i) => `
+                            <div class="p-4 bg-teal-900/30 rounded-2xl border border-teal-700/40 space-y-2">
+                                <div class="flex items-start justify-between gap-3">
+                                    <span class="w-7 h-7 shrink-0 rounded-lg bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[11px] font-bold flex items-center justify-center">${a.nomorAyat}</span>
+                                    <p class="font-arabic text-2xl md:text-3xl leading-loose text-amber-200 text-right flex-1" dir="rtl">${esc(a.teksArab)}</p>
+                                </div>
+                                <p class="text-xs text-teal-300 italic leading-relaxed">${esc(a.teksLatin)}</p>
+                                <p class="text-xs text-gray-300 leading-relaxed">${esc(a.teksIndonesia)}</p>
+                                <button onclick="playAyat(${i})" class="px-2.5 py-1 bg-teal-950/80 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg text-[10px] font-bold"><i class="fa-solid fa-play"></i> Putar ayat</button>
+                            </div>`).join('')}
+                    </div>`;
+            } catch (e) { rd.innerHTML = errHtml(`openSurah(${n})`); }
+        }
+
+        function closeSurah() {
+            if (audioEl) { audioEl.pause(); audioEl = null; }
+            $('quran-reader').classList.add('hidden');
+            $('quran-list-view').classList.remove('hidden');
+        }
+
+        function playAyat(i) {
+            const a = currentAyat[i];
+            if (!a || !a.audio) return;
+            if (audioEl) audioEl.pause();
+            audioEl = new Audio(a.audio[QARI] || Object.values(a.audio)[0]);
+            audioEl.play().catch(() => {});
+        }
+
+        /* =====================================================
+           HADIS (api.hadith.gading.dev)
+           ===================================================== */
+        const HADIS_KITAB = [
+            { id: 'bukhari', nama: 'Shahih Bukhari' },
+            { id: 'muslim', nama: 'Shahih Muslim' },
+            { id: 'abu-daud', nama: 'Sunan Abu Daud' },
+            { id: 'tirmidzi', nama: 'Sunan Tirmidzi' },
+            { id: 'nasai', nama: "Sunan An-Nasa'i" },
+            { id: 'ibnu-majah', nama: 'Sunan Ibnu Majah' },
+            { id: 'ahmad', nama: 'Musnad Ahmad' },
+            { id: 'darimi', nama: 'Sunan Ad-Darimi' },
+            { id: 'malik', nama: "Muwatha' Malik" }
+        ];
+        const hadis = { book: 'bukhari', start: 1, size: 10, total: 0, siap: false };
+
+        function loadHadis() {
+            $('hadis-books').innerHTML = HADIS_KITAB.map(k => `
+                <button onclick="hadisPilih('${k.id}')" id="hb-${k.id}" class="px-3 py-1.5 rounded-lg border border-teal-700/50 text-xs font-bold transition">${k.nama}</button>`).join('');
+            if (!hadis.siap) { hadis.siap = true; hadisMuat(); } else hadisMuat();
+        }
+        function hadisPilih(id) { hadis.book = id; hadis.start = 1; hadisMuat(); }
+        function hadisGoto() {
+            const n = parseInt($('hadis-goto').value, 10);
+            if (!n || n < 1) return;
+            hadis.start = Math.floor((n - 1) / hadis.size) * hadis.size + 1;
+            hadisMuat(n);
+        }
+        function hadisHalaman(delta) {
+            hadis.start = Math.max(1, hadis.start + delta * hadis.size);
+            hadisMuat();
+            window.scrollTo({ top: 320, behavior: 'smooth' });
+        }
+
+        async function hadisMuat(sorot) {
+            HADIS_KITAB.forEach(k => {
+                const b = $('hb-' + k.id);
+                if (!b) return;
+                const aktif = k.id === hadis.book;
+                b.className = 'px-3 py-1.5 rounded-lg border text-xs font-bold transition ' + (aktif ? 'bg-teal-500/30 border-cyan-400 text-white shadow' : 'bg-teal-900/40 border-teal-700/50 text-cyan-300 hover:bg-teal-800');
+            });
+            const box = $('hadis-content');
+            box.innerHTML = SPINNER;
+            const end = hadis.start + hadis.size - 1;
+            try {
+                const r = await fetch(`https://api.hadith.gading.dev/books/${hadis.book}?range=${hadis.start}-${end}`);
+                const j = await r.json();
+                const d = j.data;
+                hadis.total = d.available || 0;
+                const nama = (HADIS_KITAB.find(k => k.id === hadis.book) || {}).nama || d.name;
+                $('hadis-info').innerText = `${nama}: total ${hadis.total.toLocaleString('id-ID')} hadis`;
+                box.innerHTML = (d.contents || []).map(h => `
+                    <div class="p-4 bg-teal-900/30 rounded-2xl border ${sorot === h.number ? 'border-amber-400' : 'border-teal-700/40'} space-y-2">
+                        <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full">${esc(nama)} no. ${h.number}</span>
+                        <p class="font-arabic text-2xl leading-loose text-amber-200 text-right" dir="rtl">${esc(h.arab)}</p>
+                        <p class="text-xs text-gray-300 leading-relaxed">${esc(h.id)}</p>
+                    </div>`).join('') || '<p class="text-xs text-gray-400 text-center py-6">Hadis tidak ditemukan.</p>';
+                const akhir = Math.min(end, hadis.total || end);
+                $('hadis-pager').innerHTML = `
+                    <button onclick="hadisHalaman(-1)" ${hadis.start <= 1 ? 'disabled' : ''} class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg font-bold disabled:opacity-30">‹ Sebelumnya</button>
+                    <span class="text-gray-300">Hadis ${hadis.start} – ${akhir}</span>
+                    <button onclick="hadisHalaman(1)" ${hadis.total && end >= hadis.total ? 'disabled' : ''} class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg font-bold disabled:opacity-30">Berikutnya ›</button>`;
+            } catch (e) { box.innerHTML = errHtml('hadisMuat()'); }
+        }
+
+        /* =====================================================
+           DZIKIR PAGI & PETANG
+           ===================================================== */
+        const DZIKIR = [
+            { id: 'kursi', w: 'both', judul: 'Ayat Kursi (QS. Al-Baqarah: 255)', ulang: 1,
+              arab: 'اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ',
+              latin: "Allahu laa ilaaha illaa huwal hayyul qayyuum, laa ta'khudzuhuu sinatuw wa laa nauum, lahuu maa fis samaawaati wa maa fil ardh, man dzal ladzii yasyfa'u 'indahuu illaa bi-idznih, ya'lamu maa baina aidiihim wa maa khalfahum, wa laa yuhiithuuna bi syai-im min 'ilmihii illaa bimaa syaa-a, wasi'a kursiyyuhus samaawaati wal ardh, wa laa ya-uuduhuu hifzhuhumaa wa huwal 'aliyyul 'azhiim.",
+              arti: 'Allah, tidak ada tuhan (yang berhak disembah) selain Dia, Yang Mahahidup lagi terus-menerus mengurus makhluk-Nya. Tidak mengantuk dan tidak tidur. Milik-Nya apa yang ada di langit dan di bumi. Tidak ada yang dapat memberi syafaat di sisi-Nya tanpa izin-Nya. Dia mengetahui apa yang di hadapan dan di belakang mereka, dan mereka tidak mengetahui sesuatu pun dari ilmu-Nya kecuali apa yang Dia kehendaki. Kursi-Nya meliputi langit dan bumi, dan Dia tidak merasa berat memelihara keduanya. Dia Mahatinggi lagi Mahaagung.',
+              sumber: 'HR. An-Nasa\'i dalam Amalul Yaum wal Lailah; QS. Al-Baqarah: 255' },
+            { id: 'ikhlas', w: 'both', judul: 'Surah Al-Ikhlas', ulang: 3,
+              arab: 'قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ',
+              latin: "Qul huwallaahu ahad. Allaahush shamad. Lam yalid wa lam yuulad. Wa lam yakul lahuu kufuwan ahad.",
+              arti: 'Katakanlah (Muhammad), "Dialah Allah, Yang Maha Esa. Allah tempat meminta segala sesuatu. (Allah) tidak beranak dan tidak pula diperanakkan. Dan tidak ada sesuatu yang setara dengan Dia."',
+              sumber: 'HR. Abu Dawud no. 5082, At-Tirmidzi no. 3575' },
+            { id: 'falaq', w: 'both', judul: 'Surah Al-Falaq', ulang: 3,
+              arab: 'قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِنْ شَرِّ مَا خَلَقَ ۝ وَمِنْ شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِنْ شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِنْ شَرِّ حَاسِدٍ إِذَا حَسَدَ',
+              latin: "Qul a'uudzu birabbil falaq. Min syarri maa khalaq. Wa min syarri ghaasiqin idzaa waqab. Wa min syarrin naffaatsaati fil 'uqad. Wa min syarri haasidin idzaa hasad.",
+              arti: 'Katakanlah, "Aku berlindung kepada Tuhan yang menguasai subuh (fajar), dari kejahatan makhluk yang Dia ciptakan, dan dari kejahatan malam apabila telah gelap gulita, dan dari kejahatan perempuan-perempuan penyihir yang meniup pada buhul-buhul (talinya), dan dari kejahatan orang yang dengki apabila dia dengki."',
+              sumber: 'HR. Abu Dawud no. 5082, At-Tirmidzi no. 3575' },
+            { id: 'nas', w: 'both', judul: 'Surah An-Nas', ulang: 3,
+              arab: 'قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِنْ شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ',
+              latin: "Qul a'uudzu birabbin naas. Malikin naas. Ilaahin naas. Min syarril waswaasil khannaas. Alladzii yuwaswisu fii shuduurin naas. Minal jinnati wan naas.",
+              arti: 'Katakanlah, "Aku berlindung kepada Tuhannya manusia, Raja manusia, sembahan manusia, dari kejahatan (bisikan) setan yang bersembunyi, yang membisikkan (kejahatan) ke dalam dada manusia, dari (golongan) jin dan manusia."',
+              sumber: 'HR. Abu Dawud no. 5082, At-Tirmidzi no. 3575' },
+            { id: 'ashbahna', w: 'both', judul: 'Doa Memasuki Pagi / Petang', ulang: 1,
+              arab: { pagi: 'أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَٰذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَٰذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ',
+                      petang: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَٰذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَٰذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ' },
+              latin: { pagi: "Ashbahnaa wa ashbahal mulku lillaah, walhamdulillaah, laa ilaaha illallaahu wahdahu laa syariika lah, lahul mulku wa lahul hamdu wa huwa 'alaa kulli syai-in qadiir. Rabbi as-aluka khaira maa fii haadzal yaum wa khaira maa ba'dah, wa a'uudzu bika min syarri maa fii haadzal yaum wa syarri maa ba'dah. Rabbi a'uudzu bikal kasali wa suu-il kibar, rabbi a'uudzu bika min 'adzaabin fin naari wa 'adzaabin fil qabr.",
+                       petang: "Amsainaa wa amsal mulku lillaah, walhamdulillaah, laa ilaaha illallaahu wahdahu laa syariika lah, lahul mulku wa lahul hamdu wa huwa 'alaa kulli syai-in qadiir. Rabbi as-aluka khaira maa fii haadzihil lailah wa khaira maa ba'dahaa, wa a'uudzu bika min syarri maa fii haadzihil lailah wa syarri maa ba'dahaa. Rabbi a'uudzu bikal kasali wa suu-il kibar, rabbi a'uudzu bika min 'adzaabin fin naari wa 'adzaabin fil qabr." },
+              arti: { pagi: 'Kami telah memasuki waktu pagi dan kerajaan hanya milik Allah, segala puji bagi Allah. Tidak ada tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Mahakuasa atas segala sesuatu. Wahai Rabbku, aku memohon kepada-Mu kebaikan hari ini dan kebaikan sesudahnya, dan aku berlindung kepada-Mu dari kejahatan hari ini dan kejahatan sesudahnya. Wahai Rabbku, aku berlindung kepada-Mu dari kemalasan dan buruknya usia tua. Wahai Rabbku, aku berlindung kepada-Mu dari azab di neraka dan azab di kubur.',
+                      petang: 'Kami telah memasuki waktu petang dan kerajaan hanya milik Allah, segala puji bagi Allah. Tidak ada tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Mahakuasa atas segala sesuatu. Wahai Rabbku, aku memohon kepada-Mu kebaikan malam ini dan kebaikan sesudahnya, dan aku berlindung kepada-Mu dari kejahatan malam ini dan kejahatan sesudahnya. Wahai Rabbku, aku berlindung kepada-Mu dari kemalasan dan buruknya usia tua. Wahai Rabbku, aku berlindung kepada-Mu dari azab di neraka dan azab di kubur.' },
+              sumber: 'HR. Muslim no. 2723' },
+            { id: 'bika', w: 'both', judul: 'Allahumma Bika Ashbahna / Amsaina', ulang: 1,
+              arab: { pagi: 'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ',
+                      petang: 'اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ' },
+              latin: { pagi: "Allaahumma bika ashbahnaa, wa bika amsainaa, wa bika nahyaa, wa bika namuutu, wa ilaikan nusyuur.",
+                       petang: "Allaahumma bika amsainaa, wa bika ashbahnaa, wa bika nahyaa, wa bika namuutu, wa ilaikal mashiir." },
+              arti: { pagi: 'Ya Allah, dengan rahmat dan pertolongan-Mu kami memasuki waktu pagi, dan dengan rahmat dan pertolongan-Mu kami memasuki waktu petang. Dengan kehendak-Mu kami hidup dan dengan kehendak-Mu kami mati, dan hanya kepada-Mu kebangkitan (kami).',
+                      petang: 'Ya Allah, dengan rahmat dan pertolongan-Mu kami memasuki waktu petang, dan dengan rahmat dan pertolongan-Mu kami memasuki waktu pagi. Dengan kehendak-Mu kami hidup dan dengan kehendak-Mu kami mati, dan hanya kepada-Mu tempat kembali (kami).' },
+              sumber: 'HR. At-Tirmidzi no. 3391, Abu Dawud no. 5068' },
+            { id: 'sayyidul', w: 'both', judul: 'Sayyidul Istighfar', ulang: 1,
+              arab: 'اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَىٰ عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ',
+              latin: "Allaahumma anta rabbii laa ilaaha illaa anta, khalaqtanii wa anaa 'abduka, wa anaa 'alaa 'ahdika wa wa'dika mastatha'tu, a'uudzu bika min syarri maa shana'tu, abuu-u laka bini'matika 'alayya, wa abuu-u bidzanbii faghfir lii, fa-innahuu laa yaghfirudz dzunuuba illaa anta.",
+              arti: 'Ya Allah, Engkau adalah Rabbku, tidak ada tuhan yang berhak disembah selain Engkau. Engkau yang menciptakanku dan aku adalah hamba-Mu. Aku berada di atas perjanjian dan janji-Mu semampuku. Aku berlindung kepada-Mu dari keburukan yang aku perbuat. Aku mengakui nikmat-Mu kepadaku dan aku mengakui dosaku, maka ampunilah aku. Sesungguhnya tidak ada yang dapat mengampuni dosa selain Engkau.',
+              sumber: 'HR. Al-Bukhari no. 6306' },
+            { id: 'afini', w: 'both', judul: "Doa Keselamatan Badan, Pendengaran & Penglihatan", ulang: 3,
+              arab: 'اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَٰهَ إِلَّا أَنْتَ',
+              latin: "Allaahumma 'aafinii fii badanii, allaahumma 'aafinii fii sam'ii, allaahumma 'aafinii fii bashariī, laa ilaaha illaa anta.",
+              arti: 'Ya Allah, selamatkanlah badanku (dari penyakit dan maksiat), Ya Allah, selamatkanlah pendengaranku, Ya Allah, selamatkanlah penglihatanku. Tidak ada tuhan yang berhak disembah selain Engkau.',
+              sumber: 'HR. Abu Dawud no. 5090, Ahmad' },
+            { id: 'bismillah', w: 'both', judul: 'Perlindungan dari Segala Mara Bahaya', ulang: 3,
+              arab: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ',
+              latin: "Bismillaahilladzii laa yadhurru ma'asmihii syai-un fil ardhi wa laa fis samaa-i wa huwas samii'ul 'aliim.",
+              arti: 'Dengan nama Allah yang bersama nama-Nya tidak ada sesuatu pun di bumi maupun di langit yang dapat membahayakan, dan Dia Maha Mendengar lagi Maha Mengetahui.',
+              sumber: 'HR. Abu Dawud no. 5088, At-Tirmidzi no. 3388' },
+            { id: 'radhitu', w: 'both', judul: 'Ridha Allah sebagai Rabb', ulang: 3,
+              arab: 'رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صلى الله عليه وسلم نَبِيًّا',
+              latin: "Radhiitu billaahi rabbaa, wa bil islaami diinaa, wa bi muhammadin shallallaahu 'alaihi wa sallama nabiyyaa.",
+              arti: 'Aku ridha Allah sebagai Rabb (Tuhan)ku, Islam sebagai agamaku, dan Muhammad ﷺ sebagai nabiku.',
+              sumber: 'HR. Abu Dawud no. 5072, At-Tirmidzi no. 3389' },
+            { id: 'hasbiyallah', w: 'both', judul: 'Hasbiyallah', ulang: 7,
+              arab: 'حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ',
+              latin: "Hasbiyallaahu laa ilaaha illaa huwa, 'alaihi tawakkaltu wa huwa rabbul 'arsyil 'azhiim.",
+              arti: 'Cukuplah Allah bagiku, tidak ada tuhan yang berhak disembah selain Dia. Hanya kepada-Nya aku bertawakal, dan Dia adalah Rabb pemilik Arsy yang agung.',
+              sumber: 'HR. Abu Dawud no. 5081 (dari Abu Darda\', mauquf)' },
+            { id: 'subhanallah', w: 'both', judul: 'Tasbih Pagi & Petang', ulang: 100,
+              arab: 'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',
+              latin: "Subhaanallaahi wa bihamdih.",
+              arti: 'Mahasuci Allah, aku memuji-Nya. (Barangsiapa membacanya 100 kali di waktu pagi dan petang, tidak ada seorang pun yang datang pada hari kiamat dengan amalan lebih utama kecuali yang membaca semisal itu atau lebih banyak.)',
+              sumber: 'HR. Muslim no. 2692' },
+            { id: 'lailaha', w: 'both', judul: 'Tahlil', ulang: 10,
+              arab: 'لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ',
+              latin: "Laa ilaaha illallaahu wahdahu laa syariika lah, lahul mulku wa lahul hamdu wa huwa 'alaa kulli syai-in qadiir.",
+              arti: 'Tidak ada tuhan yang berhak disembah selain Allah semata, tiada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Mahakuasa atas segala sesuatu. (Minimal 10 kali; boleh diperbanyak hingga 100 kali.)',
+              sumber: 'HR. Al-Bukhari no. 3293, Muslim no. 2691; Abu Dawud no. 5077' },
+            { id: 'ilmu', w: 'pagi', judul: 'Doa Memohon Ilmu yang Bermanfaat (Pagi)', ulang: 1,
+              arab: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا',
+              latin: "Allaahumma innii as-aluka 'ilman naafi'aa, wa rizqan thayyibaa, wa 'amalan mutaqabbalaa.",
+              arti: 'Ya Allah, sesungguhnya aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang baik, dan amal yang diterima.',
+              sumber: 'HR. Ibnu Majah no. 925' },
+            { id: 'audzu', w: 'petang', judul: 'Berlindung dengan Kalimat Allah yang Sempurna (Petang)', ulang: 3,
+              arab: 'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ',
+              latin: "A'uudzu bikalimaatillaahit taammaati min syarri maa khalaq.",
+              arti: 'Aku berlindung dengan kalimat-kalimat Allah yang sempurna dari kejahatan makhluk yang Dia ciptakan.',
+              sumber: 'HR. Muslim no. 2709' }
+        ];
+
+        const dz = { waktu: null, counts: {} };
+        const pick = (v, w) => (v && typeof v === 'object') ? v[w] : v;
+
+        function dzInit() {
+            if (!dz.waktu) dz.waktu = wibNow().getHours() < 12 ? 'pagi' : 'petang';
+            dzRender();
+        }
+        function dzSetWaktu(w) { dz.waktu = w; dzRender(); }
+        function dzReset() { Object.keys(dz.counts).filter(k => k.startsWith(dz.waktu + '-')).forEach(k => delete dz.counts[k]); dzRender(); }
+
+        function dzRender() {
+            const w = dz.waktu;
+            ['pagi', 'petang'].forEach(x => {
+                $('dz-tab-' + x).className = 'px-4 py-2 rounded-xl border transition ' + (x === w ? 'bg-teal-500/30 border-cyan-400 text-white shadow' : 'bg-teal-900/40 border-teal-700/50 text-cyan-300 hover:bg-teal-800');
+            });
+            $('dz-waktu-info').innerText = w === 'pagi'
+                ? 'Waktu dzikir pagi: sejak terbit fajar (setelah Subuh) hingga matahari terbit / waktu Dhuha.'
+                : 'Waktu dzikir petang: setelah salat Ashar hingga matahari terbenam (Maghrib).';
+
+            $('dz-list').innerHTML = DZIKIR.filter(d => d.w === 'both' || d.w === w).map((d, i) => {
+                const key = `${w}-${d.id}`;
+                const c = dz.counts[key] || 0;
+                const selesai = c >= d.ulang;
+                return `
+                <div class="p-4 bg-teal-900/30 rounded-2xl border border-teal-700/40 space-y-2.5">
+                    <div class="flex items-center justify-between gap-2 flex-wrap">
+                        <h4 class="text-sm font-bold text-amber-300">${i + 1}. ${esc(d.judul)}</h4>
+                        <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full">Dibaca ${d.ulang}×</span>
+                    </div>
+                    <p class="font-arabic text-2xl md:text-3xl leading-loose text-amber-200 text-right" dir="rtl">${esc(pick(d.arab, w))}</p>
+                    <p class="text-xs text-teal-300 italic leading-relaxed">${esc(pick(d.latin, w))}</p>
+                    <p class="text-xs text-gray-300 leading-relaxed">${esc(pick(d.arti, w))}</p>
+                    <div class="flex items-center justify-between gap-2 flex-wrap pt-1">
+                        <span class="text-[10px] text-teal-400">📚 ${esc(d.sumber)}</span>
+                        <button id="dz-btn-${key}" onclick="dzTap('${key}', ${d.ulang})" class="px-3 py-1.5 rounded-lg border text-xs font-bold transition ${selesai ? 'bg-emerald-600/40 border-emerald-400 text-emerald-100' : 'bg-teal-950/80 hover:bg-teal-800 border-teal-600/50 text-cyan-300'}">${selesai ? '✓ Selesai' : `Hitung ${c}/${d.ulang}`}</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function dzTap(key, target) {
+            const c = Math.min(target, (dz.counts[key] || 0) + 1);
+            dz.counts[key] = c;
+            const b = $('dz-btn-' + key);
+            if (!b) return;
+            if (c >= target) {
+                b.innerText = '✓ Selesai';
+                b.className = 'px-3 py-1.5 rounded-lg border text-xs font-bold transition bg-emerald-600/40 border-emerald-400 text-emerald-100';
+            } else b.innerText = `Hitung ${c}/${target}`;
+        }
+
+        /* ---------- Inisialisasi ---------- */
         window.onload = function() {
             fetchPrayerTimes();
+            setInterval(tick, 500);
+            tick();
         };
     </script>
 </body>
