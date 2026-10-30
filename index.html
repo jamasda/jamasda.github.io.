@@ -769,7 +769,7 @@
             </div>
         </div>
 
-        <!-- SUB-TAB 8: AL-QUR'AN -->
+        <!-- SUB-TAB 8: AL-QUR'AN (TIDAK BERUBAH) -->
         <div id="m-sub-quran" class="hidden space-y-6">
             <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
@@ -791,29 +791,48 @@
             </div>
         </div>
 
-        <!-- SUB-TAB 9: HADIS -->
+        <!-- SUB-TAB 9: HADIS (DIGANTI: TAUTAN KE SUMBER TERPERCAYA, TANPA API) -->
         <div id="m-sub-hadis" class="hidden space-y-6">
             <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
                 <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
                     <div>
                         <h3 class="text-xl font-bold text-cyan-300">📜 Hadis Nabi ﷺ</h3>
-                        <p class="text-xs text-gray-400">Kitab-kitab hadis dari para perawi terpercaya (Kutubut Tis'ah) lengkap teks Arab & terjemahan Indonesia</p>
+                        <p class="text-xs text-gray-400">Rujukan hadis dari situs & aplikasi terpercaya — dibuka di tab baru</p>
                     </div>
-                    <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">Sumber: api.hadith.gading.dev</span>
+                    <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-xs font-bold px-3 py-1 rounded-full">Sumber Terpercaya</span>
                 </div>
 
-                <div id="hadis-books" class="flex flex-wrap gap-2"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <a href="https://sunnah.com" target="_blank" rel="noopener noreferrer" class="p-4 bg-teal-900/40 hover:bg-teal-800/60 rounded-2xl border border-teal-700/50 hover:border-cyan-400/60 space-y-1.5 transition block">
+                        <h4 class="font-bold text-amber-300 text-sm"><i class="fa-solid fa-book-open"></i> Sunnah.com</h4>
+                        <p class="text-gray-300 leading-relaxed">Shahih Bukhari, Shahih Muslim, dan kitab hadis lainnya. Teks Arab + Inggris, lengkap dengan derajat hadis. <em>(Belum ada terjemahan Indonesia)</em></p>
+                        <span class="text-teal-400 text-[11px]">sunnah.com ↗</span>
+                    </a>
 
-                <div class="flex flex-wrap items-center gap-2 text-xs">
-                    <label class="text-gray-300 font-semibold">Lompat ke nomor hadis:</label>
-                    <input id="hadis-goto" type="number" min="1" placeholder="mis. 1" class="w-28 bg-teal-900/50 border border-teal-700/50 rounded-lg px-3 py-1.5 text-gray-200 focus:outline-none focus:border-cyan-400">
-                    <button onclick="hadisGoto()" class="px-3 py-1.5 bg-teal-800 hover:bg-teal-700 border border-teal-600/50 text-cyan-200 rounded-lg font-bold transition">Buka</button>
-                    <span id="hadis-info" class="text-teal-400 text-[11px]"></span>
+                    <a href="https://apps.apple.com/app/id1006161545" target="_blank" rel="noopener noreferrer" class="p-4 bg-teal-900/40 hover:bg-teal-800/60 rounded-2xl border border-teal-700/50 hover:border-cyan-400/60 space-y-1.5 transition block">
+                        <h4 class="font-bold text-amber-300 text-sm"><i class="fa-brands fa-apple"></i> Ensiklopedi Hadits Kitab 9 Imam (iPhone/iPad)</h4>
+                        <p class="text-gray-300 leading-relaxed">Aplikasi resmi Lidwa Pusaka: 9 kitab hadis dengan terjemahan bahasa Indonesia.</p>
+                        <span class="text-teal-400 text-[11px]">App Store ↗</span>
+                    </a>
+
+                    <a href="https://play.google.com/store/search?q=ensiklopedi%20hadits%20kitab%209%20imam&c=apps" target="_blank" rel="noopener noreferrer" class="p-4 bg-teal-900/40 hover:bg-teal-800/60 rounded-2xl border border-teal-700/50 hover:border-cyan-400/60 space-y-1.5 transition block">
+                        <h4 class="font-bold text-amber-300 text-sm"><i class="fa-brands fa-google-play"></i> Ensiklopedi Hadits Kitab 9 Imam (Android)</h4>
+                        <p class="text-gray-300 leading-relaxed">Cari aplikasi dari pengembang <strong>Lidwa Pusaka</strong> di Google Play. Pastikan memilih yang resmi.</p>
+                        <span class="text-teal-400 text-[11px]">Google Play ↗</span>
+                    </a>
+
+                    <a href="https://dorar.net/hadith" target="_blank" rel="noopener noreferrer" class="p-4 bg-teal-900/40 hover:bg-teal-800/60 rounded-2xl border border-teal-700/50 hover:border-cyan-400/60 space-y-1.5 transition block">
+                        <h4 class="font-bold text-amber-300 text-sm"><i class="fa-solid fa-magnifying-glass"></i> Dorar.net — Mausu'ah Hadis</h4>
+                        <p class="text-gray-300 leading-relaxed">Pencarian hadis berbahasa Arab beserta penjelasan hukum/derajatnya (shahih, hasan, dha'if).</p>
+                        <span class="text-teal-400 text-[11px]">dorar.net ↗</span>
+                    </a>
+
+                    <a href="https://tarjih.or.id" target="_blank" rel="noopener noreferrer" class="p-4 bg-teal-900/40 hover:bg-teal-800/60 rounded-2xl border border-amber-500/40 hover:border-cyan-400/60 space-y-1.5 transition block md:col-span-2">
+                        <h4 class="font-bold text-amber-300 text-sm"><i class="fa-solid fa-scale-balanced"></i> Majelis Tarjih & Tajdid PP Muhammadiyah</h4>
+                        <p class="text-gray-300 leading-relaxed">Rujukan resmi persyarikatan untuk fatwa dan kajian hadis sesuai manhaj Tarjih Muhammadiyah.</p>
+                        <span class="text-teal-400 text-[11px]">tarjih.or.id ↗</span>
+                    </a>
                 </div>
-
-                <div id="hadis-content" class="space-y-3"></div>
-
-                <div id="hadis-pager" class="flex items-center justify-between gap-2 text-xs"></div>
 
                 <p class="text-[11px] text-amber-300/80 bg-amber-950/40 border border-amber-500/20 rounded-xl p-3 leading-relaxed">
                     ⚠️ Catatan: Hadis dalam Shahih Bukhari & Shahih Muslim telah disepakati keshahihannya oleh para ulama. Untuk kitab-kitab Sunan & Musnad, derajat setiap hadis (shahih/hasan/dha'if) perlu dirujuk kepada penjelasan ulama hadis. Untuk pendalaman, silakan bertanya kepada ustadz/takmir.
@@ -931,7 +950,6 @@
             if (activeBtn) activeBtn.classList.add('active');
 
             if (subTab === 'quran') loadSurahList();
-            if (subTab === 'hadis') loadHadis();
             if (subTab === 'dzikir') dzInit();
 
             window.scrollTo({ top: 320, behavior: 'smooth' });
@@ -1212,71 +1230,6 @@
             if (audioEl) audioEl.pause();
             audioEl = new Audio(a.audio[QARI] || Object.values(a.audio)[0]);
             audioEl.play().catch(() => {});
-        }
-
-        /* =====================================================
-           HADIS (api.hadith.gading.dev)
-           ===================================================== */
-        const HADIS_KITAB = [
-            { id: 'bukhari', nama: 'Shahih Bukhari' },
-            { id: 'muslim', nama: 'Shahih Muslim' },
-            { id: 'abu-daud', nama: 'Sunan Abu Daud' },
-            { id: 'tirmidzi', nama: 'Sunan Tirmidzi' },
-            { id: 'nasai', nama: "Sunan An-Nasa'i" },
-            { id: 'ibnu-majah', nama: 'Sunan Ibnu Majah' },
-            { id: 'ahmad', nama: 'Musnad Ahmad' },
-            { id: 'darimi', nama: 'Sunan Ad-Darimi' },
-            { id: 'malik', nama: "Muwatha' Malik" }
-        ];
-        const hadis = { book: 'bukhari', start: 1, size: 10, total: 0, siap: false };
-
-        function loadHadis() {
-            $('hadis-books').innerHTML = HADIS_KITAB.map(k => `
-                <button onclick="hadisPilih('${k.id}')" id="hb-${k.id}" class="px-3 py-1.5 rounded-lg border border-teal-700/50 text-xs font-bold transition">${k.nama}</button>`).join('');
-            if (!hadis.siap) { hadis.siap = true; hadisMuat(); } else hadisMuat();
-        }
-        function hadisPilih(id) { hadis.book = id; hadis.start = 1; hadisMuat(); }
-        function hadisGoto() {
-            const n = parseInt($('hadis-goto').value, 10);
-            if (!n || n < 1) return;
-            hadis.start = Math.floor((n - 1) / hadis.size) * hadis.size + 1;
-            hadisMuat(n);
-        }
-        function hadisHalaman(delta) {
-            hadis.start = Math.max(1, hadis.start + delta * hadis.size);
-            hadisMuat();
-            window.scrollTo({ top: 320, behavior: 'smooth' });
-        }
-
-        async function hadisMuat(sorot) {
-            HADIS_KITAB.forEach(k => {
-                const b = $('hb-' + k.id);
-                if (!b) return;
-                const aktif = k.id === hadis.book;
-                b.className = 'px-3 py-1.5 rounded-lg border text-xs font-bold transition ' + (aktif ? 'bg-teal-500/30 border-cyan-400 text-white shadow' : 'bg-teal-900/40 border-teal-700/50 text-cyan-300 hover:bg-teal-800');
-            });
-            const box = $('hadis-content');
-            box.innerHTML = SPINNER;
-            const end = hadis.start + hadis.size - 1;
-            try {
-                const r = await fetch(`https://api.hadith.gading.dev/books/${hadis.book}?range=${hadis.start}-${end}`);
-                const j = await r.json();
-                const d = j.data;
-                hadis.total = d.available || 0;
-                const nama = (HADIS_KITAB.find(k => k.id === hadis.book) || {}).nama || d.name;
-                $('hadis-info').innerText = `${nama}: total ${hadis.total.toLocaleString('id-ID')} hadis`;
-                box.innerHTML = (d.contents || []).map(h => `
-                    <div class="p-4 bg-teal-900/30 rounded-2xl border ${sorot === h.number ? 'border-amber-400' : 'border-teal-700/40'} space-y-2">
-                        <span class="bg-emerald-950 text-emerald-300 border border-emerald-500/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full">${esc(nama)} no. ${h.number}</span>
-                        <p class="font-arabic text-2xl leading-loose text-amber-200 text-right" dir="rtl">${esc(h.arab)}</p>
-                        <p class="text-xs text-gray-300 leading-relaxed">${esc(h.id)}</p>
-                    </div>`).join('') || '<p class="text-xs text-gray-400 text-center py-6">Hadis tidak ditemukan.</p>';
-                const akhir = Math.min(end, hadis.total || end);
-                $('hadis-pager').innerHTML = `
-                    <button onclick="hadisHalaman(-1)" ${hadis.start <= 1 ? 'disabled' : ''} class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg font-bold disabled:opacity-30">‹ Sebelumnya</button>
-                    <span class="text-gray-300">Hadis ${hadis.start} – ${akhir}</span>
-                    <button onclick="hadisHalaman(1)" ${hadis.total && end >= hadis.total ? 'disabled' : ''} class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg font-bold disabled:opacity-30">Berikutnya ›</button>`;
-            } catch (e) { box.innerHTML = errHtml('hadisMuat()'); }
         }
 
         /* =====================================================
