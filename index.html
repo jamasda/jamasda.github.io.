@@ -4,524 +4,1274 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Masjid Subardi Al-Huda Kuwon - Pusat Ibadah & Pemberdayaan Umat</title>
+<!-- Favicon / Logo Masjid -->
 <link rel="icon" type="image/png" href="logo-masjid.png">
+<!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- FontAwesome Icon -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@600;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-body{background:linear-gradient(135deg,rgba(2,17,20,.94),rgba(5,41,32,.92) 50%,rgba(1,11,13,.96)),url('masjid.jpg') center/cover fixed no-repeat;font-family:'Plus Jakarta Sans',sans-serif}
-.font-arabic{font-family:'Amiri',serif}
-.cz{font-family:'Cinzel',serif}
-/* Kartu menu ala mazdanny */
-.mc{--c:20,184,138;display:block;width:100%;text-align:left;padding:1.25rem;border-radius:1.1rem;border:1.5px solid rgba(var(--c),.55);background:rgba(2,36,30,.55);transition:.2s;backdrop-filter:blur(6px)}
-.mc:hover{transform:translateY(-3px);background:rgba(2,50,42,.75);box-shadow:0 0 22px rgba(var(--c),.28)}
-.mc .ic{width:2.75rem;height:2.75rem;border-radius:.8rem;display:flex;align-items:center;justify-content:center;background:rgba(var(--c),.15);border:1px solid rgba(var(--c),.4);color:rgb(var(--c));font-size:1.15rem}
-.mc .bd{font-size:.6rem;font-weight:800;letter-spacing:.06em;padding:.25rem .7rem;border-radius:999px;border:1px solid rgba(var(--c),.5);background:rgba(var(--c),.12);color:rgb(var(--c))}
-.c2{--c:34,211,238}.c3{--c:245,180,60}
-/* Layar iqomah ala pepeling */
-#ov{display:none;background:radial-gradient(circle at 50% 30%,#5a3d1a 0%,#2a1a0b 55%,#120a04 100%)}
-#ov-count{font-family:'Cinzel',serif;font-weight:800;line-height:1;color:#f3d79b;text-shadow:0 0 60px rgba(243,215,155,.45);font-size:clamp(5rem,26vw,22rem)}
-.inp{width:100%;background:rgba(6,60,50,.5);border:1px solid rgba(20,120,105,.6);border-radius:.75rem;padding:.55rem .8rem;font-size:.8rem;color:#e5e7eb}
-.inp:focus{outline:none;border-color:#22d3ee}
-.lbl{display:block;font-size:.65rem;font-weight:700;color:#5eead4;margin-bottom:.25rem;text-transform:uppercase}
-.tb{padding:.5rem 1rem;border-radius:.75rem;border:1px solid rgba(20,120,105,.6);font-size:.75rem;font-weight:700;color:#67e8f9;background:rgba(6,60,50,.4)}
-.tb.on{background:rgba(20,184,166,.35);border-color:#22d3ee;color:#fff}
-th,td{padding:.45rem .6rem;text-align:left;vertical-align:top}
-@media print{#ov{display:none!important}}
+body {
+  background: linear-gradient(135deg, rgba(2, 17, 20, 0.95) 0%, rgba(5, 41, 32, 0.93) 50%, rgba(1, 11, 13, 0.97) 100%), url('masjid.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.font-arabic {
+  font-family: 'Amiri', serif;
+}
+.menu-card {
+  transition: all 0.3s ease;
+}
+.menu-card:hover {
+  transform: translateY(-4px);
+}
+.menu-card.active {
+  border-color: #22d3ee;
+  background-color: rgba(20, 184, 166, 0.25);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+}
+@media print { 
+  #iqomah-overlay, header, nav, footer, .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
 </style>
 </head>
-<body class="text-gray-200 min-h-screen flex flex-col items-center p-4 sm:p-8 antialiased">
+<body class="text-gray-200 min-h-screen flex flex-col items-center justify-start p-4 sm:p-8 font-sans antialiased backdrop-blur-[2px]">
 
-<!-- HEADER -->
-<header class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between mb-6 border-b border-teal-800/50 pb-4 gap-4">
-  <a href="#" class="flex items-center gap-3">
-    <div class="w-12 h-12 bg-teal-900/80 rounded-2xl border border-amber-500/40 p-1"><img src="logo-masjid.png" alt="Logo" class="w-full h-full object-contain"></div>
+<!-- Header / Navbar Utama -->
+<header class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between mb-6 px-2 border-b border-teal-800/50 pb-4 gap-4">
+  <div class="flex items-center space-x-3">
+    <div class="w-12 h-12 bg-teal-900/80 rounded-2xl flex items-center justify-center border border-amber-500/40 shadow-lg overflow-hidden p-1">
+      <img src="logo-masjid.png" alt="Logo Masjid Subardi Al-Huda" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='logo-masjid.png';">
+    </div>
     <div>
       <h1 class="text-lg font-extrabold text-cyan-300 tracking-wide">MASJID SUBARDI AL-HUDA KUWON</h1>
-      <p class="text-[11px] text-teal-400">Tembesi, Ponjong, Gunungkidul, DIY</p>
+      <p class="text-[11px] text-teal-400 font-medium">Tembesi, Ponjong, Gunungkidul, D.I. Yogyakarta</p>
     </div>
-  </a>
-  <div class="flex flex-wrap justify-center gap-2 text-xs font-bold">
-    <a href="https://masa.muhammadiyah.or.id" target="_blank" rel="noopener" class="px-3.5 py-2 bg-emerald-800 hover:bg-emerald-700 text-amber-300 border border-amber-500/40 rounded-xl"><i class="fa-solid fa-compass"></i> MASA Muhammadiyah</a>
-    <a href="https://wa.me/62817266085" target="_blank" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl"><i class="fa-brands fa-whatsapp"></i> Konsultasi Zakat (UPZ)</a>
+  </div>
+  <div class="flex flex-wrap justify-center gap-2">
+    <a href="https://masa.muhammadiyah.or.id" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 bg-emerald-800 hover:bg-emerald-700 text-amber-300 border border-amber-500/40 rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+      <i class="fa-solid fa-compass text-sm"></i> MASA Muhammadiyah
+    </a>
+    <a href="https://wa.me/62817266085" target="_blank" class="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md">
+      <i class="fa-brands fa-whatsapp text-sm"></i> UPZ Jamasda
+    </a>
+    <button onclick="window.print()" class="px-3.5 py-2 bg-teal-900/60 hover:bg-teal-800 text-cyan-300 rounded-xl text-xs font-bold border border-teal-700/50 transition flex items-center gap-1.5">
+      <i class="fa-solid fa-print text-sm"></i> Cetak Halaman
+    </button>
   </div>
 </header>
 
-<!-- JADWAL SALAT -->
-<section class="w-full max-w-5xl bg-teal-950/80 rounded-3xl p-5 border border-teal-500/30 shadow-2xl mb-6 backdrop-blur-md">
-  <div class="flex flex-col md:flex-row justify-between items-center gap-2 border-b border-teal-800/60 pb-3 mb-4 text-center md:text-left">
+<!-- BANNER JADWAL SALAT & KALENDER HIJRIAH -->
+<section class="w-full max-w-6xl bg-teal-950/80 rounded-3xl p-5 border border-teal-500/30 shadow-2xl mb-8 backdrop-blur-md">
+  <div class="flex flex-col md:flex-row justify-between items-center border-b border-teal-800/60 pb-3 mb-4 gap-2 text-center md:text-left">
     <div>
-      <h3 class="text-sm font-bold text-cyan-300 uppercase tracking-wider">🕋 Jadwal Salat Hari Ini — Gunungkidul</h3>
-      <p id="tgl-m" class="text-xs text-gray-300 mt-0.5">Memuat tanggal...</p>
+      <h3 class="text-sm font-bold text-cyan-300 uppercase tracking-wider flex items-center gap-2 justify-center md:justify-start">
+        <i class="fa-solid fa-kaaba text-amber-400"></i> Jadwal Salat Hari Ini Gunungkidul & Sekitarnya
+      </h3>
+      <p id="today-date-gregorian" class="text-xs text-gray-300 mt-0.5">Memuat tanggal Masehi...</p>
     </div>
-    <div class="flex flex-wrap justify-center gap-2 text-[11px] font-bold">
-      <span class="bg-teal-900/80 border border-teal-600/50 px-3 py-1 rounded-xl text-teal-300">Subuh +8 mnt (Tarjih)</span>
-      <span class="bg-amber-950/80 border border-amber-500/40 px-3 py-1 rounded-xl text-amber-300">🌙 <span id="tgl-h">Kalender Hijriah</span></span>
+    <div class="flex flex-wrap items-center justify-center gap-2">
+      <span class="bg-teal-900/80 border border-teal-600/50 px-3 py-1 rounded-xl text-[11px] font-semibold text-teal-300">
+        Subuh Adjusted (+8 Mnt Tarjih)
+      </span>
+      <div class="bg-amber-950/80 border border-amber-500/40 px-3.5 py-1.5 rounded-xl text-xs font-bold text-amber-300 shadow-inner">
+        <span id="today-date-hijri">Kalender KHGT Muhammadiyah</span>
+      </div>
     </div>
   </div>
-  <div id="jadwal" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5"></div>
-  <div class="mt-3 flex flex-col sm:flex-row items-center justify-between gap-2 bg-teal-900/50 border border-teal-700/50 rounded-2xl px-4 py-2.5 text-xs">
-    <span id="status" class="font-bold text-cyan-200">⏳ Memuat jadwal...</span>
-    <span class="flex items-center gap-2">
-      <span class="text-[11px] text-gray-300">Jam <b id="jam" class="text-amber-300 tabular-nums">--:--:--</b> WIB</span>
-      <button onclick="tesLayar()" class="px-2.5 py-1 bg-teal-950/80 hover:bg-teal-800 border border-teal-600/50 text-cyan-300 rounded-lg text-[10px] font-bold"><i class="fa-solid fa-play"></i> Tes Layar Iqomah</button>
-    </span>
+
+  <!-- Box Waktu Salat -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center text-xs">
+    <div id="box-subuh" class="p-3 bg-teal-900/50 rounded-2xl border border-amber-500/50 relative overflow-hidden transition">
+      <span class="text-amber-300 font-bold block text-[11px]">SUBUH*</span>
+      <span id="time-subuh" class="text-xl font-black text-amber-200">--:--</span>
+      <span class="text-[9px] text-teal-300 block mt-1">Jeda Iqomah: 20 mnt</span>
+    </div>
+    <div id="box-syuruq" class="p-3 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
+      <span class="text-teal-400 font-bold block text-[11px]">TERBIT</span>
+      <span id="time-syuruq" class="text-xl font-black text-cyan-300">--:--</span>
+      <span class="text-[9px] text-gray-400 block mt-1">Syuruq</span>
+    </div>
+    <div id="box-dzuhur" class="p-3 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
+      <span class="text-teal-400 font-bold block text-[11px]">ZUHUR</span>
+      <span id="time-zuhur" class="text-xl font-black text-cyan-300">--:--</span>
+      <span class="text-[9px] text-teal-300 block mt-1">Jeda Iqomah: 13 mnt</span>
+    </div>
+    <div id="box-ashar" class="p-3 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
+      <span class="text-teal-400 font-bold block text-[11px]">ASAR</span>
+      <span id="time-asar" class="text-xl font-black text-cyan-300">--:--</span>
+      <span class="text-[9px] text-teal-300 block mt-1">Jeda Iqomah: 12 mnt</span>
+    </div>
+    <div id="box-maghrib" class="p-3 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
+      <span class="text-teal-400 font-bold block text-[11px]">MAGRIB</span>
+      <span id="time-magrib" class="text-xl font-black text-cyan-300">--:--</span>
+      <span class="text-[9px] text-teal-300 block mt-1">Jeda Iqomah: 15 mnt</span>
+    </div>
+    <div id="box-isya" class="p-3 bg-teal-900/50 rounded-2xl border border-teal-700/50 transition">
+      <span class="text-teal-400 font-bold block text-[11px]">ISYA</span>
+      <span id="time-isya" class="text-xl font-black text-cyan-300">--:--</span>
+      <span class="text-[9px] text-teal-300 block mt-1">Jeda Iqomah: 13 mnt</span>
+    </div>
+  </div>
+
+  <!-- Status Hitung Mundur -->
+  <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-2 bg-teal-900/60 border border-teal-700/50 rounded-2xl px-4 py-3 text-xs">
+    <div class="flex items-center gap-2">
+      <i class="fa-solid fa-clock text-amber-400 text-sm"></i>
+      <span id="status-waktu" class="font-bold text-cyan-200">Memuat jadwal...</span>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-[11px] text-gray-300">Jam <strong id="jam-sekarang" class="text-amber-300 font-black tabular-nums text-sm">--:--:--</strong> WIB</span>
+      <button onclick="mulaiTesLayar()" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-500 border border-amber-400/50 text-white rounded-xl text-xs font-bold transition flex items-center gap-1 shadow">
+        <i class="fa-solid fa-play"></i> Tes Layar Iqomah
+      </button>
+    </div>
   </div>
 </section>
 
-<!-- BERANDA: GRID MENU -->
-<main class="w-full max-w-5xl">
-  <div id="home">
-    <div class="text-center mb-5">
-      <h2 class="text-xl md:text-2xl font-extrabold text-cyan-300">Menu Masjid</h2>
-      <p class="text-xs text-gray-400">Pusat Ibadah, Dakwah, Pendidikan & Pemberdayaan Umat</p>
+<!-- NAVIGATION MENU CARDS (DESAIN MODEL MAZDANNY.GITHUB.IO) -->
+<section class="w-full max-w-6xl mb-10">
+  <div class="flex items-center justify-between mb-4 px-1">
+    <h3 class="text-base font-bold text-cyan-300 tracking-wide flex items-center gap-2">
+      <i class="fa-solid fa-grip text-amber-400"></i> MENU UTAMA & LAYANAN MASJID
+    </h3>
+    <span class="text-xs text-teal-400 font-medium">Pilih menu untuk menampilkan informasi</span>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Menu 1 -->
+    <div onclick="switchMasjidSubTab('profil')" id="btn-m-profil" class="menu-card active cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-teal-900/70 rounded-xl flex items-center justify-center border border-cyan-500/30 text-cyan-300 text-xl">
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-teal-900/80 border border-cyan-500/40 text-cyan-300 rounded-full">MENU 1</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-cyan-200 uppercase tracking-wide mb-1">PROFIL & LEGALITAS</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Status tanah wakaf, IMB/PBG masjid, administrasi, dan legalitas Amal Usaha Muhammadiyah.</p>
+      </div>
     </div>
-    <div id="grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-    <div id="home-extra" class="mt-8 space-y-6"></div>
+
+    <!-- Menu 2 -->
+    <div onclick="switchMasjidSubTab('upz-detail')" id="btn-m-upz-detail" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-emerald-900/70 rounded-xl flex items-center justify-center border border-amber-500/30 text-amber-300 text-xl">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-emerald-900/80 border border-amber-500/40 text-amber-300 rounded-full">MENU 2</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-amber-300 uppercase tracking-wide mb-1">EDUKASI UPZ & ZAKAT</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Panduan Zakat Wajib vs Sedekah, kalkulator nisab, dan barcode pembayaran QRIS Jamasda.</p>
+      </div>
+    </div>
+
+    <!-- Menu 3 -->
+    <div onclick="switchMasjidSubTab('takmir')" id="btn-m-takmir" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-teal-900/70 rounded-xl flex items-center justify-center border border-cyan-500/30 text-cyan-300 text-xl">
+          <i class="fa-solid fa-sitemap"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-teal-900/80 border border-cyan-500/40 text-cyan-300 rounded-full">MENU 3</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-cyan-200 uppercase tracking-wide mb-1">STRUKTUR TAKMIR</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Susunan pengurus Takmir Masjid Subardi Al-Huda SK PCM Ponjong 2023-2025.</p>
+      </div>
+    </div>
+
+    <!-- Menu 4 -->
+    <div onclick="switchMasjidSubTab('personalia')" id="btn-m-personalia" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-teal-900/70 rounded-xl flex items-center justify-center border border-cyan-500/30 text-cyan-300 text-xl">
+          <i class="fa-solid fa-user-group"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-teal-900/80 border border-cyan-500/40 text-cyan-300 rounded-full">MENU 4</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-cyan-200 uppercase tracking-wide mb-1">IMAM & MUADZIN</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Daftar Imam Tetap, Muadzin, dan Marbot Masjid Subardi Al-Huda Kuwon.</p>
+      </div>
+    </div>
+
+    <!-- Menu 5 -->
+    <div onclick="switchMasjidSubTab('pilar')" id="btn-m-pilar" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-teal-900/70 rounded-xl flex items-center justify-center border border-cyan-500/30 text-cyan-300 text-xl">
+          <i class="fa-solid fa-cubes"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-teal-900/80 border border-cyan-500/40 text-cyan-300 rounded-full">MENU 5</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-cyan-200 uppercase tracking-wide mb-1">PROGRAM 3 PILAR</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Bidang Idarah (Manajemen), Imarah (Ibadah/Kajian), & Ri'ayah (Fisik/Sarpras).</p>
+      </div>
+    </div>
+
+    <!-- Menu 6 -->
+    <div onclick="switchMasjidSubTab('kemakmuran')" id="btn-m-kemakmuran" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-teal-900/70 rounded-xl flex items-center justify-center border border-cyan-500/30 text-cyan-300 text-xl">
+          <i class="fa-solid fa-book-open-reader"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-teal-900/80 border border-cyan-500/40 text-cyan-300 rounded-full">MENU 6</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-cyan-200 uppercase tracking-wide mb-1">KAJIAN & KEMAKMURAN</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Data kehadiran jamaah, Pengajian Ahad Pagi (PAP), Talaqi, dan kajian tematik.</p>
+      </div>
+    </div>
+
+    <!-- Menu 7 -->
+    <div onclick="switchMasjidSubTab('sosial')" id="btn-m-sosial" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-teal-900/70 rounded-xl flex items-center justify-center border border-cyan-500/30 text-cyan-300 text-xl">
+          <i class="fa-solid fa-hands-holding-child"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-teal-900/80 border border-cyan-500/40 text-cyan-300 rounded-full">MENU 7</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-cyan-200 uppercase tracking-wide mb-1">SOSIAL & REMAJA</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Kegiatan Remaja Masjid (ARIA), ekonomi, panti asuhan, & 12 masjid binaan CDMA.</p>
+      </div>
+    </div>
+
+    <!-- Menu 8 -->
+    <div onclick="switchMasjidSubTab('quran')" id="btn-m-quran" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-emerald-900/70 rounded-xl flex items-center justify-center border border-amber-500/30 text-amber-300 text-xl">
+          <i class="fa-solid fa-book-quran"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-emerald-900/80 border border-amber-500/40 text-amber-300 rounded-full">MENU 8</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-amber-300 uppercase tracking-wide mb-1">AL-QUR'AN DIGITAL</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Mushaf Al-Qur'an 114 Surah Kemenag RI lengkap dengan teks Arab, latin, terjemahan, & audio.</p>
+      </div>
+    </div>
+
+    <!-- Menu 9 -->
+    <div onclick="switchMasjidSubTab('hadis')" id="btn-m-hadis" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-emerald-900/70 rounded-xl flex items-center justify-center border border-amber-500/30 text-amber-300 text-xl">
+          <i class="fa-solid fa-book-bookmark"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-emerald-900/80 border border-amber-500/40 text-amber-300 rounded-full">MENU 9</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-amber-300 uppercase tracking-wide mb-1">HADIS NABI</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Rujukan sunnah, Ensiklopedi Hadis Kitab 9 Imam, Sunnah.com, & Majelis Tarjih.</p>
+      </div>
+    </div>
+
+    <!-- Menu 10 -->
+    <div onclick="switchMasjidSubTab('dzikir')" id="btn-m-dzikir" class="menu-card cursor-pointer bg-teal-950/80 p-5 rounded-2xl border border-teal-700/60 hover:border-cyan-400 flex flex-col justify-between relative overflow-hidden shadow-lg">
+      <div class="flex justify-between items-start mb-3">
+        <div class="w-12 h-12 bg-emerald-900/70 rounded-xl flex items-center justify-center border border-amber-500/30 text-amber-300 text-xl">
+          <i class="fa-solid fa-hands-praying"></i>
+        </div>
+        <span class="text-[10px] font-bold px-2.5 py-1 bg-emerald-900/80 border border-amber-500/40 text-amber-300 rounded-full">MENU 10</span>
+      </div>
+      <div>
+        <h4 class="text-sm font-extrabold text-amber-300 uppercase tracking-wide mb-1">DZIKIR PAGI & PETANG</h4>
+        <p class="text-xs text-gray-300 leading-relaxed line-clamp-2">Bacaan dzikir sesuai sunnah dilengkapi penghitung digital interaktif.</p>
+      </div>
+    </div>
+
+    <!-- Menu 11: TPA UMMI SADIRAH (TAMBAHAN BARU) -->
+    <div onclick="switchMasjidSubTab('tpa')" id="btn-m-tpa" class="menu-card cursor-pointer bg-gradient-to-br from-amber-950/80 to-teal-950/90 p-5 rounded-2xl border-2 border-amber-500/60 hover:border-amber-300 flex flex-col justify-between relative overflow-hidden shadow-xl lg:col-span-2">
+      <div class="flex justify-between items-start mb-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center border border-amber-400/40 text-amber-300 text-xl">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold px-2.5 py-0.5 bg-amber-500/20 border border-amber-400/50 text-amber-300 rounded-full uppercase">MENU 11 - TPA REKAPITULASI</span>
+            <h4 class="text-base font-black text-amber-300 tracking-wide mt-0.5">TPA UMMI SADIRAH</h4>
+          </div>
+        </div>
+        <span class="text-xs font-extrabold px-3 py-1 bg-amber-500 text-gray-950 rounded-full shadow">Portal Santri</span>
+      </div>
+      <div>
+        <p class="text-xs text-gray-200 leading-relaxed">
+          Profil TPA, Rekap Prestasi & Capaian Iqro'/Al-Qur'an Santri (Publik), Cetak Sertifikat Kelulusan, serta Portal Login Ustadz/Ustadzah.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTAINER KONTEN DETAIL MENU -->
+<main class="w-full max-w-6xl space-y-8">
+
+  <!-- SUB-TAB 1: PROFIL & LEGALITAS -->
+  <div id="m-sub-profil" class="space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+      <div class="border-b border-teal-800/60 pb-3 flex items-center gap-3">
+        <i class="fa-solid fa-file-contract text-cyan-300 text-2xl"></i>
+        <div>
+          <h3 class="text-xl font-bold text-cyan-300">Aspek Manajemen & Status Kepemilikan</h3>
+          <p class="text-xs text-teal-400">Legalitas resmi Amal Usaha Muhammadiyah (AUM)</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-amber-300 text-sm">1. Status Kepemilikan & Tanah Wakaf</h4>
+          <p class="text-gray-300 leading-relaxed">
+            Beralamat di Tembesi RT/RW 01/10, Ponjong, Gunungkidul, DIY. Status kepemilikan tanah dan bangunan adalah <strong>Wakaf Persyarikatan Muhammadiyah</strong> atas nama Pimpinan Pusat Muhammadiyah.
+          </p>
+          <ul class="text-gray-300 space-y-1 list-disc pl-4 pt-1">
+            <li><strong>Luas Tanah:</strong> 1.342 m²</li>
+            <li><strong>Luas Bangunan:</strong> 471,50 m²</li>
+            <li><strong>Sertifikat Wakaf 1:</strong> No. W2/10/9/89 (1 Des 1989), No. Sertifikat 00353, Wakif: Muh. Syahidi.</li>
+            <li><strong>Sertifikat Wakaf 2:</strong> No. W:2/01/09/2020 (18 Juni 2020), Wakif: Tumiyati.</li>
+          </ul>
+        </div>
+        <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-amber-300 text-sm">2. IMB Tempat Ibadah & Pembinaan</h4>
+          <p class="text-gray-300 leading-relaxed">
+            Memiliki dokumen perizinan resmi Persetujuan Bangunan Gedung (PBG) No: <strong>01/P.IMB.BG/II/2021</strong> yang diterbitkan oleh Dinas Penanaman Modal dan Pelayanan Terpadu Kabupaten Gunungkidul pada tanggal 25 Februari 2021.
+          </p>
+          <p class="text-gray-300 leading-relaxed pt-1">
+            <strong>Pembinaan Kelembagaan:</strong> Di bawah pembinaan Pimpinan Ranting Muhammadiyah (PRM) Ponjong Timur dan Pimpinan Cabang Muhammadiyah (PCM) Ponjong.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- BAGIAN-BAGIAN (diisi dari konten.html) -->
-  <div id="sections">
-
-    <!-- MENU 11: TPA UMMI SADIRAH -->
-    <section id="sec-tpa" class="hidden space-y-5">
-      <div class="flex items-center gap-3 flex-wrap">
-        <button onclick="location.hash=''" class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg text-xs font-bold"><i class="fa-solid fa-arrow-left"></i> Beranda</button>
-        <h2 class="text-lg font-extrabold text-cyan-300">TPA Ummi Sadirah</h2>
-      </div>
-
-      <div class="bg-teal-950/70 p-5 rounded-3xl border border-amber-500/30 flex flex-col sm:flex-row gap-4 items-center">
-        <img src="logo-ummi.png" alt="Logo TPA Ummi Sadirah" class="w-28 h-28 object-contain bg-white rounded-2xl p-1">
-        <div class="text-xs text-gray-300 leading-relaxed space-y-1">
-          <h3 class="text-base font-bold text-amber-300">Taman Pendidikan Al-Qur'an Ummi Sadirah</h3>
-          <p>Berdiri 2026 di Komplek Masjid Subardi Al-Huda Kuwon, Tembesi, Ponjong, Gunungkidul. Direktur: <b>Masruri Abdullah, S.Ag</b>.</p>
-          <p>🧒 94 santri · 👳 9 ustadz/ustadzah · 🗓️ Senin, Rabu, Sabtu pukul 16.30–18.00 WIB · 📍 Masjid</p>
-        </div>
-      </div>
-
-      <div class="flex gap-2 flex-wrap">
-        <button id="tb-rekap" class="tb" onclick="tpaTab('rekap')">📊 Rekap Capaian Santri</button>
-        <button id="tb-input" class="tb" onclick="tpaTab('input')">🔐 Ustadz/Ustadzah</button>
-      </div>
-      <p id="mode-lokal" class="hidden text-[11px] text-amber-300 bg-amber-950/50 border border-amber-500/30 rounded-xl p-2.5">⚠️ Mode lokal (uji coba): data hanya tersimpan di browser ini. Isi <code>APPS_SCRIPT_URL</code> agar data tersimpan di Google Sheets dan terlihat semua orang.</p>
-
-      <!-- REKAP PUBLIK -->
-      <div id="p-rekap" class="space-y-4">
-        <div id="stat" class="grid grid-cols-3 gap-3 text-center text-xs"></div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <input id="f-cari" oninput="rekap()" class="inp sm:col-span-2" placeholder="Cari nama santri...">
-          <select id="f-jenis" onchange="rekap()" class="inp"><option value="">Semua (Iqro' & Al-Qur'an)</option><option value="iqro">Iqro'</option><option value="quran">Al-Qur'an</option></select>
-        </div>
-        <div class="bg-teal-950/70 rounded-2xl border border-teal-700/40 overflow-x-auto">
-          <table class="w-full text-xs"><thead class="text-teal-300 border-b border-teal-800/60"><tr><th>Santri</th><th>Capaian Terakhir</th><th>Terakhir Setor</th><th>Setoran</th><th>Sertifikat</th></tr></thead><tbody id="tb-santri"></tbody></table>
-        </div>
-        <div class="flex items-center justify-between flex-wrap gap-2">
-          <h4 class="text-sm font-bold text-cyan-300">Riwayat Setoran Terbaru</h4>
-          <button onclick="unduhCSV()" class="tb"><i class="fa-solid fa-file-csv"></i> Unduh Rekap (CSV)</button>
-        </div>
-        <div class="bg-teal-950/70 rounded-2xl border border-teal-700/40 overflow-x-auto">
-          <table class="w-full text-xs"><thead id="th-riw" class="text-teal-300 border-b border-teal-800/60"></thead><tbody id="tb-riw"></tbody></table>
-        </div>
-      </div>
-
-      <!-- PANEL USTADZ -->
-      <div id="p-input" class="hidden">
-        <div id="lg-box" class="max-w-sm mx-auto bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3">
-          <h4 class="font-bold text-cyan-300 text-sm">Login Ustadz/Ustadzah</h4>
-          <div><label class="lbl">Nama</label><select id="lg-nama" class="inp"></select></div>
-          <div><label class="lbl">Password</label><input id="lg-pw" type="password" class="inp" onkeydown="if(event.key==='Enter')masuk()"></div>
-          <button onclick="masuk()" class="w-full py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold">Masuk</button>
-          <p id="lg-msg" class="text-[11px] text-amber-300"></p>
-        </div>
-
-        <div id="fm-box" class="hidden bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3">
-          <div class="flex justify-between items-center flex-wrap gap-2">
-            <h4 class="font-bold text-cyan-300 text-sm">Input Capaian Santri — <span id="fm-user" class="text-amber-300"></span></h4>
-            <button onclick="keluar()" class="tb">Keluar</button>
+  <!-- SUB-TAB 2: DETAIL EDUKASI UPZ & ZAKAT -->
+  <div id="m-sub-upz-detail" class="hidden space-y-6">
+    <div class="bg-teal-950/80 p-6 md:p-8 rounded-3xl border border-emerald-500/40 space-y-6 shadow-xl backdrop-blur-md">
+      <div class="border-b border-teal-800/60 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-16 bg-white/10 rounded-2xl p-2 border border-amber-500/40 shrink-0">
+            <img src="upz.jpeg" alt="Logo UPZ Jamasda" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='upz.png';">
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <div><label class="lbl">Tanggal</label><input id="fm-tgl" type="date" class="inp"></div>
-            <div class="sm:col-span-2"><label class="lbl">Nama Santri</label><input id="fm-santri" list="dl-santri" class="inp" placeholder="Nama santri"><datalist id="dl-santri"></datalist></div>
-            <div><label class="lbl">Jenis Bacaan</label><select id="fm-jenis" onchange="fmJenis()" class="inp"><option value="iqro">Iqro'</option><option value="quran">Al-Qur'an</option></select></div>
-            <div class="fm-iqro"><label class="lbl">Iqro' Jilid</label><select id="fm-jilid" class="inp"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></div>
-            <div class="fm-iqro"><label class="lbl">Halaman</label><input id="fm-hal" type="number" min="1" class="inp"></div>
-            <div class="fm-quran hidden"><label class="lbl">Surat</label><input id="fm-surat" list="dl-surat" class="inp"><datalist id="dl-surat"></datalist></div>
-            <div class="fm-quran hidden"><label class="lbl">Ayat (opsional)</label><input id="fm-ayat" class="inp" placeholder="mis. 1-10"></div>
-            <div class="fm-quran hidden"><label class="lbl">Juz</label><input id="fm-juz" type="number" min="1" max="30" class="inp"></div>
-            <div><label class="lbl">Keterangan</label><select id="fm-ket" class="inp"><option>Lanjut</option><option>Ulangi</option></select></div>
-            <div class="flex items-end gap-2"><label class="flex items-center gap-2 text-xs"><input id="fm-infaq" type="checkbox" onchange="$('fm-nom').disabled=!this.checked"> Santri berinfaq</label></div>
-            <div><label class="lbl">Nominal Infaq (Rp)</label><input id="fm-nom" type="number" min="0" step="500" class="inp" disabled></div>
+          <div>
+            <span class="bg-amber-950 text-amber-300 border border-amber-500/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">
+              Unit Pengumpulan Zakat Jamasda
+            </span>
+            <h3 class="text-xl font-bold text-cyan-300 mt-1">Edukasi Zakat Wajib vs Sedekah Sunnah</h3>
+            <p class="text-xs text-teal-400">"ZAKAT ITU HEBAT - Mari bersihkan harta & tumbuhkan kebaikan bersama"</p>
           </div>
-          <div class="flex items-center gap-3"><button onclick="simpan()" class="px-5 py-2 bg-emerald-700 hover:bg-emerald-600 text-white rounded-xl text-xs font-bold"><i class="fa-solid fa-floppy-disk"></i> Simpan</button><span id="fm-msg" class="text-[11px] text-amber-300"></span></div>
-          <p id="infaq-total" class="text-[11px] text-teal-300 border-t border-teal-800/60 pt-2"></p>
-          <p class="text-[11px] text-gray-400">Data infaq hanya terlihat setelah login dan tidak tampil di rekap publik. Riwayat di atas (tab Rekap) akan menampilkan kolom infaq & tombol hapus saat Anda login.</p>
+        </div>
+        <a href="https://wa.me/62817266085" target="_blank" class="bg-emerald-950/80 border border-emerald-500/40 p-3 rounded-2xl text-right hover:border-emerald-400 transition">
+          <span class="text-[10px] text-gray-400 block uppercase font-semibold">Layanan Konsultasi Zakat:</span>
+          <span class="text-sm font-extrabold text-amber-300 flex items-center justify-end gap-1">
+            <i class="fa-brands fa-whatsapp text-emerald-400"></i> 0817 266 085
+          </span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div class="p-5 bg-teal-900/50 rounded-2xl border border-amber-500/40 space-y-3">
+          <h4 class="font-bold text-amber-300 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-coins"></i> 1. ZAKAT ITU WAJIB
+          </h4>
+          <p class="text-gray-300 leading-relaxed">Kewajiban harta bagi setiap Muslim yang memenuhi syarat:</p>
+          <ul class="text-gray-300 space-y-1.5 list-disc pl-4">
+            <li><strong>Nishab:</strong> Setara dengan <strong>85 gram emas</strong>.</li>
+            <li><strong>Haul:</strong> Tersimpan selama <strong>1 tahun Hijriyah</strong>.</li>
+          </ul>
+          <div class="p-3 bg-amber-950/60 rounded-xl border border-amber-500/30 text-[11px] text-amber-200 space-y-1">
+            <span class="font-bold block text-amber-300">Contoh Perhitungan Zakat Maal:</span>
+            <p>Jika harga emas = Rp1.200.000/gram</p>
+            <p>Nishab = Rp1.200.000 x 85 = <strong>Rp102.000.000</strong></p>
+            <p>Kewajiban Zakat (2,5%) = <strong>Rp2.550.000</strong>/tahun.</p>
+          </div>
+        </div>
+
+        <div class="p-5 bg-teal-900/50 rounded-2xl border border-teal-700/50 space-y-3">
+          <h4 class="font-bold text-cyan-300 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-heart text-rose-400"></i> 2. SEDEKAH ITU SUNNAH
+          </h4>
+          <p class="text-gray-300 leading-relaxed">Bisa dilakukan oleh siapa saja, kapan saja, dan berapa pun jumlahnya:</p>
+          <ul class="text-gray-300 space-y-1.5 list-disc pl-4">
+            <li><strong>Tidak Ada Nishab:</strong> Bebas nominal.</li>
+            <li><strong>Tidak Perlu Haul:</strong> Kapan saja tanpa menunggu setahun.</li>
+            <li><strong>Sifat Sukarela:</strong> Melatih kepedulian dan membersihkan jiwa.</li>
+          </ul>
+          <p class="text-teal-300 font-semibold text-[11px] bg-teal-950/80 p-2.5 rounded-xl border border-teal-800">
+            Sangat dianjurkan untuk operasional masjid, santri TPA, & bantuan kaum dhuafa.
+          </p>
         </div>
       </div>
-    </section>
+    </div>
   </div>
+
+  <!-- SUB-TAB 3: STRUKTUR TAKMIR -->
+  <div id="m-sub-takmir" class="hidden space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+      <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
+        <div>
+          <h3 class="text-xl font-bold text-cyan-300">Susunan Pengurus Takmir Masjid Subardi Al-Huda</h3>
+          <p class="text-xs text-gray-400">Ditetapkan berdasarkan SK PCM Ponjong No. 44/KEP./IV.0/D/2023</p>
+        </div>
+        <span class="bg-cyan-950 text-cyan-300 border border-cyan-500/30 text-xs font-bold px-3 py-1 rounded-full">Periode 2023-2025</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="p-4 bg-amber-950/40 rounded-2xl border border-amber-500/40 space-y-1">
+          <span class="text-amber-300 font-bold block text-sm"><i class="fa-solid fa-user-shield"></i> PEMBINA</span>
+          <p class="text-gray-200">• Faizus Sya'bani<br>• Romdhoni<br>• Kasino<br>• Ngadimin</p>
+        </div>
+        <div class="p-4 bg-teal-900/50 rounded-2xl border border-teal-600/50 space-y-1">
+          <span class="text-cyan-300 font-bold block text-sm"><i class="fa-solid fa-user-tie"></i> KETUA</span>
+          <p class="text-gray-200"><strong>Ketua I:</strong> Ahmad Sunardi<br><strong>Ketua II:</strong> Zakaria Kurniawan</p>
+        </div>
+        <div class="p-4 bg-teal-900/50 rounded-2xl border border-teal-600/50 space-y-1">
+          <span class="text-cyan-300 font-bold block text-sm"><i class="fa-solid fa-pen-to-square"></i> SEKRETARIS</span>
+          <p class="text-gray-200"><strong>Sekretaris I:</strong> Romadani Apriyanto<br><strong>Sekretaris II:</strong> Zahra Fauziyah</p>
+        </div>
+        <div class="p-4 bg-teal-900/50 rounded-2xl border border-teal-600/50 space-y-1">
+          <span class="text-cyan-300 font-bold block text-sm"><i class="fa-solid fa-wallet"></i> BENDAHARA</span>
+          <p class="text-gray-200"><strong>Bendahara I:</strong> Awan Rahmadi<br><strong>Bendahara II:</strong> Suparmi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 4: PERSONALIA -->
+  <div id="m-sub-personalia" class="hidden space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+      <div class="bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg backdrop-blur-md">
+        <div class="w-10 h-10 bg-cyan-900/60 text-cyan-300 rounded-xl flex items-center justify-center text-xl font-bold">
+          <i class="fa-solid fa-person-praying"></i>
+        </div>
+        <h4 class="font-bold text-cyan-300 text-sm">Imam Tetap Masjid</h4>
+        <ul class="text-gray-200 space-y-1 list-disc pl-4 font-semibold">
+          <li>Bilal Jora Maulana</li>
+          <li>Romadani Apriyanto</li>
+          <li>Faizuz Sa'bani</li>
+          <li>Masruri</li>
+        </ul>
+      </div>
+      <div class="bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg backdrop-blur-md">
+        <div class="w-10 h-10 bg-amber-900/60 text-amber-300 rounded-xl flex items-center justify-center text-xl font-bold">
+          <i class="fa-solid fa-bullhorn"></i>
+        </div>
+        <h4 class="font-bold text-cyan-300 text-sm">Daftar Muadzin Tetap</h4>
+        <ul class="text-gray-200 space-y-1 list-disc pl-4 font-semibold">
+          <li>Mashudi</li>
+          <li>Sugiyatno</li>
+          <li>Alfan</li>
+          <li>Nanda Bima</li>
+        </ul>
+      </div>
+      <div class="bg-teal-950/70 p-5 rounded-2xl border border-teal-700/40 space-y-3 shadow-lg backdrop-blur-md">
+        <div class="w-10 h-10 bg-emerald-900/60 text-emerald-300 rounded-xl flex items-center justify-center text-xl font-bold">
+          <i class="fa-solid fa-broom"></i>
+        </div>
+        <h4 class="font-bold text-cyan-300 text-sm">Marbot Tetap Masjid</h4>
+        <p class="text-emerald-300 font-extrabold text-sm">Sugiyatno</p>
+        <p class="text-[11px] text-gray-400">Penanggung jawab kebersihan & pemeliharaan sarana fisik masjid.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 5: PROGRAM KERJA 3 PILAR -->
+  <div id="m-sub-pilar" class="hidden space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+      <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Pengelolaan Program Berbasis 3 Pilar Kemasjidan</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-5 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-cyan-300 text-sm"><i class="fa-solid fa-folder-gear"></i> 1. Bidang Idarah</h4>
+          <p class="text-teal-300 font-semibold text-[11px]">Manajemen & Administrasi</p>
+          <p class="text-gray-300">Penyusunan SOP, transparansi laporan keuangan mingguan, serta tata kelola digitalisasi data masjid.</p>
+        </div>
+        <div class="p-5 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-cyan-300 text-sm"><i class="fa-solid fa-book-quran"></i> 2. Bidang Imarah</h4>
+          <p class="text-teal-300 font-semibold text-[11px]">Peribadatan & Pembinaan</p>
+          <p class="text-gray-300">Pemurnian aqidah, perkaderan jamaah, Pengajian Ahad Pagi (PAP), dan bimbingan ibadah harian.</p>
+        </div>
+        <div class="p-5 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-cyan-300 text-sm"><i class="fa-solid fa-wrench"></i> 3. Bidang Ri'ayah</h4>
+          <p class="text-teal-300 font-semibold text-[11px]">Pemeliharaan Fisik & Sarpras</p>
+          <p class="text-gray-300">Perawatan karpet, CCTV keamanan, kebersihan ruang utama, serta penyediaan fasilitas ramah lansia/difabel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 6: KAJIAN & KEMAKMURAN -->
+  <div id="m-sub-kemakmuran" class="hidden space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+      <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Kemakmuran Jamaah & Majelis Kajian Islam</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center text-xs">
+        <div class="p-3 bg-teal-900/50 rounded-2xl border border-cyan-500/30">
+          <span class="text-gray-400 font-bold block">SUBUH</span>
+          <span class="text-xl font-bold text-cyan-300">168</span> <span class="text-[10px] text-teal-300">orang</span>
+        </div>
+        <div class="p-3 bg-teal-900/50 rounded-2xl border border-cyan-500/30">
+          <span class="text-gray-400 font-bold block">ZUHUR</span>
+          <span class="text-xl font-bold text-cyan-300">80</span> <span class="text-[10px] text-teal-300">orang</span>
+        </div>
+        <div class="p-3 bg-teal-900/50 rounded-2xl border border-cyan-500/30">
+          <span class="text-gray-400 font-bold block">ASAR</span>
+          <span class="text-xl font-bold text-cyan-300">80</span> <span class="text-[10px] text-teal-300">orang</span>
+        </div>
+        <div class="p-3 bg-teal-900/50 rounded-2xl border border-cyan-500/30">
+          <span class="text-gray-400 font-bold block">MAGRIB</span>
+          <span class="text-xl font-bold text-cyan-300">170</span> <span class="text-[10px] text-teal-300">orang</span>
+        </div>
+        <div class="p-3 bg-teal-900/50 rounded-2xl border border-cyan-500/30 col-span-2 sm:col-span-1">
+          <span class="text-gray-400 font-bold block">ISYA</span>
+          <span class="text-xl font-bold text-cyan-300">125</span> <span class="text-[10px] text-teal-300">orang</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 7: SOSIAL & REMAJA -->
+  <div id="m-sub-sosial" class="hidden space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-6 shadow-xl backdrop-blur-md">
+      <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3">Pemberdayaan Remaja, Ekonomi & Pelayanan Sosial</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-amber-300 text-sm"><i class="fa-solid fa-users font-bold"></i> Remaja Masjid (ARIA)</h4>
+          <p class="text-gray-300 leading-relaxed">Tahsin Night Sabtu malam, program Hifz Qur'an, Palang Merah Remaja, & Festival Ramadan.</p>
+        </div>
+        <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-amber-300 text-sm"><i class="fa-solid fa-seedling"></i> Ekonomi & Qurban</h4>
+          <p class="text-gray-300 leading-relaxed">Budidaya alpukat, pembagian bibit tanaman, program gadhuh qurban, & air minum BUKM.</p>
+        </div>
+        <div class="p-4 bg-teal-900/40 rounded-2xl border border-teal-700/50 space-y-2">
+          <h4 class="font-bold text-amber-300 text-sm"><i class="fa-solid fa-heart-pulse"></i> Layanan Sosial</h4>
+          <p class="text-gray-300 leading-relaxed">Panti Asuhan Rumah Sejahtera, Rukti Jenazah 30 tim, serta pemeriksaan kesehatan berkala PKU.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 8: AL-QUR'AN -->
+  <div id="m-sub-quran" class="hidden space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
+      <div class="border-b border-teal-800/60 pb-3 flex justify-between items-center flex-wrap gap-2">
+        <div>
+          <h3 class="text-xl font-bold text-cyan-300"><i class="fa-solid fa-book-quran"></i> Al-Qur'an Al-Karim</h3>
+          <p class="text-xs text-gray-400">114 Surah lengkap: Teks Arab, Latin, & Terjemahan Kemenag RI</p>
+        </div>
+      </div>
+      <div id="quran-list-view" class="space-y-4">
+        <input id="quran-search" type="text" oninput="renderSurahList()" placeholder="Cari nama surah atau nomor..." class="w-full bg-teal-900/50 border border-teal-700/50 rounded-xl px-4 py-2.5 text-xs text-gray-200 placeholder-teal-500 focus:outline-none focus:border-cyan-400">
+        <div id="quran-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5"></div>
+      </div>
+      <div id="quran-reader" class="hidden space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 9: HADIS -->
+  <div id="m-sub-hadis" class="hidden space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
+      <h3 class="text-xl font-bold text-cyan-300 border-b border-teal-800/60 pb-3"><i class="fa-solid fa-book-bookmark"></i> Hadis Nabi SAW</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <a href="https://sunnah.com" target="_blank" class="p-4 bg-teal-900/40 hover:bg-teal-800/60 rounded-2xl border border-teal-700/50 transition block">
+          <h4 class="font-bold text-amber-300 text-sm">Sunnah.com</h4>
+          <p class="text-gray-300 mt-1">Shahih Bukhari, Muslim, dan Kutubut Tiss'ah.</p>
+        </a>
+        <a href="https://tarjih.or.id" target="_blank" class="p-4 bg-teal-900/40 hover:bg-teal-800/60 rounded-2xl border border-teal-700/50 transition block">
+          <h4 class="font-bold text-amber-300 text-sm">Majelis Tarjih Muhammadiyah</h4>
+          <p class="text-gray-300 mt-1">Rujukan resmi fatwa & kajian hadis persyarikatan.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 10: DZIKIR PAGI & PETANG -->
+  <div id="m-sub-dzikir" class="hidden space-y-6">
+    <div class="bg-teal-950/70 p-6 md:p-8 rounded-3xl border border-teal-700/40 space-y-5 shadow-xl backdrop-blur-md">
+      <div class="flex flex-wrap gap-2 text-xs font-bold">
+        <button id="dz-tab-pagi" onclick="dzSetWaktu('pagi')" class="px-4 py-2 rounded-xl border border-teal-700/50 transition">Dzikir Pagi</button>
+        <button id="dz-tab-petang" onclick="dzSetWaktu('petang')" class="px-4 py-2 rounded-xl border border-teal-700/50 transition">Dzikir Petang</button>
+        <button onclick="dzReset()" class="px-4 py-2 rounded-xl border border-teal-700/50 bg-teal-900/50 text-amber-300 hover:bg-teal-800 transition ml-auto"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+      </div>
+      <p id="dz-waktu-info" class="text-[11px] text-teal-300"></p>
+      <div id="dz-list" class="space-y-4"></div>
+    </div>
+  </div>
+
+  <!-- SUB-TAB 11: TPA UMMI SADIRAH (FITUR LENGKAP BERSAMA LOGIN & SERTIFIKAT) -->
+  <div id="m-sub-tpa" class="hidden space-y-6">
+    <div class="bg-teal-950/80 p-6 md:p-8 rounded-3xl border-2 border-amber-500/40 space-y-6 shadow-xl backdrop-blur-md">
+      
+      <!-- Header TPA -->
+      <div class="border-b border-teal-800/60 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-16 bg-white/10 rounded-2xl p-2 border border-amber-500/40 shrink-0 flex items-center justify-center">
+            <img src="logo-ummi-sadirah.png" alt="Logo TPA Ummi Sadirah" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='logo-masjid.png';">
+          </div>
+          <div>
+            <span class="bg-amber-950 text-amber-300 border border-amber-500/40 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">
+              Taman Pendidikan Al-Qur'an
+            </span>
+            <h3 class="text-2xl font-black text-amber-300 mt-0.5">TPA UMMI SADIRAH KUWON</h3>
+            <p class="text-xs text-teal-400">Komplek Masjid Subardi Al-Huda Kuwon | Hari Kegiatan: Senin, Rabu, Sabtu (16:30 - 18:00 WIB)</p>
+          </div>
+        </div>
+        <button id="btn-toggle-login-tpa" onclick="toggleFormLoginTpa()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-gray-950 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-lg">
+          <i class="fa-solid fa-right-to-bracket"></i> Login Ustadz / Ustadzah
+        </button>
+      </div>
+
+      <!-- Ringkasan Profil TPA -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center text-xs">
+        <div class="p-3 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+          <span class="text-gray-400 font-semibold block text-[10px]">DIREKTUR TPA</span>
+          <span class="text-sm font-bold text-cyan-300">Masruri Abdullah, S.Ag</span>
+        </div>
+        <div class="p-3 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+          <span class="text-gray-400 font-semibold block text-[10px]">TOTAL SANTRI</span>
+          <span class="text-lg font-black text-amber-300">94 Santri</span>
+        </div>
+        <div class="p-3 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+          <span class="text-gray-400 font-semibold block text-[10px]">IQRO' / AL-QUR'AN</span>
+          <span class="text-xs font-bold text-teal-200">63 Iqro' / 31 Al-Qur'an</span>
+        </div>
+        <div class="p-3 bg-teal-900/40 rounded-2xl border border-teal-700/50">
+          <span class="text-gray-400 font-semibold block text-[10px]">USTADZ & USTADZAH</span>
+          <span class="text-lg font-black text-cyan-300">9 Pengampu</span>
+        </div>
+      </div>
+
+      <!-- Form Login Modal/Box -->
+      <div id="box-login-tpa" class="hidden p-5 bg-teal-900/90 border border-amber-500/60 rounded-2xl space-y-3 max-w-md mx-auto shadow-2xl">
+        <h4 class="text-sm font-extrabold text-amber-300 flex items-center gap-2 border-b border-teal-700 pb-2">
+          <i class="fa-solid fa-lock"></i> Area Khusus Pengampu / Ustadz Ustadzah
+        </h4>
+        <div>
+          <label class="text-[11px] font-semibold text-gray-300 block mb-1">Nama Pengampu</label>
+          <input type="text" id="tpa-user-login" placeholder="Contoh: Ustadz Masruri / Ustadzah Zahra" class="w-full bg-teal-950 border border-teal-700 rounded-xl px-3 py-2 text-xs text-gray-100 focus:outline-none focus:border-amber-400">
+        </div>
+        <div>
+          <label class="text-[11px] font-semibold text-gray-300 block mb-1">Password</label>
+          <input type="password" id="tpa-pass-login" placeholder="Masukkan password" class="w-full bg-teal-950 border border-teal-700 rounded-xl px-3 py-2 text-xs text-gray-100 focus:outline-none focus:border-amber-400">
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <span class="text-[10px] text-amber-300 italic">*Password pengampu: j4m45d4ku</span>
+          <button onclick="prosesLoginTpa()" class="px-4 py-1.5 bg-amber-500 hover:bg-amber-400 text-gray-950 rounded-xl text-xs font-bold transition">Masuk</button>
+        </div>
+      </div>
+
+      <!-- Panel Input Capaian Santri (Khusus Setelah Login) -->
+      <div id="panel-input-tpa" class="hidden p-5 bg-emerald-950/80 border-2 border-emerald-500/50 rounded-2xl space-y-4">
+        <div class="flex items-center justify-between border-b border-emerald-800 pb-2">
+          <h4 class="text-sm font-extrabold text-emerald-300 flex items-center gap-2">
+            <i class="fa-solid fa-pen-to-square"></i> Form Input Capaian & Prestasi Santri Harian
+          </h4>
+          <span id="label-ustadz-aktif" class="text-xs font-bold text-amber-300 bg-teal-900 px-3 py-1 rounded-full border border-teal-700"></span>
+        </div>
+
+        <form id="form-capaian-santri" onsubmit="simpanCapaianSantri(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-xs">
+          <div>
+            <label class="block font-semibold text-gray-200 mb-1">Nama Santri</label>
+            <input type="text" id="inp-nama-santri" required placeholder="Nama lengkap santri" class="w-full bg-teal-900/60 border border-teal-700 rounded-xl px-3 py-2 text-gray-100 focus:outline-none focus:border-emerald-400">
+          </div>
+          <div>
+            <label class="block font-semibold text-gray-200 mb-1">Tingkat / Jilid Iqro' / Al-Qur'an</label>
+            <select id="inp-tingkat" class="w-full bg-teal-900/60 border border-teal-700 rounded-xl px-3 py-2 text-gray-100 focus:outline-none focus:border-emerald-400">
+              <option value="Iqro 1">Iqro' 1</option>
+              <option value="Iqro 2">Iqro' 2</option>
+              <option value="Iqro 3">Iqro' 3</option>
+              <option value="Iqro 4">Iqro' 4</option>
+              <option value="Iqro 5">Iqro' 5</option>
+              <option value="Iqro 6">Iqro' 6</option>
+              <option value="Al-Qur'an">Al-Qur'an</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-gray-200 mb-1">Capaian (Halaman / Surah / Juz)</label>
+            <input type="text" id="inp-halaman" required placeholder="Contoh: Hal 15 / Surah An-Naba' Juz 30" class="w-full bg-teal-900/60 border border-teal-700 rounded-xl px-3 py-2 text-gray-100 focus:outline-none focus:border-emerald-400">
+          </div>
+          <div>
+            <label class="block font-semibold text-gray-200 mb-1">Status Keterangan</label>
+            <select id="inp-status" class="w-full bg-teal-900/60 border border-teal-700 rounded-xl px-3 py-2 text-gray-100 focus:outline-none focus:border-emerald-400">
+              <option value="Lanjut">Lanjut</option>
+              <option value="Ulangi">Ulangi</option>
+              <option value="Lulus Level">Lulus Level / Naik Jilid</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-gray-200 mb-1">Infaq Santri Harian?</label>
+            <select id="inp-infaq-ada" onchange="toggleNominalInfaq()" class="w-full bg-teal-900/60 border border-teal-700 rounded-xl px-3 py-2 text-gray-100 focus:outline-none focus:border-emerald-400">
+              <option value="Ya">Ya (Mengisi Infaq)</option>
+              <option value="Tidak">Tidak</option>
+            </select>
+          </div>
+          <div id="box-nominal-infaq">
+            <label class="block font-semibold text-amber-300 mb-1">Nominal Infaq (Rp)</label>
+            <input type="number" id="inp-nominal-infaq" placeholder="Contoh: 2000" class="w-full bg-teal-900/60 border border-amber-500/50 rounded-xl px-3 py-2 text-amber-200 focus:outline-none">
+          </div>
+          <div class="sm:col-span-2 md:col-span-3 flex justify-end gap-2 pt-2 border-t border-emerald-800">
+            <button type="button" onclick="logoutTpa()" class="px-3 py-1.5 bg-rose-900/80 hover:bg-rose-800 text-rose-200 rounded-xl font-bold">Logout</button>
+            <button type="submit" class="px-5 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-extrabold rounded-xl shadow">Simpan Data Santri</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Rekapan Capaian Santri (Publik - Tanpa Nominal Infak) -->
+      <div class="space-y-3">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-teal-800 pb-2">
+          <h4 class="text-sm font-extrabold text-cyan-300 flex items-center gap-2">
+            <i class="fa-solid fa-list-check"></i> Rekapitulasi Capaian & Prestasi Santri TPA (Akses Publik)
+          </h4>
+          <input type="text" id="cari-rekapan-santri" oninput="renderRekapSantri()" placeholder="Cari nama santri..." class="bg-teal-900/50 border border-teal-700 rounded-xl px-3 py-1.5 text-xs text-gray-100 focus:outline-none focus:border-cyan-400 w-full sm:w-60">
+        </div>
+
+        <div class="overflow-x-auto rounded-2xl border border-teal-700/50">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-teal-900/80 text-cyan-300 border-b border-teal-700">
+                <th class="p-3">Tanggal / Hari</th>
+                <th class="p-3">Nama Santri</th>
+                <th class="p-3">Level / Tingkat</th>
+                <th class="p-3">Halaman / Surah / Juz</th>
+                <th class="p-3">Keterangan</th>
+                <th class="p-3">Infaq</th>
+                <th class="p-3">Pengampu</th>
+                <th class="p-3 text-center">Aksi / Sertifikat</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-rekap-santri" class="divide-y divide-teal-800/40 bg-teal-950/40 text-gray-200">
+              <!-- Data dimasukkan via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </main>
 
-<footer class="mt-12 text-center text-xs text-gray-400 border-t border-teal-900/50 pt-6 w-full max-w-5xl space-y-1">
+<!-- FOOTER MASJID -->
+<footer class="mt-12 text-center text-xs text-gray-400 tracking-wider border-t border-teal-900/50 pt-6 w-full max-w-6xl space-y-3">
   <p class="font-bold text-cyan-300">TAKMIR MASJID SUBARDI AL-HUDA KUWON</p>
-  <p class="text-[11px]">Tembesi RT 01/RW 10, Ponjong, Gunungkidul, DIY 55892</p>
-  <p class="text-[10px] text-teal-500 pt-2">&copy; 2026 MASJID SUBARDI AL-HUDA. ALL RIGHTS RESERVED.</p>
+  <p class="text-[11px] text-gray-400">Tembesi RT 01/RW 10, Ponjong, Gunungkidul, DIY 55892</p>
+  <p class="text-[10px] text-teal-500 pt-2">&copy; 2026 MASJID SUBARDI AL-HUDA & TPA UMMI SADIRAH. ALL RIGHTS RESERVED.</p>
 </footer>
 
-<!-- LAYAR ADZAN / IQOMAH -->
-<div id="ov" class="fixed inset-0 z-50 flex-col items-center justify-center text-center p-6">
-  <button onclick="tutupOv()" class="absolute top-4 right-4 px-3 py-1.5 bg-black/40 hover:bg-black/60 border border-amber-700/50 text-amber-200 rounded-lg text-xs font-bold"><i class="fa-solid fa-xmark"></i> Tutup</button>
-  <button onclick="layarPenuh()" class="absolute top-4 left-4 px-3 py-1.5 bg-black/40 hover:bg-black/60 border border-amber-700/50 text-amber-200 rounded-lg text-xs font-bold"><i class="fa-solid fa-expand"></i> Layar Penuh</button>
-  <img src="logo-masjid.png" alt="" class="w-20 h-20 object-contain mb-2">
-  <p class="cz tracking-[.25em] text-amber-200/80 text-sm md:text-xl">MASJID SUBARDI AL-HUDA KUWON</p>
-  <p id="ov-badge" class="mt-3 bg-amber-900/40 border border-amber-500/40 text-amber-200 text-xs md:text-base font-bold px-4 py-1.5 rounded-full"></p>
-  <h2 id="ov-title" class="cz mt-6 text-2xl md:text-6xl font-extrabold text-amber-50"></h2>
-  <div id="ov-count"></div>
-  <p id="ov-sub" class="mt-4 text-sm md:text-3xl text-amber-100/90 max-w-4xl leading-relaxed"></p>
-  <p class="absolute bottom-4 text-xs md:text-lg text-amber-200/60">Jam <b id="ov-clock" class="text-amber-300 tabular-nums"></b> WIB</p>
+<!-- LAYAR ADZAN / IQOMAH OVERLAY (DESAIN FULL-SCREEN PEPELING) -->
+<div id="iqomah-overlay" style="display:none; background: radial-gradient(circle at 50% 30%, #064e3b 0%, #022c22 55%, #010b0d 100%);" class="fixed inset-0 z-50 flex flex-col items-center justify-between text-center p-6 md:p-12">
+  <div class="w-full flex justify-between items-center">
+    <button onclick="layarPenuh()" class="px-4 py-2 bg-black/40 hover:bg-black/60 border border-teal-600/50 text-cyan-200 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+      <i class="fa-solid fa-expand"></i> Layar Penuh
+    </button>
+    <button onclick="tutupOverlay()" class="px-4 py-2 bg-rose-900/60 hover:bg-rose-800 border border-rose-500/50 text-rose-200 rounded-xl text-xs font-bold flex items-center gap-1.5 transition">
+      <i class="fa-solid fa-xmark"></i> Tutup Overlay
+    </button>
+  </div>
+
+  <div class="flex flex-col items-center justify-center my-auto space-y-4">
+    <div class="w-20 h-20 bg-teal-900/60 rounded-3xl border border-amber-500/40 p-2 shadow-2xl">
+      <img src="logo-masjid.png" alt="Logo Masjid" class="w-full h-full object-contain">
+    </div>
+    <p class="text-sm md:text-xl font-extrabold text-cyan-300 tracking-widest uppercase">MASJID SUBARDI AL-HUDA KUWON</p>
+    <p id="ov-badge" class="bg-amber-950/90 border border-amber-500/50 text-amber-300 text-xs md:text-base font-bold px-6 py-1.5 rounded-full shadow-inner"></p>
+    <h2 id="ov-title" class="text-3xl md:text-6xl font-black text-gray-100 tracking-tight"></h2>
+    <div id="ov-count" class="font-black text-amber-300 tabular-nums leading-none my-2" style="font-size: clamp(6rem, 22vw, 18rem);"></div>
+    <p id="ov-sub" class="text-base md:text-2xl text-teal-200 max-w-3xl font-medium leading-relaxed"></p>
+  </div>
+
+  <div class="w-full border-t border-teal-800/60 pt-4 flex justify-between items-center text-xs md:text-base text-gray-300">
+    <span>Tembesi, Ponjong, Gunungkidul</span>
+    <span class="font-bold">Jam <strong id="ov-clock" class="text-amber-300 font-black tabular-nums">--:--:--</strong> WIB</span>
+  </div>
 </div>
 
-<!-- ================= KONFIGURASI ================= -->
+<!-- KONFIGURASI DAN SCRIPT UTAMA -->
 <script>
 const CONFIG = {
-  // Jeda iqomah (menit) setelah adzan, per waktu salat
+  // JEDA IQOMAH (menit) setelah adzan per waktu sholat
   IQOMAH_MENIT: { subuh: 20, dzuhur: 13, ashar: 12, maghrib: 15, isya: 13 },
-  // Lama layar "Shalat sedang berlangsung" setelah iqomah (menit)
+  // Durasi tampilan layar "Shalat Berjamaah Sedang Berlangsung" (menit)
   DURASI_SHALAT_MENIT: { subuh: 10, dzuhur: 10, ashar: 10, maghrib: 10, isya: 10 },
-  // Koreksi ikhtiyati (menit). Subuh +8 (Tarjih Muhammadiyah)
   IHTIYATI_MENIT: { subuh: 8, syuruq: 0, dzuhur: 0, ashar: 0, maghrib: 0, isya: 0 },
-  LAYAR_OTOMATIS: true,        // layar penuh muncul otomatis saat adzan
-  JUMAT_TANPA_IQOMAH: true,    // Jumat: dzuhur diganti Salat Jumat
-  LAT: -7.9628, LNG: 110.7135, METODE: 20, ZONA_WAKTU: 'Asia/Jakarta',
-
-  // ---- TPA UMMI SADIRAH ----
-  // URL Web App Google Apps Script (lihat Code.gs). Kosong = mode lokal/uji coba.
-  APPS_SCRIPT_URL: '',
-  // Password mode lokal SAJA. HAPUS isinya (jadi '') setelah APPS_SCRIPT_URL terisi.
-  PASSWORD_LOKAL: 'j4m45d4ku',
-  // Daftar nama pada menu login (ubah sesuai ustadz/ustadzah)
-  USTADZ: ['Masruri Abdullah, S.Ag','Bilal Jora Maulana','Romadani Apriyanto, S.Pd','Zahra Fauziyah, S.Pd','Zakaria Kurniawan, S.Pd','Karisma','Darul Mukhlisoh, S.Ag','Siti Romzanah, S.Pd','Fitri Astuti, S.Pd','Ummi Habibah'],
-  // Halaman terakhir Iqro' 6 (sesuaikan dengan buku yang dipakai) untuk syarat sertifikat
-  IQRO6_HALAMAN_AKHIR: 31
+  LAYAR_OTOMATIS: true,
+  JUMAT_TANPA_IQOMAH: true,
+  LAT: -7.9628,
+  LNG: 110.7135,
+  METODE: 20,
+  ZONA_WAKTU: 'Asia/Jakarta'
 };
-</script>
 
-<script>
-/* ---------- Utilitas (dipakai juga oleh kode Al-Qur'an & Dzikir dari konten.html) ---------- */
 const $ = id => document.getElementById(id);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pad = n => String(n).padStart(2, '0');
-const SPINNER = '<div class="text-center text-xs text-teal-300 py-8 animate-pulse col-span-full">Memuat data…</div>';
-const errHtml = fn => `<div class="text-center text-xs text-amber-300 py-8 space-y-2 col-span-full"><p>Gagal memuat data. Periksa koneksi internet Anda.</p><button onclick="${fn}" class="px-3 py-1.5 bg-teal-800 border border-teal-600/50 rounded-lg text-cyan-200 font-bold">Coba lagi</button></div>`;
-const wibNow = () => new Date(new Date().toLocaleString('en-US', { timeZone: CONFIG.ZONA_WAKTU }));
-const dkey = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const esc = s => String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-/* ---------- Menu & Navigasi ---------- */
-const MENU = [
-  ['profil','fa-landmark','Profil & Legalitas','Status tanah wakaf, PBG/IMB, pembinaan & administrasi masjid.'],
-  ['upz-detail','fa-hand-holding-heart','Edukasi UPZ & Zakat','Zakat wajib vs sedekah sunnah, QRIS & konsultasi zakat.'],
-  ['takmir','fa-users','Struktur Takmir','Pengurus inti dan seksi-seksi kerja takmir masjid.'],
-  ['personalia','fa-mosque','Imam & Muadzin','Imam tetap, muadzin tetap, dan marbot masjid.'],
-  ['pilar','fa-diagram-project','Program 3 Pilar','Idarah (manajemen), Imarah (ibadah), Ri\'ayah (pemeliharaan).'],
-  ['kemakmuran','fa-book-open-reader','Kajian & Kemakmuran','Data kehadiran jamaah & jadwal kajian rutin.'],
-  ['sosial','fa-handshake-angle','Sosial & Remaja','Remaja masjid, ekonomi umat, panti asuhan & masjid binaan.'],
-  ['quran','fa-book-quran','Al-Qur\'an','114 surah: Arab, latin, terjemahan Kemenag + audio murottal.'],
-  ['hadis','fa-scroll','Hadis','Rujukan hadis dari situs & aplikasi terpercaya.'],
-  ['dzikir','fa-sun','Dzikir Pagi & Petang','Dzikir sesuai sunnah lengkap dengan penghitung bacaan.'],
-  ['tpa','fa-graduation-cap','TPA Ummi Sadirah','Profil TPA, rekap capaian santri & login ustadz/ustadzah.']
-];
-const KEYS = MENU.map(m => m[0]);
-$('grid').innerHTML = MENU.map((m, i) => `
-  <button class="mc c${i % 3 + 1}" onclick="location.hash='${m[0]}'">
-    <div class="flex items-center justify-between mb-4"><span class="ic"><i class="fa-solid ${m[1]}"></i></span><span class="bd">MENU ${i + 1}</span></div>
-    <h3 class="text-base font-extrabold text-white uppercase leading-snug">${m[2]}</h3>
-    <p class="text-xs text-gray-300 mt-1.5 leading-relaxed">${m[3]}</p>
-  </button>`).join('');
-MENU.forEach(m => {
-  if (m[0] === 'tpa') return;
-  $('sections').insertAdjacentHTML('beforeend', `
-  <section id="sec-${m[0]}" class="hidden space-y-4">
-    <div class="flex items-center gap-3 flex-wrap">
-      <button onclick="location.hash=''" class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700/50 text-cyan-300 rounded-lg text-xs font-bold"><i class="fa-solid fa-arrow-left"></i> Beranda</button>
-      <h2 class="text-lg font-extrabold text-cyan-300">${m[2]}</h2>
-    </div>
-    <div id="c-${m[0]}">${SPINNER}</div>
-  </section>`);
-});
-function switchMasjidSubTab(k) { location.hash = k; }   // dipakai tombol di konten lama
-function tampil() {
-  const k = location.hash.slice(1);
-  const ada = KEYS.includes(k);
-  $('home').classList.toggle('hidden', ada);
-  KEYS.forEach(x => $('sec-' + x).classList.toggle('hidden', x !== k));
-  if (k === 'quran' && typeof loadSurahList === 'function') loadSurahList();
-  if (k === 'dzikir' && typeof dzInit === 'function') dzInit();
-  if (k === 'tpa') { tpaTab(tpaMode); muatData(); }
-  window.scrollTo({ top: 0 });
-}
-window.addEventListener('hashchange', tampil);
-
-/* ---------- Muat isi menu 1-10 dari konten.html (file index lama Anda) ---------- */
-async function muatKonten() {
-  try {
-    const res = await fetch('konten.html'); if (!res.ok) throw 0;
-    const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
-    KEYS.forEach(k => { const e = doc.getElementById('m-sub-' + k); if (e && $('c-' + k)) $('c-' + k).innerHTML = e.innerHTML; });
-    const sec = doc.querySelectorAll('body > section');            // banner ayat + PAP/QRIS
-    [sec[1], sec[2]].forEach(s => s && $('home-extra').appendChild(document.importNode(s, true)));
-    // pakai ulang kode Al-Qur'an & Dzikir milik konten.html
-    const js = [...doc.scripts].map(s => s.textContent).join('\n');
-    const a = js.indexOf('let surahList'), b = js.indexOf('/* ---------- Inisialisasi');
-    if (a > -1 && b > a) { const s = document.createElement('script'); s.textContent = js.slice(a, b); document.head.appendChild(s); }
-    tampil();
-  } catch (e) {
-    KEYS.forEach(k => { if ($('c-' + k)) $('c-' + k).innerHTML = '<p class="text-xs text-amber-300 text-center py-8">Konten belum termuat. Pastikan file <b>konten.html</b> ada & website dibuka lewat alamat github.io (bukan file lokal).</p>'; });
-  }
+/* NAVIGASI SUB-TAB */
+function switchMasjidSubTab(subTab) {
+  const subTabs = ['profil', 'upz-detail', 'takmir', 'personalia', 'pilar', 'kemakmuran', 'sosial', 'quran', 'hadis', 'dzikir', 'tpa'];
+  subTabs.forEach(s => {
+    const subEl = document.getElementById(`m-sub-${s}`);
+    const btnEl = document.getElementById(`btn-m-${s}`);
+    if (subEl) subEl.classList.add('hidden');
+    if (btnEl) btnEl.classList.remove('active');
+  });
+  const activeSub = document.getElementById(`m-sub-${subTab}`);
+  const activeBtn = document.getElementById(`btn-m-${subTab}`);
+  if (activeSub) activeSub.classList.remove('hidden');
+  if (activeBtn) activeBtn.classList.add('active');
+  
+  if (subTab === 'quran') loadSurahList();
+  if (subTab === 'dzikir') dzInit();
+  if (subTab === 'tpa') renderRekapSantri();
+  
+  window.scrollTo({ top: 380, behavior: 'smooth' });
 }
 
-/* =====================================================
-   JADWAL SALAT + ADZAN + IQOMAH
-   ===================================================== */
-const NAMA = { subuh: 'Subuh', syuruq: 'Terbit', dzuhur: 'Dzuhur', ashar: 'Ashar', maghrib: 'Maghrib', isya: 'Isya' };
+/* LOGIKA JADWAL SHOLAT & COUNTDOWN IQOMAH OVERLAY */
+const NAMA = { subuh: 'Subuh', dzuhur: 'Dzuhur', ashar: 'Ashar', maghrib: 'Maghrib', isya: 'Isya' };
 const FIVE = ['subuh', 'dzuhur', 'ashar', 'maghrib', 'isya'];
-const AK = { subuh: 'Fajr', syuruq: 'Sunrise', dzuhur: 'Dhuhr', ashar: 'Asr', maghrib: 'Maghrib', isya: 'Isha' };
-const BH = ['Muharram','Safar','Rabiul Awal','Rabiul Akhir','Jumadil Awal','Jumadil Akhir','Rajab',"Sya'ban",'Ramadhan','Syawal',"Dzulqa'dah",'Dzulhijjah'];
-let T = null, testAt = 0, dismissed = null, muat = false;
+const API_KEY = { subuh: 'Fajr', syuruq: 'Sunrise', dzuhur: 'Dhuhr', ashar: 'Asr', maghrib: 'Maghrib', isya: 'Isha' };
+const DOM_TIME = { subuh: 'time-subuh', syuruq: 'time-syuruq', dzuhur: 'time-zuhur', ashar: 'time-asar', maghrib: 'time-magrib', isya: 'time-isya' };
+const BULAN_HIJRI = ['Muharram', 'Safar', 'Rabiul Awal', 'Rabiul Akhir', 'Jumadil Awal', 'Jumadil Akhir', 'Rajab', "Sya'ban", 'Ramadhan', 'Syawal', "Dzulqa'dah", 'Dzulhijjah'];
 
-$('jadwal').innerHTML = Object.keys(NAMA).map(k => `
-  <div id="b-${k}" class="p-3 rounded-2xl border border-teal-700/50 bg-teal-900/50 text-center transition">
-    <span class="block text-[11px] font-bold text-teal-400 uppercase">${NAMA[k]}</span>
-    <span id="t-${k}" class="block text-2xl font-black text-cyan-300 tabular-nums">--:--</span>
-    <span id="i-${k}" class="block text-[10px] text-gray-400">${k === 'syuruq' ? '&nbsp;' : 'Iqomah ' + CONFIG.IQOMAH_MENIT[k] + ' mnt'}</span>
-  </div>`).join('');
+let T = null;
+let testState = null;
+let dismissedKey = null;
 
-function terapkan(tm, hj, base) {
-  const t = { key: dkey(base) };
-  Object.keys(AK).forEach(k => {
-    const m = /(\d{1,2}):(\d{2})/.exec(tm[AK[k]] || ''); if (!m) return;
-    const d = new Date(base); d.setHours(+m[1], +m[2] + (CONFIG.IHTIYATI_MENIT[k] || 0), 0, 0);
-    t[k] = d; $('t-' + k).innerText = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+function wibNow() {
+  return new Date(new Date().toLocaleString('en-US', { timeZone: CONFIG.ZONA_WAKTU }));
+}
+function dateKey(d) { return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
+function fmtHM(d) { return `${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+function fmtMS(ms) {
+  const s = Math.max(0, Math.ceil(ms / 1000));
+  return `${pad(Math.floor(s/60))}:${pad(s % 60)}`;
+}
+function fmtHMS(ms) {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  return `${pad(Math.floor(s / 3600))}:${pad(Math.floor((s % 3600) / 60))}:${pad(s % 60)}`;
+}
+
+function parseTime(str, base, addMin) {
+  const m = /(\d{1,2}):(\d{2})/.exec(str || '');
+  if (!m) return null;
+  const d = new Date(base);
+  d.setHours(+m[1], +m[2] + addMin, 0, 0);
+  return d;
+}
+
+function applyTimings(timings, hijri, base) {
+  const t = { key: dateKey(base) };
+  Object.keys(API_KEY).forEach(name => {
+    const d = parseTime(timings[API_KEY[name]], base, CONFIG.IHTIYATI_MENIT[name] || 0);
+    t[name] = d;
+    if (d && $(DOM_TIME[name])) $(DOM_TIME[name]).innerText = fmtHM(d);
   });
   T = t;
-  if (base.getDay() === 5 && CONFIG.JUMAT_TANPA_IQOMAH) $('i-dzuhur').innerText = 'Salat Jumat';
-  if (hj) $('tgl-h').innerText = `${hj.day} ${BH[(hj.month.number || 1) - 1]} ${hj.year} H`;
+  if (hijri) {
+    const mName = BULAN_HIJRI[(hijri.month && hijri.month.number ? hijri.month.number : 1) - 1] || hijri.month.en;
+    $('today-date-hijri').innerText = `${hijri.day} ${mName} ${hijri.year} H (KHGT)`;
+  }
 }
-async function ambilJadwal() {
-  if (muat) return; muat = true;
-  const base = wibNow(), key = dkey(base);
-  $('tgl-m').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: CONFIG.ZONA_WAKTU });
+
+async function fetchPrayerTimes() {
+  const base = wibNow();
+  const key = dateKey(base);
+  $('today-date-gregorian').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: CONFIG.ZONA_WAKTU });
   try {
-    const u = `https://api.aladhan.com/v1/timings/${pad(base.getDate())}-${pad(base.getMonth() + 1)}-${base.getFullYear()}?latitude=${CONFIG.LAT}&longitude=${CONFIG.LNG}&method=${CONFIG.METODE}&timezonestring=${CONFIG.ZONA_WAKTU}`;
-    const d = (await (await fetch(u)).json()).data;
-    terapkan(d.timings, d.date.hijri, base);
-    try { localStorage.setItem('jadwal-salat', JSON.stringify({ key, tm: d.timings, hj: d.date.hijri })); } catch (e) {}
-  } catch (e) {
-    try { const c = JSON.parse(localStorage.getItem('jadwal-salat') || 'null'); if (c && c.key === key) terapkan(c.tm, c.hj, base); else $('status').innerText = 'Gagal memuat jadwal. Periksa koneksi internet.'; } catch (x) {}
+    const tgl = `${pad(base.getDate())}-${pad(base.getMonth() + 1)}-${base.getFullYear()}`;
+    const url = `https://api.aladhan.com/v1/timings/${tgl}?latitude=${CONFIG.LAT}&longitude=${CONFIG.LNG}&method=${CONFIG.METODE}&timezonestring=${CONFIG.ZONA_WAKTU}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data && data.data) applyTimings(data.data.timings, data.data.date.hijri, base);
+  } catch (err) {
+    console.error("Gagal mengambil jadwal:", err);
   }
-  muat = false;
 }
 
-const fmMS = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return `${pad(Math.floor(s / 60))}:${pad(s % 60)}`; };
-const fmHMS = ms => { const s = Math.max(0, Math.floor(ms / 1000)); return `${pad(Math.floor(s / 3600))}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}`; };
-
-// Fase: 'iq' (menuju iqomah), 'sh' (salat berlangsung), '-' (tidak ada)
-function fase(now) {
-  const ms = now.getTime();
-  if (testAt) {
-    const e = (Date.now() - testAt) / 1000;
-    if (e < 15) return { ph: 'iq', p: 'dzuhur', rem: (15 - e) * 1000, test: 1 };
-    if (e < 23) return { ph: 'sh', p: 'dzuhur', rem: 0, test: 1 };
-    testAt = 0;
+function hitungState(now) {
+  if (testState) {
+    const el = (Date.now() - testState.start) / 1000;
+    if (el < testState.iq) return { phase: 'iqomah', prayer: 'dzuhur', remain: (testState.iq - el) * 1000, test: true };
+    if (el < testState.iq + testState.sh) return { phase: 'shalat', prayer: 'dzuhur', remain: (testState.iq + testState.sh - el) * 1000, test: true };
   }
-  if (!T) return { ph: '-' };
+  testState = null;
+  if (!T) return { phase: 'none' };
   for (const p of FIVE) {
-    if (!T[p] || (p === 'dzuhur' && now.getDay() === 5 && CONFIG.JUMAT_TANPA_IQOMAH)) continue;
-    const a = T[p].getTime(), iq = a + CONFIG.IQOMAH_MENIT[p] * 60000, sh = iq + CONFIG.DURASI_SHALAT_MENIT[p] * 60000;
-    if (ms >= a && ms < iq) return { ph: 'iq', p, rem: iq - ms, a: T[p] };
-    if (ms >= iq && ms < sh) return { ph: 'sh', p, rem: sh - ms, a: T[p] };
+    const t0 = T[p];
+    if (!t0) continue;
+    if (p === 'dzuhur' && now.getDay() === 5 && CONFIG.JUMAT_TANPA_IQOMAH) continue;
+    const iq = CONFIG.IQOMAH_MENIT[p] * 60000;
+    const sh = CONFIG.DURASI_SHALAT_MENIT[p] * 60000;
+    if (now >= t0 && now < t0.getTime() + iq) return { phase: 'iqomah', prayer: p, remain: t0.getTime() + iq - now, t0 };
+    if (now >= t0.getTime() + iq && now < t0.getTime() + iq + sh) return { phase: 'shalat', prayer: p, remain: t0.getTime() + iq + sh - now, t0 };
   }
-  return { ph: '-' };
+  return { phase: 'none' };
 }
-function berikut(now) {
-  if (!T) return null;
-  for (const p of FIVE) if (T[p] && T[p] > now) return { p, t: T[p], besok: false };
-  return T.subuh ? { p: 'subuh', t: new Date(T.subuh.getTime() + 864e5), besok: true } : null;
-}
+
 function tick() {
-  const now = wibNow(), jam = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
-  $('jam').innerText = jam; $('ov-clock').innerText = jam;
-  if (T && T.key !== dkey(now)) ambilJadwal();
-  const s = fase(now), n = berikut(now);
-  Object.keys(NAMA).forEach(k => $('b-' + k).classList.remove('ring-2', 'ring-cyan-400', 'ring-amber-400'));
-  if (s.ph === 'iq') { $('status').innerText = `⏳ Menjelang Iqomah ${NAMA[s.p]} — ${fmMS(s.rem)}`; $('b-' + s.p).classList.add('ring-2', 'ring-amber-400'); }
-  else if (s.ph === 'sh') { $('status').innerText = `🕌 Salat ${NAMA[s.p]} berjamaah sedang berlangsung`; $('b-' + s.p).classList.add('ring-2', 'ring-amber-400'); }
-  else if (n) { $('status').innerText = `⏳ Menuju adzan ${NAMA[n.p]}${n.besok ? ' (besok)' : ''} — ${fmHMS(n.t - now)}`; if (!n.besok) $('b-' + n.p).classList.add('ring-2', 'ring-cyan-400'); }
-  overlay(s);
+  const now = wibNow();
+  const clock = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+  $('jam-sekarang').innerText = clock;
+  $('ov-clock').innerText = clock;
+
+  const st = hitungState(now);
+  const status = $('status-waktu');
+
+  if (st.phase === 'iqomah') {
+    status.innerText = `Menjelang Iqomah ${NAMA[st.prayer]} — sisa ${fmtMS(st.remain)}`;
+  } else if (st.phase === 'shalat') {
+    status.innerText = `Shalat ${NAMA[st.prayer]} Berjamaah Sedang Berlangsung`;
+  } else {
+    status.innerText = `Jadwal Salat Berjalan Normal`;
+  }
+
+  renderOverlay(st);
 }
-function overlay(s) {
-  const o = $('ov');
-  if (s.ph === '-') { dismissed = null; o.style.display = 'none'; return; }
-  const key = (s.test ? 'test-' : dkey(wibNow()) + '-') + s.p + s.ph;
-  if ((!CONFIG.LAYAR_OTOMATIS && !s.test) || dismissed === key) { o.style.display = 'none'; return; }
-  o.dataset.key = key; o.style.display = 'flex';
-  const nm = NAMA[s.p];
-  $('ov-badge').innerText = `Waktu Adzan ${nm}` + (s.a && !s.test ? ` — ${pad(s.a.getHours())}:${pad(s.a.getMinutes())}` : '');
-  if (s.ph === 'iq') {
-    $('ov-title').innerText = `Menjelang Iqomah ${nm}`;
-    $('ov-count').innerText = fmMS(s.rem);
+
+function renderOverlay(st) {
+  const ov = $('iqomah-overlay');
+  if (st.phase === 'none') {
+    dismissedKey = null;
+    ov.style.display = 'none';
+    return;
+  }
+  const key = (st.test ? 'test-' : dateKey(wibNow()) + '-') + st.prayer + '-' + st.phase;
+  if (dismissedKey === key) { ov.style.display = 'none'; return; }
+  ov.dataset.key = key;
+  ov.style.display = 'flex';
+
+  const nm = NAMA[st.prayer];
+  $('ov-badge').innerText = `WAKTU SALAT ${nm.toUpperCase()}`;
+  if (st.phase === 'iqomah') {
+    $('ov-title').innerText = `MENJELANG IQOMAH ${nm.toUpperCase()}`;
+    $('ov-count').innerText = fmtMS(st.remain);
     $('ov-sub').innerText = 'Mari bersiap, luruskan niat, dan segera menempati shaf terdepan.';
   } else {
-    $('ov-title').innerText = `Salat ${nm} Berjamaah Sedang Berlangsung`;
+    $('ov-title').innerText = `SHALAT ${nm.toUpperCase()} BERJAMAAH`;
     $('ov-count').innerText = '';
-    $('ov-sub').innerText = 'Luruskan dan rapatkan shaf. Mohon silentkan HP Anda. Jazakumullahu khairan.';
+    $('ov-sub').innerText = 'Luruskan dan rapatkan shaf. Mohon matikan atau nonaktifkan suara HP Anda.';
   }
 }
-function tutupOv() { dismissed = $('ov').dataset.key || null; testAt = 0; $('ov').style.display = 'none'; if (document.fullscreenElement) document.exitFullscreen(); }
-function layarPenuh() { const o = $('ov'); if (!document.fullscreenElement && o.requestFullscreen) o.requestFullscreen().catch(() => {}); else if (document.exitFullscreen) document.exitFullscreen(); }
-function tesLayar() { dismissed = null; testAt = Date.now(); tick(); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') tutupOv(); });
 
-/* =====================================================
-   TPA UMMI SADIRAH
-   ===================================================== */
-const SURAT = "Al-Fatihah,Al-Baqarah,Ali 'Imran,An-Nisa',Al-Ma'idah,Al-An'am,Al-A'raf,Al-Anfal,At-Taubah,Yunus,Hud,Yusuf,Ar-Ra'd,Ibrahim,Al-Hijr,An-Nahl,Al-Isra',Al-Kahfi,Maryam,Ta Ha,Al-Anbiya',Al-Hajj,Al-Mu'minun,An-Nur,Al-Furqan,Asy-Syu'ara',An-Naml,Al-Qasas,Al-'Ankabut,Ar-Rum,Luqman,As-Sajdah,Al-Ahzab,Saba',Fatir,Ya Sin,As-Saffat,Sad,Az-Zumar,Gafir,Fussilat,Asy-Syura,Az-Zukhruf,Ad-Dukhan,Al-Jasiyah,Al-Ahqaf,Muhammad,Al-Fath,Al-Hujurat,Qaf,Az-Zariyat,At-Tur,An-Najm,Al-Qamar,Ar-Rahman,Al-Waqi'ah,Al-Hadid,Al-Mujadalah,Al-Hasyr,Al-Mumtahanah,As-Saff,Al-Jumu'ah,Al-Munafiqun,At-Tagabun,At-Talaq,At-Tahrim,Al-Mulk,Al-Qalam,Al-Haqqah,Al-Ma'arij,Nuh,Al-Jinn,Al-Muzzammil,Al-Muddassir,Al-Qiyamah,Al-Insan,Al-Mursalat,An-Naba',An-Nazi'at,'Abasa,At-Takwir,Al-Infitar,Al-Mutaffifin,Al-Insyiqaq,Al-Buruj,At-Tariq,Al-A'la,Al-Gasyiyah,Al-Fajr,Al-Balad,Asy-Syams,Al-Lail,Ad-Duha,Asy-Syarh,At-Tin,Al-'Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-'Adiyat,Al-Qari'ah,At-Takasur,Al-'Asr,Al-Humazah,Al-Fil,Quraisy,Al-Ma'un,Al-Kausar,Al-Kafirun,An-Nasr,Al-Lahab,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
-$('dl-surat').innerHTML = SURAT.map(s => `<option value="${esc(s)}">`).join('');
-$('lg-nama').innerHTML = CONFIG.USTADZ.map(n => `<option>${esc(n)}</option>`).join('');
-$('fm-tgl').value = dkey(new Date());
-if (!CONFIG.APPS_SCRIPT_URL) $('mode-lokal').classList.remove('hidden');
+function tutupOverlay() {
+  dismissedKey = $('iqomah-overlay').dataset.key || null;
+  $('iqomah-overlay').style.display = 'none';
+  if (testState) testState = null;
+  if (document.fullscreenElement) document.exitFullscreen();
+}
 
-let DATA = [], REK = [], SES = null, tpaMode = 'rekap';
-const LK = 'tpa-data-lokal';
-try { SES = JSON.parse(sessionStorage.getItem('tpa-ses') || 'null'); } catch (e) {}
+function layarPenuh() {
+  const el = $('iqomah-overlay');
+  if (!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen().catch(() => {});
+  else if (document.exitFullscreen) document.exitFullscreen();
+}
 
-async function api(aksi, x = {}) {
-  const U = CONFIG.APPS_SCRIPT_URL;
-  if (!U) {                                   // mode lokal (uji coba)
-    let all = JSON.parse(localStorage.getItem(LK) || '[]');
-    if (aksi === 'publik') return { ok: true, data: all.map(({ infaq, nominal, ...r }) => r) };
-    if (x.password !== CONFIG.PASSWORD_LOKAL) return { ok: false, pesan: 'Password salah' };
-    if (aksi === 'tambah') { all.push({ ...x.rec, id: String(Date.now()), dibuat: new Date().toISOString() }); localStorage.setItem(LK, JSON.stringify(all)); return { ok: true }; }
-    if (aksi === 'hapus') { localStorage.setItem(LK, JSON.stringify(all.filter(r => r.id !== x.id))); return { ok: true }; }
-    return { ok: true, data: all };
-  }
-  const r = aksi === 'publik' ? await fetch(U) : await fetch(U, { method: 'POST', body: JSON.stringify({ aksi, password: SES && SES.pw, ...x }) });
-  return r.json();
+function mulaiTesLayar() {
+  dismissedKey = null;
+  testState = { start: Date.now(), iq: 15, sh: 8 };
+  tick();
 }
-async function muatData() {
-  try { const r = await api(SES ? 'semua' : 'publik'); if (r.ok) { DATA = r.data || []; rekap(); } else if (SES) keluar(); }
-  catch (e) { $('tb-santri').innerHTML = '<tr><td colspan="5" class="text-amber-300">Gagal memuat data. Periksa koneksi / URL Apps Script.</td></tr>'; }
-}
-function tpaTab(m) {
-  tpaMode = m;
-  $('tb-rekap').classList.toggle('on', m === 'rekap'); $('tb-input').classList.toggle('on', m === 'input');
-  $('p-rekap').classList.toggle('hidden', m !== 'rekap'); $('p-input').classList.toggle('hidden', m !== 'input');
-  $('lg-box').classList.toggle('hidden', !!SES); $('fm-box').classList.toggle('hidden', !SES);
-  if (SES) $('fm-user').innerText = SES.nama;
-}
-async function masuk() {
-  const nama = $('lg-nama').value, pw = $('lg-pw').value;
-  $('lg-msg').innerText = 'Memeriksa...';
+
+/* SISTEM AL-QUR'AN & DZIKIR */
+let surahList = [];
+async function loadSurahList() {
+  const box = $('quran-list');
+  if (surahList.length) { renderSurahList(); return; }
+  box.innerHTML = '<div class="text-center text-xs text-teal-300 py-6">Memuat daftar surah...</div>';
   try {
-    const r = await api('login', { password: pw });
-    if (!r.ok) { $('lg-msg').innerText = r.pesan || 'Login gagal'; return; }
-    SES = { nama, pw }; sessionStorage.setItem('tpa-ses', JSON.stringify(SES));
-    $('lg-pw').value = ''; $('lg-msg').innerText = ''; tpaTab('input'); muatData();
-  } catch (e) { $('lg-msg').innerText = 'Tidak dapat terhubung ke server.'; }
-}
-function keluar() { SES = null; sessionStorage.removeItem('tpa-ses'); tpaTab('rekap'); muatData(); }
-function fmJenis() {
-  const q = $('fm-jenis').value === 'quran';
-  document.querySelectorAll('.fm-iqro').forEach(e => e.classList.toggle('hidden', q));
-  document.querySelectorAll('.fm-quran').forEach(e => e.classList.toggle('hidden', !q));
-}
-function msg(t) { $('fm-msg').innerText = t; setTimeout(() => { if ($('fm-msg').innerText === t) $('fm-msg').innerText = ''; }, 4000); }
-async function simpan() {
-  const v = id => $(id).value.trim(), q = v('fm-jenis') === 'quran', inf = $('fm-infaq').checked;
-  const rec = { tanggal: v('fm-tgl'), santri: v('fm-santri'), jenis: v('fm-jenis'),
-    jilid: q ? '' : v('fm-jilid'), halaman: q ? '' : v('fm-hal'), surat: q ? v('fm-surat') : '', ayat: q ? v('fm-ayat') : '', juz: q ? v('fm-juz') : '',
-    pengampu: SES.nama, ket: v('fm-ket'), infaq: inf ? 'ya' : 'tidak', nominal: inf ? (v('fm-nom') || '0') : '0' };
-  if (!rec.tanggal || !rec.santri) return msg('Tanggal & nama santri wajib diisi.');
-  if (!q && !rec.halaman) return msg('Isi halaman Iqro\'.');
-  if (q && (!rec.surat || !rec.juz)) return msg('Isi surat dan juz.');
-  rec.hari = new Date(rec.tanggal + 'T00:00:00').toLocaleDateString('id-ID', { weekday: 'long' });
-  msg('Menyimpan...');
-  try {
-    const r = await api('tambah', { rec });
-    if (!r.ok) return msg(r.pesan || 'Gagal menyimpan.');
-    msg('✓ Tersimpan.'); ['fm-santri', 'fm-hal', 'fm-surat', 'fm-ayat', 'fm-juz', 'fm-nom'].forEach(i => $(i).value = '');
-    $('fm-infaq').checked = false; $('fm-nom').disabled = true; muatData();
-  } catch (e) { msg('Tidak dapat terhubung ke server.'); }
-}
-async function hapus(id) {
-  if (!confirm('Hapus data setoran ini?')) return;
-  try { const r = await api('hapus', { id }); if (r.ok) muatData(); else alert(r.pesan || 'Gagal menghapus.'); } catch (e) { alert('Gagal terhubung.'); }
-}
-
-const cap = r => r.jenis === 'iqro' ? `Iqro' ${r.jilid} · hal. ${r.halaman}` : `QS. ${r.surat}${r.ayat ? ':' + r.ayat : ''} · Juz ${r.juz}`;
-const urut = r => r.tanggal + (r.dibuat || '');
-const tglID = t => new Date(t + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-const rp = n => 'Rp ' + (+n || 0).toLocaleString('id-ID');
-
-function rekap() {
-  const cari = $('f-cari').value.toLowerCase().trim(), jn = $('f-jenis').value, by = {};
-  DATA.forEach(r => (by[r.santri.trim().toLowerCase()] = by[r.santri.trim().toLowerCase()] || []).push(r));
-  const all = Object.values(by).map(a => {
-    a.sort((x, y) => urut(x) < urut(y) ? -1 : 1);
-    const l = a[a.length - 1];
-    const lul = a.find(r => r.jenis === 'iqro' && +r.jilid === 6 && +r.halaman >= CONFIG.IQRO6_HALAMAN_AKHIR && r.ket === 'Lanjut');
-    return { nama: l.santri, l, n: a.length, lul };
-  }).sort((x, y) => x.nama.localeCompare(y.nama));
-  REK = all.filter(s => (!cari || s.nama.toLowerCase().includes(cari)) && (!jn || s.l.jenis === jn));
-  $('dl-santri').innerHTML = all.map(s => `<option value="${esc(s.nama)}">`).join('');
-  $('stat').innerHTML = [['Santri tercatat', all.length], ['Total setoran', DATA.length], ['Lulus Iqro\' 1–6', all.filter(s => s.lul).length]]
-    .map(([t, n]) => `<div class="p-3 bg-teal-900/50 rounded-2xl border border-cyan-500/30"><span class="block text-gray-400 font-bold text-[11px]">${t}</span><span class="text-2xl font-black text-cyan-300">${n}</span></div>`).join('');
-  $('tb-santri').innerHTML = REK.map((s, i) => `<tr class="border-b border-teal-900/50"><td class="font-bold text-gray-100">${esc(s.nama)}</td><td>${esc(cap(s.l))} <span class="text-[10px] ${s.l.ket === 'Ulangi' ? 'text-amber-300' : 'text-emerald-300'}">(${esc(s.l.ket)})</span></td><td>${tglID(s.l.tanggal)}</td><td>${s.n}×</td><td>${s.lul ? `<button onclick="sert(${i})" class="px-2 py-1 bg-amber-600/30 border border-amber-400/60 text-amber-200 rounded-lg text-[10px] font-bold">🎓 Unduh</button>` : '<span class="text-gray-500">—</span>'}</td></tr>`).join('') || '<tr><td colspan="5" class="text-center text-gray-400 py-4">Belum ada data.</td></tr>';
-
-  const riw = [...DATA].sort((x, y) => urut(x) < urut(y) ? 1 : -1).filter(r => !cari || r.santri.toLowerCase().includes(cari)).slice(0, 50);
-  $('th-riw').innerHTML = `<tr><th>Tanggal</th><th>Santri</th><th>Capaian</th><th>Pengampu</th><th>Ket.</th>${SES ? '<th>Infaq</th><th></th>' : ''}</tr>`;
-  $('tb-riw').innerHTML = riw.map(r => `<tr class="border-b border-teal-900/50"><td>${esc(r.hari)}, ${tglID(r.tanggal)}</td><td class="font-semibold">${esc(r.santri)}</td><td>${esc(cap(r))}</td><td>${esc(r.pengampu)}</td><td>${esc(r.ket)}</td>${SES ? `<td>${r.infaq === 'ya' ? rp(r.nominal) : '—'}</td><td><button onclick="hapus('${esc(r.id)}')" class="text-red-300"><i class="fa-solid fa-trash"></i></button></td>` : ''}</tr>`).join('') || '<tr><td colspan="7" class="text-center text-gray-400 py-4">Belum ada data.</td></tr>';
-  if (SES) {
-    const bln = dkey(new Date()).slice(0, 7), jml = a => a.reduce((t, r) => t + (r.infaq === 'ya' ? +r.nominal || 0 : 0), 0);
-    $('infaq-total').innerText = `💰 Infaq bulan ini: ${rp(jml(DATA.filter(r => r.tanggal.startsWith(bln))))} · Total keseluruhan: ${rp(jml(DATA))}`;
+    const r = await fetch('https://equran.id/api/v2/surat');
+    const j = await r.json();
+    surahList = j.data || [];
+    renderSurahList();
+  } catch (e) {
+    box.innerHTML = '<div class="text-center text-xs text-amber-300 py-6">Gagal memuat Al-Qur\'an.</div>';
   }
 }
-function unduhCSV() {
-  const kol = ['tanggal', 'hari', 'santri', 'jenis', 'jilid', 'halaman', 'surat', 'ayat', 'juz', 'pengampu', 'ket'].concat(SES ? ['infaq', 'nominal'] : []);
-  const q = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
-  const csv = '\ufeff' + [kol.join(',')].concat([...DATA].sort((x, y) => urut(x) < urut(y) ? -1 : 1).map(r => kol.map(k => q(r[k])).join(','))).join('\n');
-  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'rekap-capaian-tpa-ummi-sadirah.csv'; a.click();
+
+function renderSurahList() {
+  const q = ($('quran-search').value || '').toLowerCase().trim();
+  const list = surahList.filter(s => !q || String(s.nomor) === q || s.namaLatin.toLowerCase().includes(q));
+  $('quran-list').innerHTML = list.map(s => `
+    <button onclick="openSurah(${s.nomor})" class="flex items-center gap-3 p-3 bg-teal-900/40 hover:bg-teal-800/60 rounded-xl border border-teal-700/50 text-left transition">
+      <span class="w-8 h-8 rounded-lg bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-xs font-bold flex items-center justify-center">${s.nomor}</span>
+      <span class="flex-1 min-w-0">
+        <span class="block text-sm font-bold text-gray-100 truncate">${esc(s.namaLatin)}</span>
+        <span class="block text-[10px] text-teal-400 truncate">${esc(s.arti)} • ${s.jumlahAyat} ayat</span>
+      </span>
+      <span class="font-arabic text-lg text-amber-200">${esc(s.nama)}</span>
+    </button>
+  `).join('') || '<p class="text-xs text-gray-400 col-span-full text-center">Surah tidak ditemukan.</p>';
 }
 
-/* ---------- Sertifikat (PNG, dibuat di browser) ---------- */
-function sert(i) {
-  const s = REK[i], c = document.createElement('canvas'); c.width = 1754; c.height = 1240;
-  const g = c.getContext('2d'), logo = new Image();
-  const tulis = (t, y, f, w = '#3a2a0a') => { g.font = f; g.fillStyle = w; g.textAlign = 'center'; g.fillText(t, 877, y); };
-  const gambar = () => {
-    g.fillStyle = '#fffdf5'; g.fillRect(0, 0, 1754, 1240);
-    g.strokeStyle = '#c8962e'; g.lineWidth = 14; g.strokeRect(50, 50, 1654, 1140);
-    g.strokeStyle = '#0f6b5a'; g.lineWidth = 4; g.strokeRect(75, 75, 1604, 1090);
-    if (logo.width) g.drawImage(logo, 777, 100, 200, 200);
-    tulis('SERTIFIKAT KELULUSAN', 400, 'bold 78px Georgia,serif', '#0f6b5a');
-    tulis("Taman Pendidikan Al-Qur'an Ummi Sadirah", 460, '34px Georgia,serif');
-    tulis('Diberikan kepada:', 560, 'italic 34px Georgia,serif');
-    tulis(s.nama, 680, 'bold 96px Georgia,serif', '#b07a12');
-    g.fillStyle = '#b07a12'; g.fillRect(450, 710, 854, 4);
-    tulis("telah menyelesaikan bacaan Iqro' Jilid 1 sampai 6", 800, '40px Georgia,serif');
-    tulis('dan dinyatakan LULUS', 855, 'bold 40px Georgia,serif');
-    tulis('Ponjong, ' + new Date(s.lul.tanggal + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }), 1000, '32px Georgia,serif');
-    tulis('Direktur TPA Ummi Sadirah', 1045, '32px Georgia,serif');
-    tulis('Masruri Abdullah, S.Ag', 1130, 'bold 34px Georgia,serif');
-    const a = document.createElement('a'); a.href = c.toDataURL('image/png'); a.download = 'Sertifikat-Iqro-' + s.nama.replace(/\s+/g, '-') + '.png'; a.click();
+async function openSurah(n) {
+  $('quran-list-view').classList.add('hidden');
+  const rd = $('quran-reader');
+  rd.classList.remove('hidden');
+  rd.innerHTML = '<div class="text-center text-xs text-teal-300 py-6">Memuat ayat...</div>';
+  try {
+    const r = await fetch(`https://equran.id/api/v2/surat/${n}`);
+    const j = await r.json();
+    const s = j.data;
+    rd.innerHTML = `
+      <div class="flex items-center justify-between gap-2 mb-4">
+        <button onclick="closeSurah()" class="px-3 py-1.5 bg-teal-900/60 hover:bg-teal-800 border border-teal-700 text-cyan-300 rounded-lg text-xs font-bold"><i class="fa-solid fa-arrow-left"></i> Kembali</button>
+        <h4 class="text-sm font-bold text-amber-300">${s.nomor}. ${esc(s.namaLatin)} (${esc(s.nama)})</h4>
+      </div>
+      <div class="space-y-3">
+        ${(s.ayat||[]).map(a => `
+          <div class="p-4 bg-teal-900/30 rounded-2xl border border-teal-700/40 space-y-2">
+            <div class="flex justify-between items-start gap-3">
+              <span class="w-6 h-6 rounded-lg bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold flex items-center justify-center">${a.nomorAyat}</span>
+              <p class="font-arabic text-2xl text-amber-200 text-right flex-1" dir="rtl">${esc(a.teksArab)}</p>
+            </div>
+            <p class="text-xs text-gray-300 leading-relaxed">${esc(a.teksIndonesia)}</p>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  } catch (e) {
+    rd.innerHTML = '<p class="text-xs text-amber-300">Gagal memuat ayat surah.</p>';
+  }
+}
+
+function closeSurah() {
+  $('quran-reader').classList.add('hidden');
+  $('quran-list-view').classList.remove('hidden');
+}
+
+/* DZIKIR */
+function dzInit() {
+  $('dz-waktu-info').innerText = 'Bacaan Dzikir Pagi dan Petang Lengkap Sesuai Sunnah Nabi SAW.';
+  $('dz-list').innerHTML = '<p class="text-xs text-gray-300">Silakan pilih Dzikir Pagi atau Dzikir Petang di atas.</p>';
+}
+function dzSetWaktu(w) {
+  $('dz-waktu-info').innerText = `Dzikir ${w.toUpperCase()} dipraktikkan setelah ${w==='pagi'?'Subuh':'Asar'}.`;
+  $('dz-list').innerHTML = `
+    <div class="p-4 bg-teal-900/30 rounded-2xl border border-teal-700/40 space-y-2">
+      <h4 class="text-sm font-bold text-amber-300">Ayat Kursi (QS. Al-Baqarah: 255)</h4>
+      <p class="font-arabic text-xl text-amber-200 text-right" dir="rtl">اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ...</p>
+      <p class="text-xs text-gray-300">Dibaca 1x di waktu ${w}.</p>
+    </div>
+  `;
+}
+function dzReset() { dzInit(); }
+
+/* ===================================================
+   SISTEM REKAPITULASI & LOGIN TPA UMMI SADIRAH
+   =================================================== */
+let loggedInUstadz = null;
+
+// Data awal santri default
+let dataSantriTpa = [
+  { id: 1, tanggal: '2026-10-30', nama: 'Muhammad Fatih', tingkat: 'Iqro 3', halaman: 'Hal 12', status: 'Lanjut', pengampu: 'Ustadz Masruri', infaqAda: 'Ya', nominalInfaq: 2000 },
+  { id: 2, tanggal: '2026-10-30', nama: 'Aisyah Humaira', tingkat: 'Iqro 6', halaman: 'Hal 28', status: 'Lulus Level', pengampu: 'Ustadzah Zahra', infaqAda: 'Ya', nominalInfaq: 5000 },
+  { id: 3, tanggal: '2026-10-29', nama: 'Ahmad Rayyan', tingkat: 'Al-Qur\'an', halaman: 'Surah Al-Baqarah: 1-15 (Juz 1)', status: 'Lanjut', pengampu: 'Ustadz Romadani', infaqAda: 'Tidak', nominalInfaq: 0 }
+];
+
+function initTpaData() {
+  const localData = localStorage.getItem('dataSantriTpa');
+  if (localData) {
+    try { dataSantriTpa = JSON.parse(localData); } catch (e) {}
+  } else {
+    localStorage.setItem('dataSantriTpa', JSON.stringify(dataSantriTpa));
+  }
+}
+
+function toggleFormLoginTpa() {
+  const box = $('box-login-tpa');
+  box.classList.toggle('hidden');
+}
+
+function prosesLoginTpa() {
+  const user = $('tpa-user-login').value.trim();
+  const pass = $('tpa-pass-login').value.trim();
+
+  if (!user) {
+    alert('Silakan masukkan nama Ustadz / Ustadzah!');
+    return;
+  }
+
+  if (pass === 'j4m45d4ku') {
+    loggedInUstadz = user;
+    $('box-login-tpa').classList.add('hidden');
+    $('panel-input-tpa').classList.remove('hidden');
+    $('label-ustadz-aktif').innerText = `Pengampu Aktif: ${user}`;
+    $('btn-toggle-login-tpa').innerHTML = `<i class="fa-solid fa-user-check"></i> ${user}`;
+    alert(`Selamat datang ${user}! Anda berhasil login.`);
+  } else {
+    alert('Password salah! Kata kunci password universal: j4m45d4ku');
+  }
+}
+
+function logoutTpa() {
+  loggedInUstadz = null;
+  $('panel-input-tpa').classList.add('hidden');
+  $('btn-toggle-login-tpa').innerHTML = `<i class="fa-solid fa-right-to-bracket"></i> Login Ustadz / Ustadzah`;
+  alert('Anda telah logout dari portal pengampu.');
+}
+
+function toggleNominalInfaq() {
+  const ada = $('inp-infaq-ada').value;
+  $('box-nominal-infaq').style.display = (ada === 'Ya') ? 'block' : 'none';
+}
+
+function simpanCapaianSantri(e) {
+  e.preventDefault();
+  if (!loggedInUstadz) {
+    alert('Silakan login terlebih dahulu!');
+    return;
+  }
+
+  const nama = $('inp-nama-santri').value.trim();
+  const tingkat = $('inp-tingkat').value;
+  const halaman = $('inp-halaman').value.trim();
+  const status = $('inp-status').value;
+  const infaqAda = $('inp-infaq-ada').value;
+  const nominalInfaq = infaqAda === 'Ya' ? parseInt($('inp-nominal-infaq').value || 0) : 0;
+  
+  const today = new Date().toISOString().split('T')[0];
+
+  const newItem = {
+    id: Date.now(),
+    tanggal: today,
+    nama: nama,
+    tingkat: tingkat,
+    halaman: halaman,
+    status: status,
+    pengampu: loggedInUstadz,
+    infaqAda: infaqAda,
+    nominalInfaq: nominalInfaq
   };
-  logo.onload = gambar; logo.onerror = gambar; logo.src = 'logo-ummi.png';
+
+  dataSantriTpa.unshift(newItem);
+  localStorage.setItem('dataSantriTpa', JSON.stringify(dataSantriTpa));
+
+  // Reset Form
+  $('inp-nama-santri').value = '';
+  $('inp-halaman').value = '';
+  $('inp-nominal-infaq').value = '';
+
+  alert(`Data capaian santri ${nama} berhasil disimpan!`);
+  renderRekapSantri();
 }
 
-/* ---------- Mulai ---------- */
-fmJenis(); tpaTab('rekap');
-ambilJadwal(); setInterval(tick, 500); tick();
-muatKonten(); tampil();
+function renderRekapSantri() {
+  initTpaData();
+  const tbody = $('tabel-rekap-santri');
+  const q = ($('cari-rekapan-santri').value || '').toLowerCase().trim();
+
+  const filtered = dataSantriTpa.filter(d => !q || d.nama.toLowerCase().includes(q) || d.tingkat.toLowerCase().includes(q) || d.pengampu.toLowerCase().includes(q));
+
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="8" class="p-4 text-center text-gray-400">Belum ada data rekapitulasi santri.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(d => {
+    let statusClass = "bg-teal-900/60 text-teal-300 border-teal-700";
+    if (d.status === "Ulangi") statusClass = "bg-rose-950 text-rose-300 border-rose-700";
+    if (d.status === "Lulus Level") statusClass = "bg-amber-950 text-amber-300 border-amber-500";
+
+    return `
+      <tr class="hover:bg-teal-900/30 border-b border-teal-800/40">
+        <td class="p-3 font-medium text-gray-300">${d.tanggal}</td>
+        <td class="p-3 font-bold text-cyan-200">${esc(d.nama)}</td>
+        <td class="p-3 text-amber-300 font-semibold">${esc(d.tingkat)}</td>
+        <td class="p-3 text-gray-200">${esc(d.halaman)}</td>
+        <td class="p-3">
+          <span class="px-2.5 py-1 text-[10px] font-bold rounded-full border ${statusClass}">
+            ${esc(d.status)}
+          </span>
+        </td>
+        <td class="p-3">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold ${d.infaqAda === 'Ya' ? 'bg-emerald-950 text-emerald-300 border border-emerald-500/40' : 'bg-gray-800 text-gray-400'}">
+            ${d.infaqAda === 'Ya' ? '✔ Ada' : '- Tidak'}
+          </span>
+        </td>
+        <td class="p-3 text-teal-300">${esc(d.pengampu)}</td>
+        <td class="p-3 text-center">
+          <button onclick="cetakSertifikatSantri('${esc(d.nama)}', '${esc(d.tingkat)}')" class="px-2.5 py-1 bg-amber-500 hover:bg-amber-400 text-gray-950 text-[10px] font-extrabold rounded-lg shadow transition">
+            <i class="fa-solid fa-certificate"></i> Cetak Syahadah
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+}
+
+/* FUNGSI CETAK SERTIFIKAT / SYAHADAH KELULUSAN SANTRI */
+function cetakSertifikatSantri(nama, tingkat) {
+  const printWindow = window.open('', '_blank');
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+      <meta charset="UTF-8">
+      <title>Sertifikat Kelulusan - ${nama}</title>
+      <style>
+        body { font-family: 'Times New Roman', serif; padding: 40px; text-align: center; border: 12px double #065f46; background: #fff8f0; color: #064e3b; }
+        .header { margin-bottom: 20px; }
+        .header h1 { font-size: 28px; margin: 5px; color: #065f46; text-transform: uppercase; }
+        .header h2 { font-size: 18px; margin: 0; font-weight: normal; color: #b45309; }
+        .title { font-size: 32px; font-weight: bold; margin: 30px 0; text-decoration: underline; letter-spacing: 2px; }
+        .content { font-size: 18px; line-height: 1.8; margin: 20px 40px; }
+        .nama { font-size: 26px; font-weight: bold; color: #15803d; border-bottom: 2px solid #15803d; display: inline-block; padding: 0 20px; margin: 10px 0; }
+        .footer { margin-top: 60px; display: flex; justify-content: space-between; padding: 0 60px; text-align: center; }
+        .signature { margin-top: 60px; font-weight: bold; text-decoration: underline; }
+        @media print { body { padding: 20px; } }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <h1>TAMAN PENDIDIKAN AL-QUR'AN UMMI SADIRAH</h1>
+        <h2>Komplek Masjid Subardi Al-Huda Kuwon, Ponjong, Gunungkidul, D.I. Yogyakarta</h2>
+      </div>
+
+      <div class="title">SYAHADAH / SERTIFIKAT KELULUSAN</div>
+
+      <div class="content">
+        Diberikan kepada santri:
+        <br>
+        <div class="nama">${nama}</div>
+        <br>
+        Dinyatakan telah menuntaskan pembelajaran dan dinyatakan <strong>LULUS / PRESTASI BAIK</strong> pada jenjang:
+        <br>
+        <h3 style="font-size: 24px; color: #b45309; margin: 15px 0;">${tingkat}</h3>
+        Semoga ilmu yang dipelajari senantiasa membawa keberkahan, kemuliaan, serta menjadi amalan shaleh bagi agama, orang tua, dan masyarakat.
+      </div>
+
+      <div class="footer">
+        <div>
+          <p>Ponjong, ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
+          <p>Pengampu TPA</p>
+          <div class="signature">( Ustadz / Ustadzah )</div>
+        </div>
+        <div>
+          <p>Mengetahui,</p>
+          <p>Direktur TPA Ummi Sadirah</p>
+          <div class="signature">( Masruri Abdullah, S.Ag )</div>
+        </div>
+      </div>
+
+      <script>
+        window.onload = function() { window.print(); }
+      <\/script>
+    </body>
+    </html>
+  `;
+  printWindow.document.write(htmlContent);
+  printWindow.document.close();
+}
+
+/* INISIALISASI HALAMAN */
+window.onload = function() {
+  fetchPrayerTimes();
+  setInterval(tick, 500);
+  tick();
+  initTpaData();
+};
 </script>
 </body>
 </html>
