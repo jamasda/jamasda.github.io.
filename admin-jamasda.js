@@ -1,6 +1,13 @@
+/* =====================================================================
+   admin-jamasda.js — Masjid Subardi Al-Huda Kuwon
+   Fitur: teks berjalan, kartu pengumuman (Khutbah Jumat & PAP),
+          rekap infaq masuk/keluar, login admin, pengaturan iqomah & ihtiyati.
+   ===================================================================== */
 (function () {
   'use strict';
-  const ADMIN_URL = 'https://script.google.com/macros/s/AKfycbzTha8oQdWbq6QIwPhv-n1wbHOpF9OdXchcBorhvxysv742fq8SD6ni8JagPS875d7U/exec';
+
+  // >>> GANTI dengan URL Web App Apps Script (berakhiran /exec) <<<
+  const ADMIN_URL = 'PASTE_URL_WEB_APP_DI_SINI';
 
   const $ = id => document.getElementById(id);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -12,6 +19,7 @@
   };
   const KAT_MASUK = ['Infaq Jumat', 'Infaq Subuh', 'Kotak Amal', 'Sedekah / QRIS', 'Zakat (UPZ)', 'Donasi Pembangunan', 'Lainnya'];
   const KAT_KELUAR = ['Listrik & Air', 'Kebersihan', 'Honor Marbot/Petugas', 'Santunan / Sosial', 'Perbaikan & Pembangunan', 'Konsumsi Kajian', 'Lainnya'];
+  const INFO_KEYS = ['kjTanggal', 'kjKhatib', 'kjImam', 'kjTema', 'papTanggal', 'papPemateri', 'papTema', 'running'];
 
   let DATA = { infaq: [], info: {} };
   let PASS = null;
@@ -213,6 +221,7 @@
     window.switchMasjidSubTab = function (t) { orig(t); if (t === 'infaq') muat(); };
   }
 
+  /* ---------- Login / Logout ---------- */
   async function login() {
     const pw = $('jm-pass').value, msg = $('jm-login-msg');
     if (!pw) { msg.innerText = 'Isi password.'; return; }
@@ -225,7 +234,7 @@
       $('jm-admin').classList.remove('hidden');
       $('jm-btn-login').innerHTML = '<i class="fa-solid fa-user-check"></i> Admin Aktif';
       document.querySelectorAll('.jm-aksi').forEach(e => e.classList.remove('hidden'));
-      isiFormInfo(); renderTabel();
+      isiFormInfo(); isiFormCfg(); renderTabel();
     } catch (e) { msg.innerText = 'Gagal terhubung ke server.'; }
     finally { $('jm-do-login').disabled = false; }
   }
@@ -239,9 +248,10 @@
 
   function isiFormInfo() {
     const i = DATA.info || {};
-    ['kjTanggal','kjKhatib','kjImam','kjTema','papTanggal','papPemateri','papTema','running'].forEach(k => { $('jm-' + k).value = i[k] || ''; });
+    INFO_KEYS.forEach(k => { const el = $('jm-' + k); if (el) el.value = i[k] || ''; });
   }
 
+  /* ---------- Infaq: simpan / hapus ---------- */
   async function simpanInfaq(e) {
     e.preventDefault();
     if (!PASS) return alert('Silakan login admin dulu.');
@@ -266,11 +276,13 @@
   }
   window.jmHapus = hapusInfaq;
 
+  /* ---------- Pengumuman: simpan ---------- */
   async function simpanInfo(e) {
     e.preventDefault();
     if (!PASS) return alert('Silakan login admin dulu.');
-    const data = {};
-    ['kjTanggal','kjKhatib','kjImam','kjTema','papTanggal','papPemateri','papTema','running'].forEach(k => { data[k] = $('jm-' + k).value.trim(); });
+    // Pertahankan data lain (mis. pengaturan jadwal "cfg")
+    const data = Object.assign({}, DATA.info);
+    INFO_KEYS.forEach(k => { data[k] = $('jm-' + k).value.trim(); });
     const b = $('jm-simpan-info'); b.disabled = true; b.innerText = 'Menyimpan...';
     try {
       const j = await api({ action: 'saveInfo', password: PASS, data });
@@ -281,6 +293,7 @@
     finally { b.disabled = false; b.innerText = 'Simpan Pengumuman'; }
   }
 
+  /* ---------- Tabel rekap ---------- */
   function renderTabel() {
     const tb = $('jm-tbody'); if (!tb) return;
     const bln = $('jm-filter-bulan').value, jn = $('jm-filter-jenis').value;
@@ -301,13 +314,88 @@
     </tr>`).join('');
   }
 
+  /* ---------- Pengaturan jadwal salat (iqomah & ihtiyati) ---------- */
+  const DEF = JSON.parse(JSON.stringify({ iq: CONFIG.IQOMAH_MENIT, sh: CONFIG.DURASI_SHALAT_MENIT, ih: CONFIG.IHTIYATI_MENIT }));
+  let sigIh = JSON.stringify(DEF.ih);
+  const SH5 = [['subuh','Subuh'],['dzuhur','Dzuhur'],['ashar','Ashar'],['maghrib','Maghrib'],['isya','Isya']];
+  const SH6 = [['subuh','Subuh'],['syuruq','Terbit'],['dzuhur','Dzuhur'],['ashar','Ashar'],['maghrib','Maghrib'],['isya','Isya']];
+
+  function terapkanCfg() {
+    const c = (DATA.info || {}).cfg;
+    const src = c || DEF;
+    Object.assign(CONFIG.IQOMAH_MENIT, src.iq);
+    Object.assign(CONFIG.DURASI_SHALAT_MENIT, src.sh);
+    Object.assign(CONFIG.IHTIYATI_MENIT, src.ih);
+    if (typeof renderLabelIqomah === 'function') renderLabelIqomah();
+    const sig = JSON.stringify(CONFIG.IHTIYATI_MENIT);
+    if (sig !== sigIh) { sigIh = sig; if (typeof fetchPrayerTimes === 'function') fetchPrayerTimes(); }
+  }
+
+  function sisipkanFormCfg() {
+    const adm = $('jm-admin');
+    if (!adm || $('jm-form-cfg')) return;
+    const inp = (id, label) => `<div><label class="block font-semibold text-gray-200 mb-1">${label}</label><input type="number" step="0.5" id="${id}" class="w-full bg-teal-900/60 border border-teal-700 rounded-xl px-3 py-2 text-gray-100"></div>`;
+    const box = document.createElement('div');
+    box.className = 'p-5 bg-teal-900/50 border-2 border-cyan-500/50 rounded-2xl space-y-3';
+    box.innerHTML = `
+      <h4 class="text-sm font-extrabold text-cyan-300 border-b border-teal-700 pb-2"><i class="fa-solid fa-clock"></i> Pengaturan Jadwal Salat (Iqomah & Koreksi Adzan)</h4>
+      <form id="jm-form-cfg" class="space-y-4 text-xs">
+        <div><p class="font-bold text-amber-300 mb-2">Jeda iqomah setelah adzan (menit)</p>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-3">${SH5.map(([k, n]) => inp('jm-iq-' + k, n)).join('')}</div></div>
+        <div><p class="font-bold text-amber-300 mb-2">Lama layar "Salat Berlangsung" (menit)</p>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-3">${SH5.map(([k, n]) => inp('jm-sh-' + k, n)).join('')}</div></div>
+        <div><p class="font-bold text-amber-300 mb-1">Koreksi / Ihtiyati jam adzan (menit, boleh minus)</p>
+          <p class="text-[10px] text-gray-400 mb-2">Ditambahkan ke jadwal dasar Kemenag. Contoh: Subuh 11 = jam adzan digeser 11 menit lebih lambat.</p>
+          <div class="grid grid-cols-2 md:grid-cols-6 gap-3">${SH6.map(([k, n]) => inp('jm-ih-' + k, n)).join('')}</div></div>
+        <div class="flex justify-end gap-2">
+          <button type="button" id="jm-cfg-reset" class="px-4 py-1.5 bg-teal-800 hover:bg-teal-700 text-cyan-200 rounded-xl font-bold">Kembalikan Default</button>
+          <button type="submit" id="jm-cfg-save" class="px-5 py-1.5 bg-cyan-500 hover:bg-cyan-400 text-gray-950 font-extrabold rounded-xl">Simpan Pengaturan</button>
+        </div>
+      </form>`;
+    adm.appendChild(box);
+    $('jm-form-cfg').onsubmit = e => { e.preventDefault(); simpanCfg(false); };
+    $('jm-cfg-reset').onclick = () => { if (confirm('Kembalikan semua ke nilai bawaan?')) simpanCfg(true); };
+  }
+
+  function isiFormCfg() {
+    SH5.forEach(([k]) => {
+      const a = $('jm-iq-' + k), b = $('jm-sh-' + k);
+      if (a) a.value = CONFIG.IQOMAH_MENIT[k];
+      if (b) b.value = CONFIG.DURASI_SHALAT_MENIT[k];
+    });
+    SH6.forEach(([k]) => { const c = $('jm-ih-' + k); if (c) c.value = CONFIG.IHTIYATI_MENIT[k]; });
+  }
+
+  async function simpanCfg(reset) {
+    if (!PASS) return alert('Silakan login admin dulu.');
+    const data = Object.assign({}, DATA.info);
+    if (reset) { delete data.cfg; }
+    else {
+      const num = id => { const v = parseFloat($(id).value); return isNaN(v) ? 0 : v; };
+      const cfg = { iq: {}, sh: {}, ih: {} };
+      SH5.forEach(([k]) => { cfg.iq[k] = Math.max(0, num('jm-iq-' + k)); cfg.sh[k] = Math.max(0, num('jm-sh-' + k)); });
+      SH6.forEach(([k]) => { cfg.ih[k] = num('jm-ih-' + k); });
+      data.cfg = cfg;
+    }
+    const b = $('jm-cfg-save'); b.disabled = true; b.innerText = 'Menyimpan...';
+    try {
+      const j = await api({ action: 'saveInfo', password: PASS, data });
+      if (!j.ok) throw new Error(j.error || 'Gagal');
+      DATA.info = data; terapkanCfg(); isiFormCfg();
+      alert('Pengaturan jadwal berhasil disimpan!');
+    } catch (err) { alert('Gagal menyimpan: ' + err.message); }
+    finally { b.disabled = false; b.innerText = 'Simpan Pengaturan'; }
+  }
+
+  /* ---------- Muat data dari server ---------- */
   async function muat() {
     try {
       const j = await (await fetch(ADMIN_URL + '?t=' + Date.now())).json();
       if (!j.ok) throw new Error(j.error);
       DATA = { infaq: j.infaq || [], info: j.info || {} };
+      terapkanCfg();
       renderPengumuman(); renderTabel();
-      if (PASS) isiFormInfo();
+      if (PASS) { isiFormInfo(); isiFormCfg(); }
     } catch (e) {
       console.error('Gagal memuat data admin:', e);
       const tb = $('jm-tbody');
@@ -315,11 +403,31 @@
     }
   }
 
+  /* ---------- Tombol Login Admin di header ---------- */
+  function sisipkanTombolHeader() {
+    const hb = document.querySelector('header .flex-wrap');
+    if (!hb || $('jm-hdr-btn')) return;
+    const b = document.createElement('button');
+    b.id = 'jm-hdr-btn';
+    b.className = 'px-3.5 py-2 bg-amber-600 hover:bg-amber-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md';
+    b.innerHTML = '<i class="fa-solid fa-user-shield"></i> Login Admin';
+    b.onclick = () => {
+      switchMasjidSubTab('infaq');
+      setTimeout(() => { if (!PASS) $('jm-login').classList.remove('hidden'); }, 400);
+    };
+    hb.appendChild(b);
+  }
+
+  /* ---------- Init ---------- */
   function init() {
     sisipkanTickerDanKartu();
     sisipkanMenuDanPanel();
+    sisipkanFormCfg();
+    sisipkanTombolHeader();
     renderPengumuman();
     muat();
+    // Segarkan otomatis tiap 10 menit (layar TV masjid), kecuali saat admin sedang login
+    setInterval(() => { if (!PASS) muat(); }, 600000);
   }
   if (document.readyState === 'complete') setTimeout(init, 0);
   else window.addEventListener('load', () => setTimeout(init, 0));
