@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  const ADMIN_URL = 'PASTE_URL_WEB_APP_DI_SINI';
+  const ADMIN_URL = 'https://script.google.com/macros/s/AKfycbzTha8oQdWbq6QIwPhv-n1wbHOpF9OdXchcBorhvxysv742fq8SD6ni8JagPS875d7U/exec';
 
   const $ = id => document.getElementById(id);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
