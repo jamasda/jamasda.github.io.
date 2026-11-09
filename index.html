@@ -1353,29 +1353,13 @@ Semoga ilmu yang dipelajari membawa keberkahan dan menjadi amal saleh bagi agama
 <script>window.onload=function(){window.print()}<\/script></body></html>`);
   w.document.close();
 }
-/* ============ KWITANSI DIGITAL UPZ (NOMOR MANUAL) ============ */
+/* ============ KWITANSI DIGITAL UPZ ============ */
 const KW_URL = 'https://script.google.com/macros/s/AKfycbzk7mmT91-R8Hqrc4rlGN7OZwBGcjbChJjnmAsVf-dWBJRdEm2Lp6NRf8yTDrn8xhrc/exec';
 const KW_QUICK = [2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000];
 let kwAmil = null, kwPass = null, kwData = [], kwJenis = 'Tathawwu';
 
 const rp = n => 'Rp' + (Number(n) || 0).toLocaleString('id-ID');
 const jenisLabel = j => j === 'Wajib' ? "Zakat Maal Wajib/Nishab" : "Zakat Maal Tathawwu'";
-
-// Nomor manual: huruf besar + angka, boleh tanda - / . (contoh: UPZ-001A, 12/A, B045)
-const kwNormNo = s => String(s || '').toUpperCase().replace(/\s+/g, '').trim();
-const KW_NO_RE = /^[A-Z0-9][A-Z0-9\-\/\.]{0,29}$/;
-
-// Sisipkan kolom "Nomor Kwitansi" otomatis di atas kolom "Terima dari"
-function kwBuatFieldNo() {
-  if ($('kw-no')) return;
-  const target = $('kw-nama') && $('kw-nama').parentElement;
-  if (!target) return;
-  target.insertAdjacentHTML('beforebegin',
-    `<div>
-      <label class="block font-semibold text-amber-300 mb-1">Nomor Kwitansi (isi manual: huruf &amp; angka)</label>
-      <input id="kw-no" type="text" maxlength="30" autocomplete="off" placeholder="Contoh: UPZ-001A" class="w-full bg-teal-900/60 border border-amber-500/50 rounded-xl px-3 py-2 text-amber-200 font-bold uppercase focus:outline-none focus:border-amber-400">
-    </div>`);
-}
 
 function terbilang(n) {
   n = Math.floor(n);
@@ -1440,38 +1424,30 @@ function kwSync() {
   const j = Number($('kw-jumlah').value) || 0;
   $('kw-terbilang').innerText = terbilangRp(j) || '-';
   $('kw-pv-tgl').innerText = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', timeZone: CONFIG.ZONA_WAKTU });
-  $('kw-pv-no').innerText = kwNormNo($('kw-no') ? $('kw-no').value : '') || '(isi nomor kwitansi)';
   $('kw-pv-nama').innerText = $('kw-nama').value || '-';
   $('kw-pv-terb').innerText = terbilangRp(j) || '-';
   $('kw-pv-jenis').innerText = (kwJenis === 'Wajib' ? '☑' : '☐') + ' Wajib/Nishab   ' + (kwJenis === 'Tathawwu' ? '☑' : '☐') + " Tathawwu'";
   $('kw-pv-jml').innerText = rp(j);
 }
-document.addEventListener('input', e => {
-  if (e.target && (e.target.id === 'kw-nama' || e.target.id === 'kw-no')) kwSync();
-});
+document.addEventListener('input', e => { if (e.target && e.target.id === 'kw-nama') kwSync(); });
 
 async function kwSimpan(cetak) {
   if (!kwAmil) { alert('Silakan login amil terlebih dahulu.'); return; }
-  const no = kwNormNo($('kw-no').value);
   const nama = $('kw-nama').value.trim(), jumlah = Number($('kw-jumlah').value) || 0;
-  if (!no) { alert('Nomor kwitansi wajib diisi (kombinasi huruf & angka, contoh: UPZ-001A).'); return; }
-  if (!KW_NO_RE.test(no)) { alert('Nomor hanya boleh huruf, angka, tanda - / . (maksimal 30 karakter).'); return; }
-  if (kwData.some(d => kwNormNo(d.no) === no && d.status !== 'BATAL')) { alert('Nomor ' + no + ' sudah dipakai. Gunakan nomor lain.'); return; }
   if (!nama) { alert('Nama penyetor wajib diisi.'); return; }
   if (jumlah <= 0) { alert('Jumlah belum diisi.'); return; }
   const data = {
-    no, tanggal: dateKey(wibNow()), nama, jenis: kwJenis, untuk: $('kw-untuk').value.trim(),
+    tanggal: dateKey(wibNow()), nama, jenis: kwJenis, untuk: $('kw-untuk').value.trim(),
     jumlah, terbilang: terbilangRp(jumlah), amil: kwAmil
   };
   const b1 = $('kw-simpan'), b2 = $('kw-simpan-cetak'); b1.disabled = b2.disabled = true;
   try {
     const j = await kwPost({ action: 'add', password: kwPass, data });
     if (!j.ok) throw new Error(j.error || 'Gagal');
-    const hasil = Object.assign({}, data, j.data || {});
-    hasil.no = hasil.no || no;
-    $('kw-no').value = ''; $('kw-nama').value = ''; $('kw-untuk').value = ''; kwClear();
-    alert('Tersimpan. No. ' + hasil.no + ' — ' + rp(hasil.jumlah));
-    if (cetak) kwCetak(hasil);
+    $('kw-pv-no').innerText = j.data.no;
+    $('kw-nama').value = ''; $('kw-untuk').value = ''; kwClear();
+    alert('Tersimpan. No. ' + j.data.no + ' — ' + rp(j.data.jumlah));
+    if (cetak) kwCetak(j.data);
     kwMuat();
   } catch (e) { alert('Gagal menyimpan: ' + e.message); }
   finally { b1.disabled = b2.disabled = false; }
@@ -1554,5 +1530,17 @@ td.l{width:150px;font-weight:600}
 <script>window.onload=function(){window.print()}<\/script></body></html>`);
   w.document.close();
 }
-
-kwBuatFieldNo();
+/* ============ INIT ============ */
+window.onload = function () {
+  renderMenu();
+  renderLabelIqomah();
+  fetchPrayerTimes();
+  muatSorotanTpa();
+  setInterval(tick, 500); tick();
+};
+</script>
+<script src="pwa.js"></script>
+<script src="hadis-ringan.js"></script>
+<script src="admin-jamasda.js"></script>
+</body>
+</html>
